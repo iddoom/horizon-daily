@@ -35,6 +35,20 @@ Configure which AI model scores and summarizes your content.
 }
 ```
 
+**MiniMax**:
+
+```json
+{
+  "ai": {
+    "provider": "minimax",
+    "model": "MiniMax-M2.5",
+    "api_key_env": "MINIMAX_API_KEY"
+  }
+}
+```
+
+Available models: `MiniMax-M2.5`, `MiniMax-M2.5-highspeed`
+
 **Custom Base URL** (for proxies):
 
 ```json
