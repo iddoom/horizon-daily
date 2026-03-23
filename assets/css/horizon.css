@@ -62,6 +62,13 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(120deg, #312e81, #be185d, #f97316) !important;
 }
 
+.page-header h1,
+.page-header h2,
+.page-header .project-tagline,
+.page-header a {
+  color: #fff !important;
+}
+
 /* --- Score Badge --- */
 .score-badge {
   display: inline-block;
@@ -142,21 +149,24 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal;
 }
 
-/* --- Language Toggle --- */
+/* --- Language Toggle (fixed top-right) --- */
 .lang-toggle {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 1000;
   display: flex;
-  justify-content: center;
   gap: 0;
-  margin: 1rem 0;
 }
 
 .lang-toggle button {
-  padding: 0.4em 1.5em;
-  border: 1px solid var(--hz-border);
-  background: transparent;
-  color: var(--hz-text);
-  font-size: 0.9em;
+  padding: 0.3em 1em;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.15);
+  color: #fff;
+  font-size: 0.8em;
   cursor: pointer;
+  backdrop-filter: blur(4px);
 }
 
 .lang-toggle button:first-child {

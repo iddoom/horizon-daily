@@ -41,12 +41,8 @@
     });
   }
 
-  /** Set up EN/中文 language toggle on the index page */
+  /** Set up EN/中文 language toggle as a page-level control */
   function setupLanguageToggle() {
-    var zhSection = document.getElementById('lang-zh');
-    var enSection = document.getElementById('lang-en');
-    if (!zhSection || !enSection) return;
-
     // Create toggle buttons
     var toggle = document.createElement('div');
     toggle.className = 'lang-toggle';
@@ -62,31 +58,70 @@
     toggle.appendChild(btnEn);
     toggle.appendChild(btnZh);
 
-    // Insert before the first lang section
-    zhSection.parentNode.insertBefore(toggle, zhSection);
+    // Insert at top of body
+    document.body.insertBefore(toggle, document.body.firstChild);
 
-    function show(lang) {
+    // Read saved preference, default to zh
+    var saved = null;
+    try { saved = localStorage.getItem('horizon-lang'); } catch (e) { /* noop */ }
+    var currentLang = saved === 'en' ? 'en' : 'zh';
+
+    function updateButtons(lang) {
       if (lang === 'en') {
-        enSection.classList.remove('hidden');
-        zhSection.classList.add('hidden');
         btnEn.classList.add('active');
         btnZh.classList.remove('active');
       } else {
-        zhSection.classList.remove('hidden');
-        enSection.classList.add('hidden');
         btnZh.classList.add('active');
         btnEn.classList.remove('active');
       }
-      try { localStorage.setItem('horizon-lang', lang); } catch (e) { /* noop */ }
     }
 
-    btnEn.addEventListener('click', function () { show('en'); });
-    btnZh.addEventListener('click', function () { show('zh'); });
+    // Index page: toggle lang-section visibility
+    var zhSection = document.getElementById('lang-zh');
+    var enSection = document.getElementById('lang-en');
 
-    // Initial state from localStorage or default to zh
-    var saved = null;
-    try { saved = localStorage.getItem('horizon-lang'); } catch (e) { /* noop */ }
-    show(saved === 'en' ? 'en' : 'zh');
+    function showSection(lang) {
+      if (!zhSection || !enSection) return;
+      if (lang === 'en') {
+        enSection.classList.remove('hidden');
+        zhSection.classList.add('hidden');
+      } else {
+        zhSection.classList.remove('hidden');
+        enSection.classList.add('hidden');
+      }
+    }
+
+    // Article page: redirect to the other language version
+    function switchArticleLang(lang) {
+      var path = window.location.pathname;
+      var target = null;
+      if (lang === 'en' && /-zh(?:\.html)?$/.test(path.replace(/\/$/, ''))) {
+        target = path.replace(/-zh(\.html)?$/, '-en$1').replace(/-zh\/$/, '-en/');
+      } else if (lang === 'zh' && /-en(?:\.html)?$/.test(path.replace(/\/$/, ''))) {
+        target = path.replace(/-en(\.html)?$/, '-zh$1').replace(/-en\/$/, '-zh/');
+      }
+      if (target) window.location.href = target;
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      updateButtons(lang);
+      try { localStorage.setItem('horizon-lang', lang); } catch (e) { /* noop */ }
+      if (zhSection && enSection) {
+        showSection(lang);
+      } else {
+        switchArticleLang(lang);
+      }
+    }
+
+    btnEn.addEventListener('click', function () { setLang('en'); });
+    btnZh.addEventListener('click', function () { setLang('zh'); });
+
+    // Initialize
+    updateButtons(currentLang);
+    if (zhSection && enSection) {
+      showSection(currentLang);
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function () {
