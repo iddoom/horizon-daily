@@ -132,3 +132,43 @@ Subreddits and users are fetched concurrently. Comments are sorted by score, lim
 **Rate limiting**: Detects HTTP 429 responses, reads the `Retry-After` header, waits, and retries once. Uses a descriptive `User-Agent` as required by Reddit's API guidelines.
 
 **Extracted data**: title, URL, author, score, upvote ratio, comment count, subreddit, flair, self-text, and top comments.
+
+## Twitter
+
+**File**: `src/scrapers/twitter.py`
+
+Uses the [Apify](https://apify.com) platform to bypass Twitter's anti-scraping measures. The actor `altimis/scweet` is called via the Apify REST API.
+
+Flow:
+1. POST to `/v2/acts/{actor_id}/runs` to trigger a run
+2. Poll `/v2/actor-runs/{run_id}` until status is `SUCCEEDED` or a terminal failure
+3. GET `/v2/datasets/{dataset_id}/items` to retrieve results
+
+**Config** (`sources.twitter`):
+
+```json
+{
+  "enabled": true,
+  "users": ["karpathy", "ylecun"],
+  "fetch_limit": 10,
+  "fetch_reply_text": false,
+  "max_replies_per_tweet": 3,
+  "max_tweets_to_expand": 10,
+  "reply_min_likes": 5,
+  "actor_id": "altimis~scweet",
+  "apify_token_env": "APIFY_TOKEN"
+}
+```
+
+- `users` — Twitter screen names to monitor, without the `@` prefix
+- `fetch_limit` — maximum tweets to fetch per run
+- `fetch_reply_text` — when `true`, a second Apify run fetches reply bodies for each important tweet and appends them under `--- Top Comments ---` for AI analysis
+- `max_replies_per_tweet` — maximum reply lines per tweet (sorted by engagement score)
+- `max_tweets_to_expand` — cap on reply expansion runs per pipeline cycle, to control Apify credit usage
+- `reply_min_likes` — minimum likes required for a reply to be included
+- `actor_id` — Apify actor ID (default: `altimis~scweet`)
+- `apify_token_env` — environment variable name containing the Apify API token
+
+**Authentication**: Set `APIFY_TOKEN` in your `.env`. Get a token at [console.apify.com](https://console.apify.com/account/integrations).
+
+**Extracted data**: tweet text, URL, author, publish time, likes, retweets, replies, views, and (optionally) reply-thread text appended under `--- Top Comments ---`.

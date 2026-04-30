@@ -180,6 +180,35 @@ All sources are configured under the top-level `sources` key in `config.json`.
 }
 ```
 
+### Twitter
+
+Requires an [Apify](https://apify.com) account. Set `APIFY_TOKEN` in your `.env` file. The free tier includes $5/month of credit, enough for roughly 20,000 tweets.
+
+```json
+{
+  "sources": {
+    "twitter": {
+      "enabled": true,
+      "users": ["karpathy", "ylecun"],
+      "fetch_limit": 10,
+      "fetch_reply_text": false,
+      "max_replies_per_tweet": 3,
+      "max_tweets_to_expand": 10,
+      "reply_min_likes": 5
+    }
+  }
+}
+```
+
+- `users` — Twitter screen names to monitor, without the `@` prefix
+- `fetch_limit` — maximum tweets to fetch per run (across all users combined; minimum 100 due to actor constraint)
+- `fetch_reply_text` — when `true`, fetch actual reply bodies for important tweets and append them under `--- Top Comments ---` so the AI can factor in community discussion. Disabled by default.
+- `max_replies_per_tweet` — maximum reply lines to append per tweet (default: 3)
+- `max_tweets_to_expand` — cap on how many tweets get reply expansion per run, to control Apify credit usage (default: 10)
+- `reply_min_likes` — only include replies with at least this many likes (default: 0)
+
+The scraper uses the `altimis/scweet` actor by default. You can override it with `actor_id` if needed.
+
 ## Filtering
 
 Content is scored 0-10:
