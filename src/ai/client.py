@@ -122,9 +122,12 @@ class AnthropicClient(AIClient):
         """
         self.config = config
 
-        api_key = _resolve_api_key(config)
+        credential = _resolve_api_key(config)
 
-        kwargs = {"api_key": api_key}
+        if config.api_key_env == "ANTHROPIC_AUTH_TOKEN":
+            kwargs = {"auth_token": credential}
+        else:
+            kwargs = {"api_key": credential}
         if config.base_url:
             kwargs["base_url"] = config.base_url
 
