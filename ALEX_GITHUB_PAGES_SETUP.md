@@ -62,6 +62,7 @@ Settings → Secrets and variables → Actions → New repository secret
 
 | Secret 名称 | 用途 |
 |---|---|
+| `APIFY_TOKEN` | 抓取 X/Twitter 指定账号内容 |
 | `HORIZON_WEBHOOK_URL` | 后续推送飞书/钉钉/Slack |
 | `GITHUB_TOKEN` | GitHub Actions 自动内置，一般不用手动加 |
 
@@ -119,5 +120,6 @@ https://iddoom.github.io/horizon-daily/
 - [x] `docs/_config.yml` 的 `url` 已替换为你的 GitHub 用户名。
 - [x] `docs/_config.yml` 的 `baseurl` 与仓库名一致。
 - [ ] GitHub Secrets 已添加新的 `ANTHROPIC_AUTH_TOKEN`。
+- [ ] 如需 X/Twitter 内容，GitHub Secrets 已添加 `APIFY_TOKEN`，并把 `data/config.github.json` 里的 `twitter.enabled` 改为 `true`。
 - [ ] Actions 第一次运行成功。
 - [x] Pages 选择了 `gh-pages` 分支。
