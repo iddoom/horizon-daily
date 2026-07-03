@@ -12,8 +12,8 @@
       "zh",
       "en"
     ],
-    "analysis_concurrency": 1,
-    "enrichment_concurrency": 1
+    "analysis_concurrency": 3,
+    "enrichment_concurrency": 2
   },
   "sources": {
     "github": [
@@ -77,7 +77,7 @@
       {
         "name": "IT之家",
         "url": "https://www.ithome.com/rss/",
-        "enabled": true,
+        "enabled": false,
         "category": "digital-tech-cn"
       },
       {
