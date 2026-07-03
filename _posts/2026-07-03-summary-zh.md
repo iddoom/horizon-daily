@@ -5,72 +5,99 @@ date: 2026-07-03
 lang: zh
 ---
 
-> 从 15 条内容中筛选出 3 条重要资讯。
+> 从 26 条内容中筛选出 5 条重要资讯。
 
 ---
 
-1. [阿里巴巴因后门和数据安全风险封禁 Claude Code](#item-1) ⭐️ 8.0/10
-2. [讽刺博文《半成品》引发创业公司文化热议](#item-2) ⭐️ 7.0/10
-3. [Midjourney 医疗扫描仪视频仍留下诸多关键疑问](#item-3) ⭐️ 6.0/10
+1. [新设备成功复苏捐献者眼球，全眼移植或将成为可能](#item-1) ⭐️ 8.0/10
+2. [Valve 开源 Steam Machine 电子墨水屏设计文件](#item-2) ⭐️ 7.0/10
+3. [自动记忆会话记录会降低 AI 助手的用户体验](#item-3) ⭐️ 7.0/10
+4. [Anthropic 推出面向科研人员的 AI 工作台 Claude Science](#item-4) ⭐️ 7.0/10
+5. [Fable 的评判](#item-5) ⭐️ 6.0/10
 
 ---
 
 <a id="item-1"></a>
-## [阿里巴巴因后门和数据安全风险封禁 Claude Code](https://www.reuters.com/world/china/alibaba-ban-claude-code-workplace-over-alleged-backdoor-risks-source-says-2026-07-03/) ⭐️ 8.0/10
+## [新设备成功复苏捐献者眼球，全眼移植或将成为可能](https://www.technologyreview.com/2026/07/03/1140148/a-device-that-revives-eyeballs-from-dead-donors-could-make-eye-transplants-possible/) ⭐️ 8.0/10
 
-据报道，阿里巴巴已内部封禁 Anthropic 的 Claude Code，因存在 alleged 后门风险和数据安全隐患，禁止员工使用该智能编程工具。这一决定使阿里巴巴成为首批因间谍和数据泄露担忧而正式限制 Claude Code 的大型科技巨头之一。 此次封禁标志着企业对需要深度访问专有代码库的云端 AI 编程助手的信任危机日益加深，尤其是在地缘政治敏感地带。这可能加速更广泛的行业趋势，即企业和政府限制使用外国开发的 AI 开发者工具，转而采用国产或本地化部署的替代方案。 Claude Code 是一种智能编程系统，能够自主操作整个项目，执行多文件更改并读取大量代码库，这在本质上为数据泄露创造了巨大的攻击面。安全研究人员此前已发现 Claude Code 中的严重漏洞，包括 'TrustFall' 约定利用攻击，该攻击可能允许攻击者读取本地文件、SSH 密钥和令牌，甚至建立命令与控制连接。
+研究人员开发了一种新型设备，能够维持和复苏来自逝者捐献者的眼球，解决了长期以来导致移植存活率低的眼组织快速退化问题。该技术通过在器官获取与手术之间的关键时间窗口内保持视网膜完整性和神经节细胞存活，有望突破全眼移植的核心瓶颈。 全眼移植是眼科领域的前沿方向，有望为因严重视神经或视网膜损伤而导致不可逆失明的患者提供一种变革性的治愈方案，其效果远超仅移植角膜的手术。如果取得成功，该设备有望将全眼移植从实验性手术转变为临床可行的治疗方案，为全球数百万目前无药可治的眼疾患者带来复明希望。 全眼移植的核心挑战在于，视网膜和视神经在眼球摘除后几分钟内即开始退化，使得在手术前保持供体眼球的功能变得极为困难。尽管全球首例全眼移植手术已于 2021 年在纽约大学朗格尼医学中心作为半脸移植的一部分成功实施，但移植的眼球仅维持了结构存活而未能恢复视力，这凸显了该新设备试图弥补的关键空白。
 
-hackernews · nsoonhui · 7月3日 08:31 · [社区讨论](https://news.ycombinator.com/item?id=48772443)
+rss · MIT Technology Review · 7月3日 17:34
 
-**背景**: Claude Code 是 Anthropic 推出的基于命令行的智能编程工具，能够自主导航、理解和修改整个代码库。与传统的 AI 聊天助手不同，它需要广泛的文件系统访问权限才能运行，这在本质上提高了数据安全的风险。在 2026 年的源代码泄露事件之后，安全研究人员记录了多个严重漏洞，包括通过木马化分支发起的供应链攻击风险，以及可能危及整个开发机器的提示注入攻击。
+**背景**: 与仅替换眼睛透明前表面且成功率较高的角膜移植不同，全眼移植需要替换包括视网膜和视神经在内的整个眼球。视神经将眼睛与大脑相连，包含超过一百万条属于中枢神经系统的神经纤维，而重新连接这些纤维以恢复功能性视觉仍是再生医学中最具挑战性的未解难题之一。此前在动物模型和人类中进行的全眼移植尝试，均面临组织保存、免疫排斥以及无法再生与视觉皮层神经连接等多重困难。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.anthropic.com/product/claude-code">Claude Code | Anthropic's agentic coding system \ Anthropic</a></li>
-<li><a href="https://www.darkreading.com/application-security/trustfall-exposes-claude-code-execution-risk">'TrustFall' Convention Exposes Claude Code Execution Risk</a></li>
-<li><a href="https://www.zscaler.com/blogs/security-research/anthropic-claude-code-leak">Claude Code Leak: Critical AI Security Threat 2026</a></li>
+<li><a href="https://www.wjgnet.com/2220-3230/full/v14/i2/95009">Whole-eye transplantation: Current challenges and future ...</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11212585/">Whole-eye transplantation: Current challenges and future perspectives - PMC</a></li>
+<li><a href="https://nyulangone.org/news/worlds-first-whole-eye-partial-face-transplant-recipient-achieves-remarkable-recovery-viable-eye-one-year-after-landmark-surgery">The World’s First Whole-Eye & Partial-Face Transplant Recipient Achieves Remarkable Recovery, with Viable Eye One Year After Landmark Surgery | NYU Langone News</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 社区讨论反映了强烈且多元的观点，部分用户强调了 Anthropic 此前存在争议的行为历史，例如在特定条件下消耗用户剩余的 API 额度。一些评论者将此视为更广泛的地缘政治问题，认为所有远程 AI 工具都构成巨大的安全风险，因为它们可能为情报机构提供外国公司思维过程和知识产权的实时访问权限，而另一些人则指出，全球企业正对具有深度代码库访问权限的开发者工具变得日益谨慎。
-
-**标签**: `#AI Security`, `#Corporate Espionage`, `#Data Privacy`, `#Geopolitics`, `#Claude Code`
+**标签**: `#biotechnology`, `#medical-research`, `#transplant-surgery`, `#healthcare-innovation`
 
 ---
 
 <a id="item-2"></a>
-## [讽刺博文《半成品》引发创业公司文化热议](https://weli.dev/blog/half-baked-product/) ⭐️ 7.0/10
+## [Valve 开源 Steam Machine 电子墨水屏设计文件](https://www.gamingonlinux.com/2026/07/valve-open-source-the-steam-machine-e-ink-screen-so-you-can-make-your-own/) ⭐️ 7.0/10
 
-weli.dev 发布的一篇题为《Half-Baked Product》的讽刺博文在 Hacker News 上引发热议，获得了 495 分并产生了大量讨论。该文章用造烤箱的隐喻，生动揭示了早期创业公司中技术工程师与商业导向创始人之间的 dysfunctional 互动关系。 这篇文章之所以引起技术社区的强烈共鸣，是因为它捕捉到了几乎每位工程师和创始人都经历过的系统性问题：关于技术自由的空头承诺、激励机制的错位，以及领域专业知识与市场驱动决策之间的鸿沟。它既是对共同痛苦的一种宣泄式认同，也是对那些考虑加入早期创业公司的人的警示。 文章逐步展示了各种荒谬的产品决策——比如添加蜡烛按钮和修复旋转方向——这些决策映射了工程师在商业优先级凌驾于技术判断时所面临的真实妥协。评论者指出这个故事令人不安的准确性，许多人在叙事从理想主义承诺到务实妥协的发展过程中看到了自己的经历。
+Valve 发布了 Steam Machine 电子墨水屏的开源设计文件，允许任何人自行制作、修改或定制自己的显示屏。该屏幕采用标准的 Adafruit 5.83 英寸 eInk 面板，对 DIY 爱好者来说非常容易获取。 此举进一步彰显了 Valve 致力于构建开放硬件生态系统的决心，赋能创客和游戏社区创造定制化方案，而非依赖封闭的专有产品。这为整个硬件行业树立了积极的榜样，因为许多厂商的可选配件往往要么商业化做得很差，要么完全被锁定。 该电子墨水屏基于市售的 Adafruit 5.83 英寸 eInk 面板（产品编号 6397），这意味着制作者可以轻松采购到核心组件。社区成员已经注意到了潜在的跨平台应用，例如将该设计适配到 Framework Desktop 的模块化前面板上。
 
-hackernews · weli · 7月3日 08:23 · [社区讨论](https://news.ycombinator.com/item?id=48772388)
+hackernews · ahlCVA · 7月3日 13:01 · [社区讨论](https://news.ycombinator.com/item?id=48774518)
 
-**背景**: 在早期创业公司中，专注于快速增长和市场契合度的创始人，与关心构建高质量、架构良好产品的工程师之间，常常存在根本性的紧张关系。创始人通常通过提供股权和技术自主权的承诺来吸引工程人才，但商业压力——投资者期望、客户需求、竞争威胁——往往迫使工程师做出令人沮丧的妥协。这种动态在创业生态系统中如此普遍，以至于已成为一种可识别的典型模式，承诺的自由与实际约束之间的差距是工程师不满和离职的主要原因。
+**背景**: Steam Machine 是 Valve 早期将 PC 游戏引入客厅的尝试，该公司一直有支持开源和 DIY 硬件项目的历史。电子墨水（E-ink）是一种以低功耗和在阳光下的可读性著称的显示技术，常用于电子阅读器。Valve 的更广泛战略还包括 Steam Deck，该产品同样催生了大量的社区改装和开源开发活动。
 
-**社区讨论**: 评论者普遍认为这篇讽刺文章令人不安地准确，许多人分享了自己类似的经历——从原型有缺陷的 stealth 创业公司到来自免费开源替代品的竞争威胁。用户 TrackerFF 提出了一个关键洞察：创始人的动机（追求财富还是领域热情）往往是错位的根本原因，而用户 xg15 指出，关于技术自由的空头承诺可能并非蓄意欺骗，而是双方最初共同的自欺欺人。
+**社区讨论**: 社区反响非常积极，用户们赞赏 Valve 的开放态度，并希望更多硬件公司能效仿这种做法。讨论中出现了关于所用 Adafruit 面板具体型号的实用信息，成员们还表达了对将该设计适配到 Framework Desktop 等其他平台的兴趣。一位用户提出了关于 Valve 开放策略商业分析的有趣观点，质疑其前期成本与长期收益之间的平衡。
 
-**标签**: `#startups`, `#engineering culture`, `#product management`, `#satire`, `#founders`
+**标签**: `#valve`, `#open-source`, `#hardware`, `#e-ink`, `#diy`
 
 ---
 
 <a id="item-3"></a>
-## [Midjourney 医疗扫描仪视频仍留下诸多关键疑问](https://www.theverge.com/ai-artificial-intelligence/961265/midjourney-medical-ultrasound-scanner-behind-the-scenes-video) ⭐️ 6.0/10
+## [自动记忆会话记录会降低 AI 助手的用户体验](https://12gramsofcarbon.com/p/agentics-memorizing-session-transcripts) ⭐️ 7.0/10
 
-Midjourney 发布了一段近 20 分钟的幕后视频，展示了其充满未来感的水箱式超声波扫描仪，该公司计划将这种设备部署在水疗中心用于医疗成像。然而，该视频并未提供确凿的证据或临床验证来证明该设备能如承诺般运作。 这一动态之所以重要，是因为它代表着一家以软件为核心的 AI 图像生成公司出人意料地跨界进军实体医疗硬件领域。如果成功，它有望让更多人获得无辐射的精细诊断成像服务，但缺乏技术验证也让人们对其是否为空头承诺以及监管可行性产生了严重担忧。 这款概念扫描仪要求用户浸没在水箱中，目标是产生可与 MRI 相媲美的成像质量。尽管该公司怀揣着通过廉价、便捷的扫描来变革医疗的宏大愿景，但至今仍未拿出同行评审数据或功能演示来证明该技术的实际功效。
+12gramsofcarbon.com 上的一篇文章指出，AI 模型自动记忆会话记录并在不同上下文中应用这些记录，实际上会降低用户体验。这种自动化的上下文保留机制会引入无关信息和错误假设，导致不相关任务之间的状态污染。 这突显了现代 AI 编程助手和聊天机器人中的一个关键用户体验缺陷：过于激进的记忆功能破坏了开发者所依赖的无状态性，而这是保证输出可预测性的基础。随着 AI 工具越来越多地采用持久记忆功能，业界必须解决上下文相关性这一难题，以防止用户体验受损。 核心问题在于 AI 模型难以区分临时的假设性查询和持久的用户偏好，导致它们过度解读一次性的评论。开发者们正在积极寻找变通方案，例如通过在系统提示中添加明确指令，配置 ~/.claude/CLAUDE.md 文件来禁止将一次性评论转化为持久记忆。
 
-rss · The Verge · 7月3日 11:49
+hackernews · theahura · 7月3日 15:32 · [社区讨论](https://news.ycombinator.com/item?id=48776232)
 
-**背景**: Midjourney 被公认为生成式 AI 领域的重要初创公司，广为人知的是其流行的文本生成图像工具。超声波成像（又称超声检查）是一项成熟的非侵入性医疗技术，它利用高频声波来捕获软组织和内脏器官的实时图像。虽然超声波已经具备无辐射且相对廉价的优势，但若想仅靠声波就达到 MRI 那种高分辨率和全身诊断深度的效果，仍需克服巨大的物理学和工程学障碍。
+**背景**: 大语言模型（LLM）本质上是“无状态”的，这意味着它们独立处理每个提示，而不保留过去交互的知识。为了创造更个性化的体验，ChatGPT 和 Claude Code 等 AI 助手引入了记忆功能，可以自动提取并保存关于用户或项目的信息，以便在未来的提示中注入这些上下文。然而，这种自动化的上下文注入可能会导致“状态污染”，即过去会话中无关或过时的信息对模型在新的、不相关任务中的推理产生负面影响。
+
+**社区讨论**: 社区强烈认为目前的自动记忆功能弊大于利，用户抱怨无关上下文污染提示词导致了奇怪的输出。开发者们分享了实用的变通方法，指出记忆功能仅在明确定义的“项目”中才有用，并提倡使用系统提示指令（如 ~/.claude/CLAUDE.md）来阻止模型将一次性评论转化为持久记忆。
+
+**标签**: `#AI Assistants`, `#UX`, `#LLM Context`, `#Software Engineering`, `#AI Memory`
+
+---
+
+<a id="item-4"></a>
+## [Anthropic 推出面向科研人员的 AI 工作台 Claude Science](https://www.theverge.com/ai-artificial-intelligence/961311/anthropic-claude-science-ai-drug-development) ⭐️ 7.0/10
+
+Anthropic 宣布推出目前处于测试阶段的全新 AI 工作台 Claude Science，它将分散的科学工具和数据集统一到了同一个环境中。该平台集成了文献分析、Jupyter、R、高性能计算（HPC）管理以及 60 多项特定领域的技能，以帮助研究人员加速药物发现等工作流程。 此次发布是 Anthropic 在通用 AI 模型和编程工具之外的一次重大战略扩张，直接瞄准了利润丰厚的制药及更广泛的科学研究行业。通过提供一个保留原始数据集和计算在本地进行的可审计平台，Anthropic 正致力于从根本上改变数据驱动研究和药物开发的方式。 Claude Science 应用程序旨在用户自己的基础设施上运行，确保原始数据集和计算工作负载保留在本地，而提示词和模型响应则由 Anthropic 按照标准保留政策进行处理。该平台专门针对科学研究进行了优化，其早期演示重点展示了在分子生物学和制药数据处理方面的强大能力。
+
+rss · The Verge · 7月3日 13:56
+
+**背景**: 长期以来，制药研发过程一直面临着成本高昂、周期漫长以及成功率极低等严峻挑战。近年来，人工智能和机器学习技术越来越多地应用于药物发现领域，通过模拟复杂的生物系统，推动工作流程从传统的经验性筛选向数据驱动的设计转变。如今，大语言模型等工具正被不断调整优化，以帮助科学家确定疾病靶点，并管理临床前研究中产生的海量且分散的数据。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.theverge.com/report/954826/midjourney-medical-ai-ultrasound-body-scanner-lacks-evidence">Something’s off with Midjourney’s pivot to body scanners | The Verge</a></li>
-<li><a href="https://www.fda.gov/radiation-emitting-products/medical-imaging/ultrasound-imaging">Ultrasound Imaging | FDA</a></li>
+<li><a href="https://www.statnews.com/2026/06/30/anthropic-release-claude-science-ceo-dario-amodei/">Anthropic releases Claude Science, a product aimed at researchers, the pharma industry</a></li>
+<li><a href="https://www.explainx.ai/blog/claude-science-ai-workbench-scientists-2026">Claude Science: Anthropic's AI Workbench for Scientists [2026]</a></li>
+<li><a href="https://www.frontiersin.org/journals/bioinformatics/articles/10.3389/fbinf.2026.1755843/full">Frontiers | Artificial intelligence in drug discovery from ...</a></li>
 
 </ul>
 </details>
 
-**标签**: `#midjourney`, `#hardware`, `#medical-imaging`, `#ai-startups`, `#tech-news`
+**标签**: `#Anthropic`, `#AI for Science`, `#Drug Discovery`, `#Claude Science`, `#Artificial Intelligence`
+
+---
+
+<a id="item-5"></a>
+## [Fable 的评判](https://simonwillison.net/2026/Jul/3/judgement/#atom-everything) ⭐️ 6.0/10
+
+Simon Willison 分享了 Claude Code 的提示技巧，建议让 AI 自行判断运行测试或委托给更便宜的模型等任务，这样能产生更好的效果并节省 token。
+
+rss · Simon Willison · 7月3日 18:51
+
+**标签**: `#AI`, `#Prompt Engineering`, `#Claude Code`, `#Software Engineering`, `#LLM`
 
 ---
