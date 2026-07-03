@@ -2,9 +2,9 @@ name: Daily Horizon Summary
 
 on:
   schedule:
-    # GitHub scheduled workflows use UTC. 20:00 UTC is 04:00 Asia/Shanghai;
-    # this intentionally runs early to offset the observed schedule delay.
-    - cron: '0 20 * * *'
+    # Run every 6 hours. Each run analyzes the previous 6-hour window.
+    # GitHub scheduled workflows use UTC and may be delayed by a few minutes.
+    - cron: '0 */6 * * *'
   workflow_dispatch:      # Allow manual trigger
     inputs:
       hours:
@@ -15,6 +15,7 @@ on:
 jobs:
   daily-summary:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: write  # Needed to commit changes
 
