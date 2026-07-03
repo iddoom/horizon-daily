@@ -4,7 +4,7 @@
     "provider": "anthropic",
     "model": "glm-5.2",
     "api_key_env": "ANTHROPIC_AUTH_TOKEN",
-    "base_url": "${ANTHROPIC_BASE_URL}",
+    "base_url": "https://open.bigmodel.cn/api/anthropic",
     "temperature": 0.3,
     "max_tokens": 4096,
     "throttle_sec": 1.5,

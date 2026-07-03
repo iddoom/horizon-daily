@@ -57,7 +57,6 @@ Settings → Secrets and variables → Actions → New repository secret
 | Secret 名称 | 内容 |
 |---|---|
 | `ANTHROPIC_AUTH_TOKEN` | BigModel / Anthropic 兼容接口 token |
-| `ANTHROPIC_BASE_URL` | `https://open.bigmodel.cn/api/anthropic` |
 
 可选：
 
@@ -118,6 +117,6 @@ https://iddoom.github.io/horizon-daily/
 
 - [x] `docs/_config.yml` 的 `url` 已替换为你的 GitHub 用户名。
 - [x] `docs/_config.yml` 的 `baseurl` 与仓库名一致。
-- [ ] GitHub Secrets 已添加 `ANTHROPIC_AUTH_TOKEN` 和 `ANTHROPIC_BASE_URL`。
+- [ ] GitHub Secrets 已添加新的 `ANTHROPIC_AUTH_TOKEN`。
 - [ ] Actions 第一次运行成功。
 - [ ] Pages 选择了 `gh-pages` 分支。
