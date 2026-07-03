@@ -62,7 +62,7 @@ class HorizonOrchestrator:
             else None
         )
 
-    async def run(self, force_hours: int = None) -> None:
+    async def run(self, force_hours: float = None) -> None:
         """Execute the complete workflow.
 
         Args:
@@ -236,7 +236,7 @@ class HorizonOrchestrator:
 
             raise
 
-    def _determine_time_window(self, force_hours: int = None) -> datetime:
+    def _determine_time_window(self, force_hours: float = None) -> datetime:
         if force_hours:
             since = datetime.now(timezone.utc) - timedelta(hours=force_hours)
         else:

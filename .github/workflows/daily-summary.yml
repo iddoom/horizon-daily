@@ -6,6 +6,11 @@ on:
     # this intentionally runs early to offset the observed schedule delay.
     - cron: '0 20 * * *'
   workflow_dispatch:      # Allow manual trigger
+    inputs:
+      hours:
+        description: "Fetch window in hours. Use 0.1 for about 6 minutes."
+        required: false
+        default: "6"
 
 jobs:
   daily-summary:
@@ -42,7 +47,7 @@ jobs:
           LWN_KEY: ${{ secrets.LWN_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           HORIZON_WEBHOOK_URL: ${{ secrets.HORIZON_WEBHOOK_URL }}
-        run: uv run horizon --hours 6
+        run: uv run horizon --hours ${{ github.event.inputs.hours || '6' }}
 
       - name: Set current date as environment variable
         run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV

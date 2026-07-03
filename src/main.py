@@ -36,7 +36,7 @@ def main():
     print_banner()
 
     parser = argparse.ArgumentParser(description="Horizon - AI-Driven Information Aggregation System")
-    parser.add_argument("--hours", type=int, help="Force fetch from last N hours")
+    parser.add_argument("--hours", type=float, help="Force fetch from last N hours")
     args = parser.parse_args()
 
     try:
