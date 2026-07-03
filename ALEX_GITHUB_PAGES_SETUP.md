@@ -107,11 +107,12 @@ https://iddoom.github.io/horizon-daily/
 - `data/config.github.json`
 - `docs/_config.yml`
 - `docs/index.md`
+- GitHub 仓库：`https://github.com/iddoom/horizon-daily`
+- GitHub Pages 站点：`https://iddoom.github.io/horizon-daily/`
 
 已知阻塞：
 
-- 当前本机 BigModel token 已过期；GitHub Actions 里必须填新的 `ANTHROPIC_AUTH_TOKEN`。
-- 本机未安装 `gh` 命令，所以尚未自动创建 GitHub 仓库。
+- 当前本机 BigModel token 已过期；GitHub Actions 里必须填新的 `ANTHROPIC_AUTH_TOKEN` 才能生成真正的 AI 日报。
 
 ## 6. 发布前检查
 
@@ -119,4 +120,4 @@ https://iddoom.github.io/horizon-daily/
 - [x] `docs/_config.yml` 的 `baseurl` 与仓库名一致。
 - [ ] GitHub Secrets 已添加新的 `ANTHROPIC_AUTH_TOKEN`。
 - [ ] Actions 第一次运行成功。
-- [ ] Pages 选择了 `gh-pages` 分支。
+- [x] Pages 选择了 `gh-pages` 分支。
