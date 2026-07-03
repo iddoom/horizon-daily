@@ -9,8 +9,7 @@
     "max_tokens": 4096,
     "throttle_sec": 1.5,
     "languages": [
-      "zh",
-      "en"
+      "zh"
     ],
     "analysis_concurrency": 3,
     "enrichment_concurrency": 2
@@ -89,7 +88,7 @@
       {
         "name": "Al Jazeera",
         "url": "https://www.aljazeera.com/xml/rss/all.xml",
-        "enabled": true,
+        "enabled": false,
         "category": "world-news"
       }
     ],
@@ -137,7 +136,7 @@
     }
   },
   "filtering": {
-    "ai_score_threshold": 7.0,
+    "ai_score_threshold": 6.0,
     "time_window_hours": 24,
     "max_items": 18,
     "category_groups": {
