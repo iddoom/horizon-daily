@@ -104,6 +104,7 @@
     },
     "twitter": {
       "enabled": true,
+      "actor_id": "61RPP7dywgiy0JPD0",
       "users": [
         "karpathy",
         "sama",
