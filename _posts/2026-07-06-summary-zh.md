@@ -5,55 +5,47 @@ date: 2026-07-06
 lang: zh
 ---
 
-> 从 10 条内容中筛选出 2 条重要资讯。
+> 从 26 条内容中筛选出 3 条重要资讯。
 
 ---
 
-1. [T3MP3ST：基于多智能体的自主红队测试平台](#item-1) ⭐️ 7.0/10
-2. [Agility Robotics 通过 SPAC 上市，专注于工业应用场景](#item-2) ⭐️ 6.0/10
+1. [Workers 缓存](#item-1) ⭐️ 7.0/10
+2. [迈向 Elm 1.0 之路](#item-2) ⭐️ 7.0/10
+3. [微软裁员 4800 人，主要影响销售和 Xbox 部门](#item-3) ⭐️ 7.0/10
 
 ---
 
 <a id="item-1"></a>
-## [T3MP3ST：基于多智能体的自主红队测试平台](https://github.com/elder-plinius/T3MP3ST) ⭐️ 7.0/10
+## [Workers 缓存](https://blog.cloudflare.com/workers-cache/) ⭐️ 7.0/10
 
-GitHub 仓库 elder-plinius/T3MP3ST 近期获得了显著关注，在过去 24 小时内新增了 34 个 Star 和 15 个 Fork。它是一个基于 TypeScript 的自主红队测试平台，引入了专门用于进攻性安全操作的多智能体元框架（meta-harness）。 该项目通过完全自动化模拟对抗性攻击，代表了 AI 智能体在网络安全领域的高价值应用。它使安全研究人员和组织能够持续、自主地针对不断演变的威胁测试其防御能力，而无需持续的人工干预。 该平台完全使用 TypeScript 构建，并利用元框架架构来编排多个 AI 智能体。这种架构允许系统根据实时环境信号独立规划、执行和调整攻击，从而模拟现实世界攻击者的战术、技术和程序（TTP）。
+Cloudflare 为 Workers 推出了全新的 Cache API，允许开发者使用标准 HTTP 语义以编程方式控制缓存，从而避免不必要的 Worker 调用。
 
-ossinsight · elder-plinius · 7月6日 09:47
+hackernews · ilreb · 7月6日 13:02 · [社区讨论](https://news.ycombinator.com/item?id=48804014)
 
-**背景**: 红队测试是一种主动的网络安全实践，道德黑客通过模拟现实世界的攻击来发现组织防御中的漏洞。自动化和自主红队测试更进一步，利用 AI 独立规划和执行这些攻击场景，无需人工干预。“元框架”（meta-harness）是一种位于多个 AI 智能体或工具之上的编排框架，允许从单一层面对它们进行组合、控制和治理，以实现复杂的目标。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://www.picussecurity.com/resource/glossary/what-is-automated-red-teaming">What Is Automated Red Teaming?</a></li>
-<li><a href="https://www.offensai.com/blog/ai-red-teaming-best-practices">AI Red Teaming and Autonomous Red Teaming: Best Practices with OWASP and NIST</a></li>
-<li><a href="https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents">Introducing Omnigent: A Meta-Harness to Combine, Control ... - Databricks</a></li>
-
-</ul>
-</details>
-
-**标签**: `#cybersecurity`, `#red-teaming`, `#ai-agents`, `#offensive-security`, `#typescript`
+**标签**: `#cloudflare`, `#edge-computing`, `#caching`, `#serverless`, `#web-development`
 
 ---
 
 <a id="item-2"></a>
-## [Agility Robotics 通过 SPAC 上市，专注于工业应用场景](https://techcrunch.com/2026/07/05/this-humanoid-robotics-company-is-going-public-but-its-ceo-isnt-promising-a-robot-in-your-home-anytime-soon/) ⭐️ 6.0/10
+## [迈向 Elm 1.0 之路](https://elm-lang.org/news/faster-builds) ⭐️ 7.0/10
 
-人形机器人公司 Agility Robotics 正在通过 SPAC 合并上市，与追求高估值的竞争对手相比，采取了更为务实的策略。公司有意将重点放在工业和商业落地执行上，而非承诺推出消费级家庭机器人。 此次上市是人形机器人行业的一个重要里程碑，因为该公司是该领域首批进入公开市场的领先企业之一。Agility 以切实的投资回报率为目标，专注于物流和制造领域的务实策略，可能会验证一条现实的商业化路径，这与其他机器人初创公司炒作驱动的做法形成鲜明对比。 Agility Robotics 是 Digit 的制造商，这是一款专为仓库和物流任务设计的、已投入商业部署的人形机器人，通过其 Arc 云平台进行管理。该公司运营着位于俄勒冈州塞勒姆的 RoboFab，这是世界上首个专用的人形机器人生产设施，标志着其向大规模生产的过渡。
+Elm 编程语言宣布了重大的构建速度优化，并概述了迈向备受期待的 1.0 版本的路线图。
 
-rss · TechCrunch · 7月6日 06:05
+hackernews · wolfadex · 7月6日 11:47 · [社区讨论](https://news.ycombinator.com/item?id=48803364)
 
-**背景**: SPAC（特殊目的收购公司）是一家公开交易的空壳公司，旨在通过合并将私营公司上市，其时间表比传统 IPO 更短。Agility Robotics 是新兴人形机器人市场的重要参与者，与特斯拉的 Optimus 等公司竞争。与面向消费者的机器人不同，像 Digit 这样的工业人形机器人是专门为在制造、分销和物流设施中执行自动化任务而设计的，在这些场景中它们能够展示出明确的投资回报率。
+**标签**: `#Elm`, `#Functional Programming`, `#Frontend`, `#Compilers`, `#LLMs`
 
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://www.agilityrobotics.com/">Industrial Humanoid Automation | Agility</a></li>
-<li><a href="https://paloaltocapital.substack.com/p/agilityrobotics">From Future to Reality: Agility Robotics Opens the Door to...</a></li>
-<li><a href="https://www.investing.com/academy/stocks/spac-stocks/">What Are SPACs and Should You Invest in Them? - Investing.com</a></li>
+---
 
-</ul>
-</details>
+<a id="item-3"></a>
+## [微软裁员 4800 人，主要影响销售和 Xbox 部门](https://www.theverge.com/news/961528/microsoft-layoffs-july-2026-sales-xbox) ⭐️ 7.0/10
 
-**标签**: `#humanoid-robotics`, `#business`, `#agility-robotics`, `#ipo`, `#market-trends`
+微软在新财年伊始宣布裁员约 4800 人，占其总员工数的约 2.1%。此次裁员主要集中在公司的商业销售业务和 Xbox 部门。 这是微软继一年前裁员约 9100 人后的又一次大规模裁员，表明这家科技巨头正在持续推进组织架构调整。针对销售和 Xbox 部门的裁员暗示微软在商业收入策略和游戏业务方面正在进行战略转型。 此次约 4800 人的裁员占微软总员工数的 2.1%，其中大部分受影响岗位位于商业销售和 Xbox 部门。裁员时机恰逢微软新财年开始，这也是企业进行架构调整的常见时期。
+
+rss · The Verge · 7月6日 13:30
+
+**背景**: 与许多大型科技公司一样，微软通常会在每年七月新财年开始时进行人员调整，以使组织架构与不断变化的业务优先级保持一致。公司的商业销售部门负责企业软件和云服务合同，这些是核心收入来源；而 Xbox 部门则涵盖游戏硬件、软件和内容服务，此前已完成包括动视暴雪在内的多项重大收购。一年前，微软已经裁减了约 9100 名员工，这是连续第二年的大规模裁员。
+
+**标签**: `#microsoft`, `#layoffs`, `#tech-industry`, `#business`, `#xbox`
 
 ---
