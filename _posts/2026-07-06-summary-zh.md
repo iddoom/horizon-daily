@@ -5,53 +5,55 @@ date: 2026-07-06
 lang: zh
 ---
 
-> 从 22 条内容中筛选出 2 条重要资讯。
+> 从 10 条内容中筛选出 2 条重要资讯。
 
 ---
 
-1. [收集主流 AI 模型泄露系统提示词的仓库走红](#item-1) ⭐️ 7.0/10
-2. [LangChain 发布 OpenWiki：面向代码库文档的 AI Agent 命令行工具](#item-2) ⭐️ 6.0/10
+1. [T3MP3ST：基于多智能体的自主红队测试平台](#item-1) ⭐️ 7.0/10
+2. [Agility Robotics 通过 SPAC 上市，专注于工业应用场景](#item-2) ⭐️ 6.0/10
 
 ---
 
 <a id="item-1"></a>
-## [收集主流 AI 模型泄露系统提示词的仓库走红](https://github.com/asgeirtj/system_prompts_leaks) ⭐️ 7.0/10
+## [T3MP3ST：基于多智能体的自主红队测试平台](https://github.com/elder-plinius/T3MP3ST) ⭐️ 7.0/10
 
-GitHub 仓库'asgeirtj/system_prompts_leaks'在过去 24 小时内获得了 49 颗星标，该仓库专门收集和整理从主流 AI 模型及工具中提取的系统提示词。该仓库涵盖了来自 ChatGPT、Claude、Gemini、Grok、Cursor、Copilot、VS Code、Perplexity 等工具的提示词，并随着新提示词的发现而定期更新。 该仓库为 AI 工程师和研究人员提供了集中访问主流 AI 模型隐藏指令的途径，揭示了各公司如何实现安全防护、能力边界和行为规则。它为提示词工程最佳实践提供了有价值的参考，并让外界得以罕见地了解大型科技公司所采用的对齐策略。 该仓库使用 JavaScript 编写，包含了从多种产品中提取的系统提示词，涵盖 Anthropic 的 Claude 系列、OpenAI 的 ChatGPT 和 Codex、Google 的 Gemini 模型、xAI 的 Grok，以及 Cursor 和 VS Code 等开发工具。这些提示词通常通过提示词注入技术或其他方法提取，诱导模型暴露其初始指令。
+GitHub 仓库 elder-plinius/T3MP3ST 近期获得了显著关注，在过去 24 小时内新增了 34 个 Star 和 15 个 Fork。它是一个基于 TypeScript 的自主红队测试平台，引入了专门用于进攻性安全操作的多智能体元框架（meta-harness）。 该项目通过完全自动化模拟对抗性攻击，代表了 AI 智能体在网络安全领域的高价值应用。它使安全研究人员和组织能够持续、自主地针对不断演变的威胁测试其防御能力，而无需持续的人工干预。 该平台完全使用 TypeScript 构建，并利用元框架架构来编排多个 AI 智能体。这种架构允许系统根据实时环境信号独立规划、执行和调整攻击，从而模拟现实世界攻击者的战术、技术和程序（TTP）。
 
-ossinsight · asgeirtj · 7月6日 01:31
+ossinsight · elder-plinius · 7月6日 09:47
 
-**背景**: 系统提示词是在任何用户交互之前提供给大语言模型的一组隐藏指令，用于定义模型的角色、行为规则、安全约束和响应格式。与用户可见的消息不同，系统提示词通常被 AI 公司隐藏，以防止被操纵并保护专有的对齐技术。研究人员和开发者一直希望获取这些提示词，以了解主流模型的引导方式，由此催生了能够绕过这些隐藏措施的提取技术。
+**背景**: 红队测试是一种主动的网络安全实践，道德黑客通过模拟现实世界的攻击来发现组织防御中的漏洞。自动化和自主红队测试更进一步，利用 AI 独立规划和执行这些攻击场景，无需人工干预。“元框架”（meta-harness）是一种位于多个 AI 智能体或工具之上的编排框架，允许从单一层面对它们进行组合、控制和治理，以实现复杂的目标。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://medium.com/@david.p.lemon79/system-prompts-explained-how-ai-models-actually-work-behind-the-scenes-2265f14e3eba">System Prompts Explained: How AI Models Actually Work Behind ... - Medium</a></li>
-<li><a href="https://promptengineering.org/system-prompts-in-large-language-models/">System Prompts in Large Language Models - Prompt Engineering</a></li>
+<li><a href="https://www.picussecurity.com/resource/glossary/what-is-automated-red-teaming">What Is Automated Red Teaming?</a></li>
+<li><a href="https://www.offensai.com/blog/ai-red-teaming-best-practices">AI Red Teaming and Autonomous Red Teaming: Best Practices with OWASP and NIST</a></li>
+<li><a href="https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents">Introducing Omnigent: A Meta-Harness to Combine, Control ... - Databricks</a></li>
 
 </ul>
 </details>
 
-**标签**: `#system-prompts`, `#prompt-engineering`, `#llm`, `#ai-security`, `#resources`
+**标签**: `#cybersecurity`, `#red-teaming`, `#ai-agents`, `#offensive-security`, `#typescript`
 
 ---
 
 <a id="item-2"></a>
-## [LangChain 发布 OpenWiki：面向代码库文档的 AI Agent 命令行工具](https://github.com/langchain-ai/openwiki) ⭐️ 6.0/10
+## [Agility Robotics 通过 SPAC 上市，专注于工业应用场景](https://techcrunch.com/2026/07/05/this-humanoid-robotics-company-is-going-public-but-its-ceo-isnt-promising-a-robot-in-your-home-anytime-soon/) ⭐️ 6.0/10
 
-LangChain 推出了 OpenWiki，这是一个基于 TypeScript 的命令行界面（CLI）工具，利用 AI Agent 自动为代码库编写和维护文档。这个新发布的开源项目迅速获得了关注，在过去 24 小时内在 GitHub 上新增了 71 颗星。 该工具通过自动化代码库文档的创建和维护，解决了软件开发中一个持续的痛点，因为开发者往往忽视文档维护。在 LangChain 的 AI Agent 编排专业能力的支持下，OpenWiki 标志着行业正朝着使用自主 Agent 来简化开发工作流程和提高代码可维护性的更广泛转变。 OpenWiki 使用 TypeScript 构建并作为 CLI 运行，允许其轻松集成到现有的开发流水线和持续集成工作流中。虽然它使用 AI Agent 主动生成文档，但用户仍应审查输出内容，以确保复杂代码库的技术准确性和上下文相关性。
+人形机器人公司 Agility Robotics 正在通过 SPAC 合并上市，与追求高估值的竞争对手相比，采取了更为务实的策略。公司有意将重点放在工业和商业落地执行上，而非承诺推出消费级家庭机器人。 此次上市是人形机器人行业的一个重要里程碑，因为该公司是该领域首批进入公开市场的领先企业之一。Agility 以切实的投资回报率为目标，专注于物流和制造领域的务实策略，可能会验证一条现实的商业化路径，这与其他机器人初创公司炒作驱动的做法形成鲜明对比。 Agility Robotics 是 Digit 的制造商，这是一款专为仓库和物流任务设计的、已投入商业部署的人形机器人，通过其 Arc 云平台进行管理。该公司运营着位于俄勒冈州塞勒姆的 RoboFab，这是世界上首个专用的人形机器人生产设施，标志着其向大规模生产的过渡。
 
-ossinsight · langchain-ai · 7月6日 01:31
+rss · TechCrunch · 7月6日 06:05
 
-**背景**: LangChain 是一个著名的开源框架，专为构建由大型语言模型（LLM）和自主 AI Agent 驱动的应用程序而设计。它为开发者提供了预构建的架构和集成功能，以将 AI 模型与外部工具、数据库和复杂逻辑无缝连接。通过利用这些 Agent 编排能力，开发者可以创建能够自主执行多步骤任务的 AI 系统，例如分析软件存储库并生成上下文文档。
+**背景**: SPAC（特殊目的收购公司）是一家公开交易的空壳公司，旨在通过合并将私营公司上市，其时间表比传统 IPO 更短。Agility Robotics 是新兴人形机器人市场的重要参与者，与特斯拉的 Optimus 等公司竞争。与面向消费者的机器人不同，像 Digit 这样的工业人形机器人是专门为在制造、分销和物流设施中执行自动化任务而设计的，在这些场景中它们能够展示出明确的投资回报率。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.langchain.com/langchain">LangChain: Open Source AI Agent Framework | Build Agents Faster</a></li>
-<li><a href="https://github.com/langchain-ai/langchain">GitHub - langchain-ai/langchain: The agent engineering platform. · GitHub</a></li>
+<li><a href="https://www.agilityrobotics.com/">Industrial Humanoid Automation | Agility</a></li>
+<li><a href="https://paloaltocapital.substack.com/p/agilityrobotics">From Future to Reality: Agility Robotics Opens the Door to...</a></li>
+<li><a href="https://www.investing.com/academy/stocks/spac-stocks/">What Are SPACs and Should You Invest in Them? - Investing.com</a></li>
 
 </ul>
 </details>
 
-**标签**: `#ai-agents`, `#documentation`, `#developer-tools`, `#langchain`, `#cli`
+**标签**: `#humanoid-robotics`, `#business`, `#agility-robotics`, `#ipo`, `#market-trends`
 
 ---
