@@ -5,56 +5,60 @@ date: 2026-07-15
 lang: zh
 ---
 
-> 从 6 条内容中筛选出 2 条重要资讯。
+> 从 29 条内容中筛选出 3 条重要资讯。
 
 ---
 
-1. [Google 与 Epic 放弃和解，第三方 Android 应用商店即将上线](#item-1) ⭐️ 8.0/10
-2. [对《侏罗纪公园》中计算机道具的极致深度解析](#item-2) ⭐️ 6.0/10
+1. [温特·瑟夫正制定计划，将 AI 智能体引入开放互联网](#item-1) ⭐️ 8.0/10
+2. [印度 AI 编程初创公司 Emergent 以 1.3 亿美元 C 轮融资成为独角兽](#item-2) ⭐️ 7.0/10
+3. [睡眠规律性比睡眠时长更能预测死亡风险](#item-3) ⭐️ 6.0/10
 
 ---
 
 <a id="item-1"></a>
-## [Google 与 Epic 放弃和解，第三方 Android 应用商店即将上线](https://www.theverge.com/policy/965792/google-epic-withdraw-injunction-third-party-app-stores-coming-google-play) ⭐️ 8.0/10
+## [温特·瑟夫正制定计划，将 AI 智能体引入开放互联网](https://techcrunch.com/2026/07/15/vint-cerf-is-working-on-a-plan-to-unleash-ai-agents-on-the-open-internet/) ⭐️ 8.0/10
 
-Google 与 Epic Games 联合撤回了就反垄断诉讼达成和解的尝试，这意味着法院禁令将正式生效，要求 Google 在 Google Play Store 内直接托管竞争对手的第三方应用商店。Google 已告知法院，最早将于下周开始上架这些竞争性应用商店。 这标志着 Android 应用分发生态系统的根本性重构，终结了 Google 通过其主导的应用商店垄断 Android 用户应用发现和安装渠道的局面。开发者将受益于更低的佣金费用和多元化的分发渠道，而这一判例也可能影响全球范围内针对 Apple 及其他平台守门人的类似反垄断诉讼。 该禁令源于 2023 年 12 月陪审团的裁决，该裁决认定 Google 通过 Play Store 在应用分发领域持有非法垄断地位。Google 将被要求允许第三方应用商店通过 Play Store 本身进行分发，并且在至少三年内不得强制开发者使用其支付计费系统。
+互联网先驱温特·瑟夫正在开发一项新标准，用于识别和管理在开放互联网上运行的 AI 智能体。
 
-rss · The Verge · 7月15日 03:28
+rss · TechCrunch · 7月15日 12:00
 
-**背景**: 这场法律战始于 2020 年 8 月，当时 Epic Games 在《堡垒之夜》中故意绕过了 Google 和 Apple 的支付系统，导致该游戏被两家应用商店同时下架。随后 Epic 对两家公司提起了反垄断诉讼，主张其应用商店的做法构成非法垄断。虽然 Epic 在对 Apple 的诉讼中基本败诉，但 2023 年 12 月陪审团在针对 Google 的案件中支持了 Epic，认定 Google 通过向开发者支付费用以使其留在 Play Store 上、并打压竞争对手应用商店的方式实施了反竞争行为。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Epic_Games_v._Google">Epic Games v. Google - Wikipedia</a></li>
-<li><a href="https://www.justice.gov/atr/case/epic-games-inc-v-google-llc">Antitrust Division | Epic Games, Inc. v. Google LLC | United States Department of Justice</a></li>
-
-</ul>
-</details>
-
-**标签**: `#android`, `#google-play`, `#epic-games`, `#antitrust`, `#app-distribution`
+**标签**: `#AI Agents`, `#Internet Standards`, `#Vint Cerf`, `#Networking`, `#Identity Verification`
 
 ---
 
 <a id="item-2"></a>
-## [对《侏罗纪公园》中计算机道具的极致深度解析](https://fabiensanglard.net/jurrasic_park_computers/index.html) ⭐️ 6.0/10
+## [印度 AI 编程初创公司 Emergent 以 1.3 亿美元 C 轮融资成为独角兽](https://techcrunch.com/2026/07/15/indian-ai-coding-startup-emergent-becomes-a-unicorn-just-over-a-year-after-launch/) ⭐️ 7.0/10
 
-Fabien Sanglard 发布了一篇研究极为详尽的深度文章，逐一识别了电影《侏罗纪公园》中作为道具使用的每一款 1990 年代计算机硬件，包括 Thinking Machines CM-5 超级计算机、Silicon Graphics 工作站，以及由角色约翰·哈蒙德操作的自定义平板设备。该分析还确认了屏幕上可见的特定源代码，它们来自 Apple 的 Macintosh Programmers Workshop IDE 中的示例代码。 这项分析是一份出色的科技史考古文献，记录了一个关键时代——当时真实的、最前沿的超级计算机被用作电影道具，使科幻故事扎根于可触碰的现实之中。它对计算机爱好者具有强烈的怀旧和教育价值，展示了电影对真实性的执着追求如何帮助其经受住时间的考验。 控制室中标志性的 Thinking Machines CM-5 实际上是一个空壳，而真正的 CM-5 系统造价接近一百万美元；在早期的 CM-1 和 CM-2 型号中，著名的 LED 面板是真正的处理器状态指示灯。此外，哈蒙德使用的平板设备是 Motorola Envoy 的原始模型，它是斯皮尔伯格与 frogdesign 创始人 Hartmut Esslinger 在飞机上偶遇时获得的。
+印度 AI 编程初创公司 Emergent 在 C 轮融资中筹集了 1.3 亿美元，公司估值超过 10 亿美元，成功跻身独角兽行列。这一里程碑距公司成立仅一年多，期间其年化收入运行率迅速增长至 1.2 亿美元，并积累了超过 20 万名付费客户。 在短短一年内以九位数的年化收入运行率达到独角兽地位，标志着 AI 开发者工具获得了压倒性的市场验证。这种快速增长凸显了软件工程行业正在积极采用 AI 编程助手，使 Emergent 在由西方初创公司主导的领域中成为一个强有力的竞争者。 1.2 亿美元这一数字代表的是年化收入运行率，即将近期财务表现推算至全年的预估，而非经过审计的年度收入。虽然这一指标能有效反映公司当前的发展势头，但对于增长或潜在流失如此迅速的公司来说，它可能会高估稳定的年度数据。
 
-hackernews · vinhnx · 7月15日 02:57 · [社区讨论](https://news.ycombinator.com/item?id=48915709)
+rss · TechCrunch · 7月15日 12:00
 
-**背景**: Thinking Machines Corporation 是一家由 Danny Hillis 于 1983 年创立的先驱超级计算机制造商，旨在将大规模并行计算架构（即 Connection Machine）商业化。到 1993 年，Connection Machine 已成为世界上最强大的超级计算机之一，运行名为 CMost 的 Unix 变体，并支持 CM Fortran 和 *Lisp 等专用并行语言。Silicon Graphics, Inc. (SGI) 则是 1990 年代工作站市场的另一股主导力量，以广泛应用于电影视觉特效和科学计算的前沿 3D 图形能力而闻名。
+**背景**: "独角兽"是风险投资行业中的一个术语，用来形容估值达到或超过 10 亿美元的私人控股初创公司。C 轮融资是后期风险投资轮次，通常被成功的初创公司用于大规模扩张、开拓新市场或收购其他公司。近年来 AI 编程工具领域蓬勃发展，各公司竞相开发能够生成、调试和优化代码的智能助手，以加速软件开发流程。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Thinking_Machines_Corporation">Thinking Machines Corporation</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Connection_Machine">Connection Machine - Wikipedia</a></li>
-<li><a href="https://netlib.org/benchmark/top500/reports/report94/Architec/node34.html">The Thinking Machines Corp. CM-5 - Netlib</a></li>
+<li><a href="https://en.wikipedia.org/wiki/List_of_unicorn_startup_companies">List of unicorn startup companies - Wikipedia</a></li>
+<li><a href="https://www.techtimes.com/articles/318072/20260609/lovable-says-it-hit-500-million-run-rate-vibe-codings-maintenance-test-still-looms.htm">Lovable Says It Hit $500 Million Run Rate : Vibe Coding's Maintenance...</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Series_C_funding">Series C funding</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 评论者对 1990 年代大量出现计算机和小工具的电影表达了怀旧之情，并指出《侏罗纪公园》坚持使用真实硬件的做法增强了其持久的吸引力。社区还提供了有价值的补充信息，例如确认了 Motorola Envoy 模型的准确来源，并解释了 CM-5 的 LED 面板最初是由 Tamiko Thiel 设计的、具有实际功能的处理器指示灯。
+**标签**: `#AI Coding`, `#Startup Funding`, `#Unicorn`, `#Developer Tools`, `#Artificial Intelligence`
 
-**标签**: `#retro-computing`, `#movie-technology`, `#hardware`, `#history`, `#hacker-news`
+---
+
+<a id="item-3"></a>
+## [睡眠规律性比睡眠时长更能预测死亡风险](https://academic.oup.com/sleep/article/47/1/zsad253/7280269) ⭐️ 6.0/10
+
+发表在《Sleep》期刊上的一项新研究发现，睡眠规律性（即保持一致的入睡和起床时间）比总睡眠时长更能预测死亡风险。这一发现挑战了传统上单纯强调每晚睡够多少小时的健康观念。 这项研究表明，公共卫生宣传和临床建议应转向提倡规律的睡眠作息，而不仅仅是充足的睡眠时间。对个人而言，它提供了一个可操作且可衡量的生活方式改变——稳定日常睡眠模式——这可能对长期健康和寿命产生更大的影响。 这项研究是一项流行病学分析，意味着它确定的是睡眠规律性与死亡率之间的相关性，而非证明直接的因果关系。尽管研究人员控制了轮班工作和就业状态等变量，但特定职业类型和整体生活方式的稳定性等残余混杂因素仍可能影响结果。
+
+hackernews · bilsbie · 7月15日 11:46 · [社区讨论](https://news.ycombinator.com/item?id=48919363)
+
+**背景**: 长期以来，睡眠时长一直是睡眠医学关注的重点，广泛宣传的指南建议成年人每晚睡眠 7-9 小时。然而，睡眠规律性指的是日常睡眠时间的一致性，它控制着人体昼夜节律的协调。流行病学研究通过分析大规模人群的健康结果来识别风险因素，但无法完全排除混杂变量——即独立影响可疑原因（如睡眠习惯）和结果（如死亡率）的外部因素。
+
+**社区讨论**: 社区讨论主要集中在经典的“相关性还是因果性”的争论上，用户指出规律的睡眠时间表可能仅仅是整体更健康的生活方式和心理稳定性的替代指标。评论者还对未考虑到的混杂变量表示担忧，例如特定职业相关的风险（如频繁飞行者的宇宙辐射暴露），这些因素可能独立地同时导致睡眠中断和死亡率上升。
+
+**标签**: `#health`, `#sleep`, `#epidemiology`, `#longevity`
 
 ---
