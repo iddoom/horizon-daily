@@ -5,80 +5,112 @@ date: 2026-07-28
 lang: zh
 ---
 
-> 从 7 条内容中筛选出 3 条重要资讯。
+> 从 26 条内容中筛选出 5 条重要资讯。
 
 ---
 
-1. [Cursor 在被 SpaceX 收购前大力扩张印度市场](#item-1) ⭐️ 8.0/10
-2. [9B 开源模型经 500 美元强化学习微调，在目录审查任务上击败前沿模型](#item-2) ⭐️ 7.0/10
-3. [Lyft 与百度进军伦敦自动驾驶出租车市场，测试正式启动](#item-3) ⭐️ 7.0/10
+1. [日本发生 7.1 级地震](#item-1) ⭐️ 9.0/10
+2. [Recursive Superintelligence 与亚马逊签署 4.1 亿美元算力协议](#item-2) ⭐️ 8.0/10
+3. [Hugging Face 被利用来生成针对女性和儿童的非自愿深度伪造裸照](#item-3) ⭐️ 8.0/10
+4. [Lyft 与百度进军伦敦自动驾驶出租车市场，测试正式启动](#item-4) ⭐️ 7.0/10
+5. [Perplexity 将其智能体「Personal Computer」AI 工具引入 Windows](#item-5) ⭐️ 7.0/10
 
 ---
 
 <a id="item-1"></a>
-## [Cursor 在被 SpaceX 收购前大力扩张印度市场](https://techcrunch.com/2026/07/27/cursor-makes-its-biggest-india-push-yet-ahead-of-spacex-acquisition-with-localized-pricing/) ⭐️ 8.0/10
+## [日本发生 7.1 级地震](https://www.data.jma.go.jp/multi/quake/quake_detail.html?eventID=20260728163528&lang=en) ⭐️ 9.0/10
 
-AI 编程工具 Cursor 宣布印度已成为其全球第三大市场，并正在推出本地化定价，同时扩大本地招聘和企业销售团队。这一扩张举措发生在 SpaceX 据报道以 600 亿美元全股票方式收购 Cursor 母公司 Anysphere 之前。 这一扩张表明 Cursor 意图在被并入 SpaceX 生态系统之前，巩固其在全球增长最快的开发者市场之一的统治地位。此举也凸显了 AI 编程工具正成为战略资产，SpaceX 愿意支付溢价以在利润丰厚的企业 AI 领域展开竞争。 Cursor 由 Anysphere 公司开发，是一款 AI 编程代理和软件开发环境，通过代码库索引和跨多文件的自动化操作等功能深度融入开发者工作流。SpaceX 的收购于 2026 年 6 月宣布，是一笔价值 600 亿美元的全股票交易，占 SpaceX IPO 估值的 3.4%稀释。
+日本发生 7.1 级强烈地震，最大震度达到“7 度”，造成了重大破坏和人员受伤，主要科技制造设施也被迫疏散。
 
-rss · TechCrunch · 7月28日 04:30
+hackernews · krembo · 7月28日 07:44 · [社区讨论](https://news.ycombinator.com/item?id=49080664)
 
-**背景**: Cursor 是由总部位于旧金山的 Anysphere 公司于 2022 年创建的一款广受欢迎的 AI 驱动代码编辑器。它的差异化优势在于提供了一个代理层，能够索引整个代码库并自动化复杂操作，使其对处理大型项目的开发者尤为有用。2026 年 6 月，在 SpaceX 完成轰动性 IPO 之后，埃隆·马斯克旗下的 SpaceX 宣布计划以 600 亿美元收购 Anysphere，标志着其大举进军企业 AI 工具市场。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://www.reuters.com/legal/transactional/spacex-buy-anysphere-60-billion-2026-06-16/">SpaceX locks in $60 billion Cursor deal to close gap with rivals in AI coding race | Reuters</a></li>
-<li><a href="https://www.cnbc.com/2026/06/16/spacex-spcx-cursor-acquisition-ipo.html">SpaceX to acquire the AI coding startup Cursor for $60 billion</a></li>
-<li><a href="https://builtin.com/articles/what-is-cursor-ai">What Is Cursor? AI Code Editor Explained | Built In</a></li>
-
-</ul>
-</details>
-
-**标签**: `#AI Coding Tools`, `#Cursor`, `#Business`, `#SpaceX`, `#Market Expansion`
+**标签**: `#japan`, `#earthquake`, `#disaster-response`, `#semiconductors`, `#current-events`
 
 ---
 
 <a id="item-2"></a>
-## [9B 开源模型经 500 美元强化学习微调，在目录审查任务上击败前沿模型](https://fermisense.com/when-machines-take-the-wheel/) ⭐️ 7.0/10
+## [Recursive Superintelligence 与亚马逊签署 4.1 亿美元算力协议](https://techcrunch.com/2026/07/28/recursive-superintelligence-signs-400-compute-deal-with-amazon/) ⭐️ 8.0/10
 
-一个 90 亿参数的小型开源模型仅花费 500 美元，通过强化学习（RL）进行微调，在特定的目录审查任务上击败了前沿模型。这一案例研究表明，对于定义狭窄的企业应用，高度专业化且高性价比的微调能够取得比庞大通用人工智能系统更优的效果。 这突显了一个日益增长的趋势：企业在处理特定任务时可以绕过昂贵的前沿模型，从而对大规模人工智能基础设施投资的经济可行性提出挑战。它表明，绝大多数实际商业用例并不需要高度通用的模型，而是能从廉价且针对性的微调中获益匪浅。 开发总成本仅为 500 美元，这涵盖了 90 亿参数模型的强化学习微调过程。然而，批评者指出，500 美元这个数字仅代表最终的算力成本，并未包括数据生成、筛选以及持续维护等重大的隐性支出。
+AI 公司 Recursive Superintelligence 与亚马逊签署了一项价值 4.1 亿美元的算力协议，这笔支出占该公司迄今为止融资总额的大部分。该消息由 TechCrunch 于 2026 年 7 月 28 日报道。 这笔交易凸显了 AI 算力资源日益激烈的军备竞赛，初创公司正将大部分融资投入到从主要云服务商获取训练基础设施中。它反映了一个更广泛的行业趋势：算力获取已成为 AI 公司打造有竞争力模型的关键瓶颈和战略差异化因素。 4.1 亿美元的算力支出构成了 Recursive Superintelligence 融资努力的主体，表明该公司将原始算力获取置于其他支出之上。该交易与亚马逊达成，可能利用 Amazon Web Services (AWS) 的基础设施进行模型训练和部署。
 
-hackernews · ilreb · 7月28日 02:18 · [社区讨论](https://news.ycombinator.com/item?id=49078454)
+rss · TechCrunch · 7月28日 13:19
 
-**背景**: 前沿模型是目前最先进的通用人工智能系统，在大规模数据上进行训练，其算力和数据成本高达数亿美元。相比之下，将现有的开源基础模型适配到特定任务的成本要低得多，因为它利用了预训练的能力，通常只需要在较小的、特定任务的数据集上进行微调。基于人类反馈或 AI 反馈的强化学习（RLHF）是一种流行的微调技术，它通过对期望的输出给予奖励，有效地塑造模型在特定细分应用中的行为。
+**背景**: 2026 年 AI 算力交易的规模日益庞大，多家初创公司签署了价值数十亿美元的协议，以确保训练大型语言模型所需的基础设施。近期的例子包括 Reflection AI 与 Nebius 达成的 10 亿美元交易，以及 Anthropic 与 xAI 的数十亿美元算力合作。AI 基础设施涵盖开发和部署 AI 应用所需的专用硬件（如 GPU）和软件，随着模型复杂度和训练成本的持续攀升，获取充足的算力已成为 AI 公司面临的最重大挑战之一。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Frontier_models">Frontier models</a></li>
-<li><a href="https://www.nvidia.com/en-us/glossary/frontier-models/">What Are Frontier AI Models and How They Work - NVIDIA</a></li>
-<li><a href="https://exploreai.tools/ai-models/gemma-2-9b">Gemma 2 9 B : Google DeepMind's Open - Source Text Generation Model</a></li>
+<li><a href="https://techcrunch.com/2026/07/14/reflection-inks-1b-compute-deal-with-nebius/">Reflection inks $1B compute deal with Nebius | TechCrunch</a></li>
+<li><a href="https://techcrunch.com/2026/02/28/billion-dollar-infrastructure-deals-ai-boom-data-centers-openai-oracle-nvidia-microsoft-google-meta/">The billion-dollar infrastructure deals powering the AI boom</a></li>
+<li><a href="https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/ai-infrastructure-compute-strategy.html">AI infrastructure compute strategy | Deloitte Insights</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 社区对此意见不一，部分用户认为大多数实际用例受成本严格约束，根本不需要前沿模型，从而动摇了超大模型的经济基础。然而，另一些人则反驳说，500 美元的标价掩盖了数据生成和维护的真实成本，而且对于企业来说，仅仅等待前沿模型的下一次免费升级，往往比不断重新训练微调模型带来更好的回报。
-
-**标签**: `#Machine Learning`, `#Fine-Tuning`, `#Reinforcement Learning`, `#Open Source`, `#AI Economics`
+**标签**: `#artificial-intelligence`, `#cloud-computing`, `#amazon-web-services`, `#ai-infrastructure`, `#funding`
 
 ---
 
 <a id="item-3"></a>
-## [Lyft 与百度进军伦敦自动驾驶出租车市场，测试正式启动](https://techcrunch.com/2026/07/28/lyft-and-baidu-enter-londons-robotaxi-battleground-as-testing-begins/) ⭐️ 7.0/10
+## [Hugging Face 被利用来生成针对女性和儿童的非自愿深度伪造裸照](https://www.theverge.com/ai-artificial-intelligence/971723/hugging-face-nudify-deepfake-undress-women-children) ⭐️ 8.0/10
 
-百度的 Apollo Go 自动驾驶出租车已正式在伦敦启动测试，通过 Lyft 于 2025 年收购的 Freenow 出行平台进行整合。这标志着 Apollo Go 首次大规模进入欧洲市场，也代表了中国自动驾驶领军企业与西方网约车网络之间一次重要的跨平台合作。 伦敦是欧洲竞争最激烈、人口最密集的出行市场之一，是自动驾驶汽车部署的战略性试验场。百度与 Lyft/Freenow 之间的合作标志着中国与西方科技生态系统在自动驾驶领域罕见的融合，可能会重塑其与 Waymo 及本地企业竞争的格局。 Apollo Go 是百度的商业化自动驾驶出租车服务，基于自 2017 年开始开发的开源 Apollo 自动驾驶平台，该平台已与超过 50 家公司建立合作关系。Freenow 在欧洲 150 多个城市运营，在被收购后更名为 'Freenow by Lyft'，为伦敦的推广提供了成熟的用户基础和监管基础设施。
+欧洲非营利组织 AI Forensics 发布的一份报告显示，全球最大的开源 AI 模型库 Hugging Face 正被利用来生成非自愿的露骨深度伪造内容。测试表明，该平台上排名前九的图像编辑模型中，有七个能够轻易配合生成露骨图像的指令。 这一发现暴露了开源 AI 生态系统中严重的安全漏洞，内容审核的缺失使得恶意行为者能够生成针对弱势群体的有害材料。这进一步加剧了整个行业关于如何在开源可访问性与防止非自愿露骨图像泛滥之间取得平衡的争论。 调查特别强调，该平台的安全过滤器和审核工具不足以防止托管的图到图模型被滥用。AI Forensics 发现，这些热门模型可以轻易去除上传的真实人物（包括未成年人）照片上的衣物，且平台缺乏足够的技术防护措施。
 
-rss · TechCrunch · 7月28日 08:00
+rss · The Verge · 7月28日 09:07
 
-**背景**: 百度的 Apollo 项目是全球最大的开源自动驾驶平台之一，于 2017 年启动，由包括金龙和软银子公司 SB Drive 在内的 40 多家公司组成的联盟共同参与。Apollo Go 是该项目的商业化自动驾驶出租车业务，已在中国多个城市运营，并发布了第六代无人驾驶车辆 Apollo RT6，专为复杂城市道路设计，成本约为 25 万元人民币。Freenow 是欧洲主要的出行应用，在 150 多个城市提供服务，在 50 个机场设有接载点，在 2025 年被 Lyft 收购后归其所有。
+**背景**: Hugging Face 是机器学习社区的中心枢纽，通常被称为 AI 领域的 GitHub，开发人员在此分享和托管开源模型、数据集和应用程序。AI Forensics 是一家欧洲非营利组织，致力于调查具有影响力且不透明的算法，以追究主要科技平台对算法危害的责任。深度伪造是利用人工智能创建的合成媒体，可以逼真地替换人物肖像，并且越来越多地被武器化以制造非自愿的露骨内容。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Apollo_Go">Apollo Go - Wikipedia</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Baidu_Apollo_project">Baidu Apollo project</a></li>
-<li><a href="https://www.free-now.com/ride/">Ride - Homepage | Freenow</a></li>
+<li><a href="https://aiforensics.org/">AI Forensics</a></li>
+<li><a href="https://www.mozillafoundation.org/en/blog/ai-forensics-the-detectives-researching-ai-harms/">AI Forensics: The Detectives Researching AI Harms - Mozilla Foundation</a></li>
 
 </ul>
 </details>
 
-**标签**: `#autonomous-vehicles`, `#robotaxis`, `#lyft`, `#baidu`, `#transportation`
+**标签**: `#AI Safety`, `#Deepfakes`, `#Hugging Face`, `#Content Moderation`, `#Open Source`
+
+---
+
+<a id="item-4"></a>
+## [Lyft 与百度进军伦敦自动驾驶出租车市场，测试正式启动](https://techcrunch.com/2026/07/28/lyft-and-baidu-enter-londons-robotaxi-battleground-as-testing-begins/) ⭐️ 7.0/10
+
+百度的 Apollo Go 自动驾驶车辆将通过 Lyft 于 2025 年收购的欧洲出行平台 Freenow 在伦敦上线。这标志着百度的自动驾驶出租车服务首次进入英国市场。 此举标志着全球自动驾驶出租车竞争的重大升级，将中国领先的自动驾驶平台与美国网约车公司的欧洲网络结合在一起。这也加剧了伦敦自动驾驶出行市场的争夺，该城市正成为国际企业竞争的关键试验场。 Apollo Go 是百度基于 2017 年发布的 Apollo 开源自动驾驶平台打造的自动驾驶网约车服务。Freenow 是一个覆盖欧洲 9 个市场和 180 多个城市的出行超级应用，提供出租车、网约车、电动滑板车和电动自行车等服务。
+
+rss · TechCrunch · 7月28日 08:00
+
+**背景**: 百度于 2013 年开始研发自动驾驶技术，并于 2017 年推出了全球首个开源自动驾驶平台 Apollo。此后，Apollo Go 已成为全球最大的自动驾驶出租车服务之一，在中国广泛运营。Lyft 于 2025 年收购了 Freenow，以扩展其在欧洲出行市场的版图。伦敦已成为自动驾驶车辆测试的竞争舞台，多家国际企业希望在这个欧洲最大的网约车市场之一站稳脚跟。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Apollo_Go">Apollo Go - Wikipedia</a></li>
+<li><a href="https://www.apollo.auto/en/">Intelligent Driving System - Baidu Intelligent Driving ...</a></li>
+<li><a href="https://www.free-now.com/at-en/about-us/">Über Freenow | Freenow</a></li>
+
+</ul>
+</details>
+
+**标签**: `#autonomous-vehicles`, `#robotaxi`, `#baidu`, `#lyft`, `#mobility`
+
+---
+
+<a id="item-5"></a>
+## [Perplexity 将其智能体「Personal Computer」AI 工具引入 Windows](https://www.theverge.com/ai-artificial-intelligence/971750/perplexity-personal-computer-windows-ai-agents) ⭐️ 7.0/10
+
+Perplexity 已将其智能体 Personal Computer 工具扩展至 Windows 平台，使运行全球最流行桌面操作系统的电脑能够作为本地运行的 AI 智能体运作。继四月份发布 Mac 版本之后，Windows 版本的发布使该系统能够作为通用数字工人运行，并可直接访问本地文件和应用程序。 这将自主的、本地运行的 AI 智能体能力带到了全球使用最广泛的桌面操作系统，有可能彻底改变数亿用户与个人电脑交互的方式。它代表了向本地优先智能体 AI 这一更广泛行业趋势迈出的重要一步，数字工人可以直接在用户硬件上执行复杂任务，而无需完全依赖云服务。 与 Mac 版本类似，Windows 版 Personal Computer 作为持久的、常驻的 AI 智能体运行，能够控制本地文件、原生桌面应用程序和浏览器会话。该工具充当用户的数字代理，直接在本地机器上全天候执行自动化工作流程。
+
+rss · The Verge · 7月28日 12:30
+
+**背景**: 智能体 AI 是指旨在通过与软件工具、文件和应用程序交互来自主执行多步骤任务的人工智能系统，而不仅仅是回答查询。本地优先的 AI 智能体直接在用户的个人硬件上运行，与依赖云服务的替代方案相比，提供了更强的隐私保护和更低的延迟。Perplexity 最初于四月份为 Mac 推出了 Personal Computer 工具，利用 Mac mini 等硬件创建了一个具有深度操作系统级集成的常驻数字工人。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.perplexity.ai/personal-computer">Personal Computer for Mac - Perplexity</a></li>
+<li><a href="https://www.everydev.ai/tools/perplexity-personal-computer">Perplexity Personal Computer - Always-On Mac AI Agent</a></li>
+<li><a href="https://blog.logrocket.com/local-first-agentic-ai-guide/">Implementing local-first agentic AI: A practical guide - LogRocket Blog</a></li>
+
+</ul>
+</details>
+
+**标签**: `#AI Agents`, `#Perplexity`, `#Windows`, `#Local AI`, `#Automation`
 
 ---
