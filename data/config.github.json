@@ -29,12 +29,26 @@
         "repo": "uv",
         "enabled": true,
         "category": "it-devtools"
+      },
+      {
+        "type": "repo_releases",
+        "owner": "sgl-project",
+        "repo": "sglang",
+        "enabled": true,
+        "category": "developer-tools"
+      },
+      {
+        "type": "repo_releases",
+        "owner": "vllm-project",
+        "repo": "vllm",
+        "enabled": true,
+        "category": "developer-tools"
       }
     ],
     "hackernews": {
       "enabled": true,
-      "fetch_top_stories": 25,
-      "min_score": 120
+      "fetch_top_stories": 50,
+      "min_score": 80
     },
     "rss": [
       {
@@ -56,6 +70,12 @@
         "category": "ai-news"
       },
       {
+        "name": "Google DeepMind Blog",
+        "url": "https://deepmind.google/blog/rss.xml",
+        "enabled": true,
+        "category": "ai-thinking"
+      },
+      {
         "name": "MIT Technology Review",
         "url": "https://www.technologyreview.com/feed/",
         "enabled": true,
@@ -72,6 +92,30 @@
         "url": "https://www.theverge.com/rss/index.xml",
         "enabled": true,
         "category": "digital-tech"
+      },
+      {
+        "name": "Ars Technica",
+        "url": "https://feeds.arstechnica.com/arstechnica/index",
+        "enabled": true,
+        "category": "it-business"
+      },
+      {
+        "name": "Wired AI",
+        "url": "https://www.wired.com/feed/tag/ai/latest/rss",
+        "enabled": true,
+        "category": "ai-news"
+      },
+      {
+        "name": "GitHub Changelog",
+        "url": "https://github.blog/changelog/feed/",
+        "enabled": true,
+        "category": "developer-tools"
+      },
+      {
+        "name": "LWN.net",
+        "url": "https://lwn.net/headlines/newrss",
+        "enabled": true,
+        "category": "systems-learning"
       },
       {
         "name": "IT之家",
@@ -93,8 +137,41 @@
       }
     ],
     "reddit": {
-      "enabled": false,
-      "subreddits": [],
+      "enabled": true,
+      "subreddits": [
+        {
+          "subreddit": "LocalLLaMA",
+          "sort": "top",
+          "time_filter": "day",
+          "fetch_limit": 20,
+          "min_score": 20,
+          "category": "social-knowledge"
+        },
+        {
+          "subreddit": "MachineLearning",
+          "sort": "top",
+          "time_filter": "day",
+          "fetch_limit": 20,
+          "min_score": 30,
+          "category": "social-knowledge"
+        },
+        {
+          "subreddit": "selfhosted",
+          "sort": "top",
+          "time_filter": "day",
+          "fetch_limit": 15,
+          "min_score": 15,
+          "category": "social-knowledge"
+        },
+        {
+          "subreddit": "learnpython",
+          "sort": "top",
+          "time_filter": "week",
+          "fetch_limit": 15,
+          "min_score": 20,
+          "category": "social-knowledge"
+        }
+      ],
       "users": [],
       "fetch_comments": 5
     },
@@ -108,13 +185,21 @@
       "users": [
         "karpathy",
         "sama",
-        "emollick"
+        "emollick",
+        "ylecun",
+        "demishassabis",
+        "gdb",
+        "natfriedman",
+        "paulg",
+        "AndrewYNg",
+        "simonw"
       ],
-      "fetch_limit": 10,
+      "fetch_limit": 20,
       "fetch_reply_text": false,
       "max_replies_per_tweet": 3,
       "max_tweets_to_expand": 10,
-      "reply_min_likes": 5
+      "reply_min_likes": 5,
+      "category": "social-knowledge"
     },
     "ossinsight": {
       "enabled": true,
@@ -139,11 +224,11 @@
   "filtering": {
     "ai_score_threshold": 6.0,
     "time_window_hours": 24,
-    "max_items": 18,
+    "max_items": 28,
     "category_groups": {
       "ai": {
         "name": "AI / Agent / Automation",
-        "limit": 6,
+        "limit": 10,
         "categories": [
           "ai-news",
           "ai-tools",
@@ -152,18 +237,19 @@
       },
       "it_digital": {
         "name": "IT / Digital Products",
-        "limit": 4,
+        "limit": 7,
         "categories": [
           "it-devtools",
           "it-business",
           "digital-tech",
           "digital-tech-cn",
-          "tech-thinking"
+          "tech-thinking",
+          "systems-learning"
         ]
       },
       "world": {
         "name": "World Affairs / Geopolitics",
-        "limit": 4,
+        "limit": 5,
         "categories": [
           "world-news",
           "world-china"
@@ -171,15 +257,22 @@
       },
       "github": {
         "name": "High-signal GitHub Projects",
-        "limit": 4,
+        "limit": 6,
         "categories": [
           "oss",
           "developer-tools"
         ]
+      },
+      "social_knowledge": {
+        "name": "Reddit / X 实用知识",
+        "limit": 8,
+        "categories": [
+          "social-knowledge"
+        ]
       }
     },
     "default_group": "other",
-    "default_group_limit": 2
+    "default_group_limit": 5
   },
   "webhook": {
     "enabled": false,

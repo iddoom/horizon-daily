@@ -306,6 +306,7 @@ class TwitterScraper(BaseScraper):
                     "is_reply": item.get("is_reply", False),
                     "in_reply_to_status_id": item.get("in_reply_to_status_id"),
                     "in_reply_to_screen_name": item.get("in_reply_to_screen_name"),
+                    "category": getattr(self.config, "category", None) or "social-knowledge",
                 },
             )
         except Exception as exc:

@@ -105,7 +105,7 @@ class RedditScraper(BaseScraper):
             if child.get("kind") == "t3"
         ]
         return await self._process_posts(
-            posts, since, "subreddit", cfg.subreddit, cfg.min_score
+            posts, since, "subreddit", cfg.subreddit, cfg.min_score, cfg.category
         )
 
     async def _fetch_subreddit_rss(
@@ -300,7 +300,7 @@ class RedditScraper(BaseScraper):
             if child.get("kind") == "t3"
         ]
         return await self._process_posts(
-            posts, since, "user", cfg.username, min_score=0
+            posts, since, "user", cfg.username, min_score=0, category=cfg.category
         )
 
     async def _process_posts(
@@ -310,6 +310,7 @@ class RedditScraper(BaseScraper):
         subtype: str,
         source_name: str,
         min_score: int,
+        category: Optional[str] = "social-knowledge",
     ) -> List[ContentItem]:
         valid_posts = []
         comment_tasks = []
@@ -340,7 +341,7 @@ class RedditScraper(BaseScraper):
         for post, comments in zip(valid_posts, all_comments):
             if isinstance(comments, Exception):
                 comments = []
-            item = self._parse_post(post, cast(List[dict], comments), subtype)
+            item = self._parse_post(post, cast(List[dict], comments), subtype, category)
             if item:
                 items.append(item)
         return items
@@ -442,7 +443,8 @@ class RedditScraper(BaseScraper):
         return comments[:fetch_limit]
 
     def _parse_post(
-        self, post: dict, comments: List[dict], subtype: str
+        self, post: dict, comments: List[dict], subtype: str,
+        category: Optional[str] = "social-knowledge"
     ) -> Optional[ContentItem]:
         post_id = post["id"]
         title = post.get("title", "")
@@ -493,6 +495,7 @@ class RedditScraper(BaseScraper):
                 "is_self": is_self,
                 "flair": post.get("link_flair_text"),
                 "discussion_url": discussion_url,
+                "category": category,
             },
         )
 

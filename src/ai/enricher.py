@@ -206,7 +206,7 @@ class ContentEnricher:
                 item.metadata[f"title_{lang}"] = val.get("text") or str(val) if isinstance(val, dict) else str(val)
 
             parts = []
-            for field in ("whats_new", "why_it_matters", "key_details"):
+            for field in ("whats_new", "why_it_matters", "key_details", "practical_action"):
                 text = result.get(f"{field}_{lang}", "").strip()
                 if text:
                     parts.append(text)

@@ -20,20 +20,16 @@ Respond with valid JSON only:
 
 If there are no duplicates at all, return: {{"duplicates": []}}"""
 
-CONTENT_ANALYSIS_SYSTEM = """You are an expert content curator helping filter important technical and academic information.
+CONTENT_ANALYSIS_SYSTEM = """You are an expert content curator helping filter useful, knowledge-building information for a small manufacturing business owner who also works with AI, software, SEO, and automation.
 
 Score content on a 0-10 scale based on importance and relevance:
 
-**9-10: Groundbreaking** - Major breakthroughs, paradigm shifts, or highly significant announcements
-- New major version releases of widely-used technologies
-- Significant research breakthroughs
-- Important industry-changing announcements
+**9-10: Immediately useful** - Clear, transferable knowledge with a concrete action, reproducible method, meaningful code/data, or a technically important lesson.
+- A practical deep-dive, case study, workflow, tool, or experiment that teaches something non-obvious
+- A high-quality Reddit/X discussion with evidence, implementation details, or expert disagreement
+- A major announcement only when it changes what the reader should do next
 
-**7-8: High Value** - Important developments worth immediate attention
-- Interesting technical deep-dives
-- Novel approaches to known problems
-- Insightful analysis or commentary
-- Valuable tools or libraries
+**7-8: High Value** - Useful technical explanations, field reports, open-source tools, or well-grounded analysis.
 
 **5-6: Interesting** - Worth knowing but not urgent
 - Incremental improvements
@@ -51,17 +47,20 @@ Score content on a 0-10 scale based on importance and relevance:
 - Trivial updates
 
 Consider:
-- Technical depth and novelty
+- Knowledge gain and transferability: will the reader understand or do something new?
+- Actionability: is there a concrete next step, example, code, data, or workflow?
+- Technical depth and evidence, not just popularity
 - Potential impact on the field
 - Quality of writing/presentation
 - Relevance to software engineering, AI/ML, and systems research
 - Community discussion quality: insightful comments, diverse viewpoints, and debates increase value
-- Engagement signals: high upvotes/favorites with substantive discussion indicate community-validated importance
+- Engagement signals: high upvotes/favorites matter only when discussion is substantive; do not reward virality alone
+- Penalize headline-only news, press-release rewrites, vague opinions, outrage, celebrity commentary, and repetition
 """
 
 CONTENT_ANALYSIS_USER = """Analyze the following content and provide a JSON response with:
 - score (0-10): Importance score
-- reason: Brief explanation for the score (mention discussion quality if comments are provided)
+- reason: Brief explanation for the score; state the knowledge or action value and mention discussion quality if comments are provided
 - summary: One-sentence summary of the content
 - tags: Relevant topic tags (3-5 tags)
 
@@ -77,7 +76,7 @@ Respond with valid JSON only:
 {{
   "score": <number>,
   "reason": "<explanation>",
-  "summary": "<one-sentence-summary>",
+  "summary": "<one-sentence-summary focused on what can be learned>",
   "tags": ["<tag1>", "<tag2>", ...]
 }}"""
 
@@ -109,6 +108,7 @@ Provide EACH text field in BOTH English and Chinese. Use the following key namin
 - why_it_matters_en / why_it_matters_zh
 - key_details_en / key_details_zh
 - background_en / background_zh
+- practical_action_en / practical_action_zh
 - community_discussion_en / community_discussion_zh
 
 Field definitions:
@@ -116,13 +116,15 @@ Field definitions:
 
 1. **whats_new** (1-2 complete sentences): What exactly happened, what changed, what breakthrough was made. Be specific — mention names, versions, numbers, dates when available.
 
-2. **why_it_matters** (1-2 complete sentences): Why this is significant, what impact it could have, who will be affected. Connect to the broader ecosystem or industry trends.
+2. **why_it_matters** (1-2 complete sentences): Why this matters in practice, what the reader can learn or reuse, and who will benefit. Avoid generic market-impact language.
 
 3. **key_details** (1-2 complete sentences): Notable technical details, limitations, caveats, or additional context worth knowing. Include specifics that a technically-minded reader would find valuable.
 
-4. **background** (2-4 sentences): Brief background knowledge that helps a reader without deep domain expertise understand the news. Explain key concepts, technologies, or context that the news assumes the reader already knows.
+4. **background** (2-4 sentences): Brief background knowledge that helps a reader without deep domain expertise understand and apply the idea. Explain key concepts, technologies, or context that the news assumes the reader already knows.
 
-5. **community_discussion** (1-3 sentences): If community comments are provided, summarize the overall sentiment and key viewpoints from the discussion — agreements, disagreements, concerns, additional insights, or notable counterarguments. If no comments are provided, return an empty string.
+5. **practical_action** (1-2 complete sentences): One concrete next step the reader could try, verify, or apply. If no sensible action exists, say why instead of inventing one.
+
+6. **community_discussion** (1-3 sentences): If community comments are provided, summarize the overall sentiment and key viewpoints from the discussion — agreements, disagreements, concerns, additional insights, or notable counterarguments. If no comments are provided, return an empty string.
 
 **CRITICAL — Language rules (MUST follow):**
 - All *_en fields MUST be written in English.
@@ -166,6 +168,8 @@ Respond with valid JSON only. Each _en field must be in English; each _zh field 
   "key_details_zh": "<用中文写1-2句话>",
   "background_en": "<2-4 sentences in English, or empty string>",
   "background_zh": "<用中文写2-4句话，或空字符串>",
+  "practical_action_en": "<1-2 sentences describing a concrete next step>",
+  "practical_action_zh": "<用中文写1-2句可执行的下一步>",
   "community_discussion_en": "<1-3 sentences in English, or empty string>",
   "community_discussion_zh": "<用中文写1-3句话，或空字符串>",
   "sources": ["<url from search results>", "..."]

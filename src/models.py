@@ -153,6 +153,7 @@ class RedditSubredditConfig(BaseModel):
     )
     fetch_limit: int = 25
     min_score: int = 10
+    category: Optional[str] = "social-knowledge"
 
 
 class RedditUserConfig(BaseModel):
@@ -162,6 +163,7 @@ class RedditUserConfig(BaseModel):
     enabled: bool = True
     sort: str = "new"
     fetch_limit: int = 10
+    category: Optional[str] = "social-knowledge"
 
 
 class RedditConfig(BaseModel):
@@ -204,6 +206,7 @@ class TwitterConfig(BaseModel):
     max_replies_per_tweet: int = 3
     max_tweets_to_expand: int = 10
     reply_min_likes: int = 0
+    category: Optional[str] = "social-knowledge"
     # Apify settings (used when mode == "apify")
     apify_token_env: str = "APIFY_TOKEN"
     actor_id: str = "altimis~scweet"
