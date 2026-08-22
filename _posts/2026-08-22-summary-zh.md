@@ -5,56 +5,55 @@ date: 2026-08-22
 lang: zh
 ---
 
-> 从 8 条内容中筛选出 2 条重要资讯。
+> 从 12 条内容中筛选出 2 条重要资讯。
 
 ---
 
-1. [Dan Luu：软件再也没有理由变慢了](#item-1) ⭐️ 8.0/10
-2. [Reddit 讨论帖分享在 16GB 显存上运行 27B 模型的 llama-server 配置](#item-2) ⭐️ 7.0/10
+1. [FreeToken 在 16GB 显存上以约 100 tok/s 运行 35B MoE 模型](#item-1) ⭐️ 7.0/10
+2. [llama.cpp 0.2.0 版本发布，附更新日志与预编译二进制文件](#item-2) ⭐️ 5.0/10
 
 ---
 
 <a id="item-1"></a>
-## [Dan Luu：软件再也没有理由变慢了](https://danluu.com/perf-opt/) ⭐️ 8.0/10
+## [FreeToken 在 16GB 显存上以约 100 tok/s 运行 35B MoE 模型](https://www.reddit.com/r/LocalLLaMA/comments/1vv6v00/freetokens_project_is_impressive/) ⭐️ 7.0/10
 
-Dan Luu 发表了一篇文章，认为软件的缓慢在很大程度上是不必要的，因为有大量被充分理解的优化机会一直未被利用。随附的 Hacker News 讨论中，专家们指出网络延迟是主要瓶颈，并探讨了用 LLM 驱动代码的超优化（superoptimization）。 这篇文章为开发者提供了一个思考框架：为什么在硬件如此快的今天软件仍然低效；讨论中还具体展示了智能体/LLM 循环如何带来可衡量的性能提升。任何构建软件的人都可以复用这些诊断思路和优化技术。 评论者指出，很多感知到的缓慢其实是网络等待（例如到美国托管服务的 300 毫秒往返），而非 CPU 计算。LLM 超优化的角度被看作经典随机超优化（Massalin、STOKE）的复兴，唯一的新意在于语言模型让程序候选生成这一步大幅变强。 先阅读 danluu.com/perf-opt 上的原文，然后对自己的应用做性能分析，区分网络等待与 CPU 计算再进行优化。如果你使用 Java 正则，可以试试讨论中提到的 SafeRE 项目，或者针对前端加载时间这类可测量指标实验智能体优化循环。
+一位 Reddit 用户测试了新发布的 FreeToken 项目（由 FlashML 开发），在 16GB 显存的 RTX 5080 上运行 NVFP4 量化的 QWEN3.6-35B-A3B 模型（约 20GB），达到了约 100-110 tok/s 的速度，尽管模型大小超出了显存容量。该项目于报告前一天发布，论文在 arXiv 上，代码在 GitHub 上开源。 这表明通过将 GPU、CPU、主机内存和互连视为一个统一的弹性推理平台，前沿规模的开源 MoE 模型可以在消费级硬件上以交互式速度运行。拥有中端显卡（16GB 显存）的用户现在可以实际在本地运行 30B 以上级别的模型，而不会因卸载而损失吞吐量。 测试配置为 RTX 5080（16GB）、64GB DDR6 内存和 AMD Ryzen 9 9950X3D 处理器，在 1028 token 的提示词下达到约 110 tok/s。该模型是稀疏 MoE 架构（A3B 表示每个 token 仅激活约 30 亿参数），NVFP4 是带共享指数的 4 位浮点格式，比 INT4 更好地保留动态范围。 从 GitHub（FlashML-org/FreeToken）克隆 FreeToken 仓库，下载 NVFP4 量化的 Qwen MoE 模型，在自己的硬件上跑分，与现有的 llama.cpp/vLLM 配置进行对比。
 
-hackernews · Jach · 8月22日 01:06 · [社区讨论](https://news.ycombinator.com/item?id=49395628)
+reddit · r/LocalLLaMA · /u/ViRROOO · 8月22日 08:34
 
-**背景**: 超优化是一种让工具在可能的程序空间中搜索、找到保持输入输出行为不变的最优（如最快）实现的技术，而不是应用人工编写的编译器变换。这一思想可追溯到 20 世纪 80 年代的 Massalin，斯坦福的 STOKE 是知名的现代随机搜索实现。LLM 在此有效，是因为带可执行目标的随机搜索只会保持或改进目标，因此更好的程序提议器会直接带来更好的结果。另外，延迟受限（latency-bound）性能指系统性能主要由往返等待时间而非吞吐量或计算决定。
+**背景**: 混合专家（MoE）模型每个 token 只激活一小部分参数，因此像 Qwen3.6-35B-A3B 这样的 350 亿参数模型实际只计算约 30 亿活跃参数，即使整个模型放不进显存也能实现快速推理。传统的卸载方案（如 llama.cpp 的 CPU offload）受限于 PCIe 和主机内存带宽，通常速度很慢。FreeToken 通过协同设计模型布局、专家驻留和 CPU-GPU 执行，并采用带宽自适应调度，使异构边缘资源像统一的服务平台一样工作。NVFP4 是为 NVIDIA Blackwell 架构显卡引入的格式，将 4 位的紧凑性与浮点语义结合，精度优于整数量化。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Superoptimization">Superoptimization - Wikipedia</a></li>
-<li><a href="https://arxiv.org/pdf/2505.11480">SuperCoder: Assembly Program Superoptimization with Large...</a></li>
+<li><a href="https://github.com/FlashML-org/FreeToken">GitHub - FlashML-org/FreeToken</a></li>
+<li><a href="https://arxiv.org/pdf/2608.16157">FreeToken: Efficient Edge-Native MoE Serving with Bandwidth-Adaptive ...</a></li>
+<li><a href="https://developer.nvidia.com/blog/introducing-nvfp4-for-efficient-and-accurate-low-precision-inference/">Introducing NVFP4 for Efficient and Accurate Low-Precision Inference | NVIDIA Technical Blog</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 评论者总体认同文章但补充了细节：ehnto 认为网络往返（对美国以外用户尤其痛苦）是比计算更大的慢因；mccoyb 将 LLM 优化定位为经典超优化（Massalin、STOKE），只是提议器变成了 LM；eaftan 分享了通过智能体优化、性能超越原生 RE2 的生产级 Java 正则引擎 SafeRE；jjcm 报告了一个真实的智能体循环，把前端在模拟慢速 4G 下的加载时间从 4 秒降到约 750 毫秒。
-
-**标签**: `#performance`, `#optimization`, `#software-engineering`, `#LLM`, `#systems`
+**标签**: `#local-llm`, `#inference-optimization`, `#open-source`, `#benchmark`, `#llm`
 
 ---
 
 <a id="item-2"></a>
-## [Reddit 讨论帖分享在 16GB 显存上运行 27B 模型的 llama-server 配置](https://www.reddit.com/r/LocalLLaMA/comments/1vuzz3j/16_gb_vram_purgatory_discussion_thread/) ⭐️ 7.0/10
+## [llama.cpp 0.2.0 版本发布，附更新日志与预编译二进制文件](https://www.reddit.com/r/LocalLLaMA/comments/1vv4mei/llamacpp_version_020_is_out/) ⭐️ 5.0/10
 
-Reddit r/LocalLLaMA 版块的一个讨论帖收集了具体的 llama-server 启动配置，用于把 Qwen3.8-27B 模型塞进 16GB 显存，包括定制的 IQ4_XS GGUF 量化版本、q4_0 量化的 KV 缓存，以及把 mmproj 和 MTP 头部张量卸载到 CPU/内存。楼主分享了一份完整的 Windows 批处理脚本，实现了约 90k-100k 上下文全部驻留显存。 这些技巧对任何在消费级显卡上运行大型量化模型的用户都可直接借鉴，展示了如何在量化等级、KV 缓存精度和张量放置之间权衡，把 27B 模型塞进名义上装不下的显存。使用 Linux 或带核显的用户余量更大，因为仅 Windows 本身就要占用约 1.5GB 显存。 关键参数包括用 --cache-type-k/v q4_0 压缩 KV 缓存、用 --no-mmproj-offload 把视觉投影器留在内存（省约 800-900MB）、用 --override-tensor nextn=CPU 把 MTP 头部放到 CPU（省约 200MB）、用较小的 --batch-size 1024/--ubatch-size 256 减少显存峰值，以及用 --no-context-shift 规避 DeltaNet 架构的上下文保存卡死 bug。楼主指出超过约 10 万 token 后上下文质量会退化，并且尽管该版本支持 MTP，他还是将其禁用。 从 Hugging Face 下载 Bucoid 的 Qwen3.8-27B IQ4_XS GGUF，并根据你的硬件调整帖子中的 llama-server 批处理脚本，按可用显存和内存调节 -c 和 --cache-ram。如果你不用 Windows，由于操作系统不占用那约 1.5GB 显存，很可能可以提高上下文长度或量化质量。
+llama.cpp 发布了 0.2.0 版本，更新日志和源代码已在 GitHub 的 ggml-org 组织下公开。同时提供了预编译的二进制文件，方便不想从源码编译的用户使用。 llama.cpp 是包括 Ollama 和 LM Studio 在内的大多数本地大模型工具的事实核心推理引擎，因此它的版本发布会直接影响本地模型用户。查看更新日志有助于用户在升级前了解新功能、性能改进或破坏性变更。 这只是一次例行版本发布公告，Reddit 帖子本身并未讨论具体功能或破坏性变更。该项目近期开始采用带版本号的发布方式（此前主要以 b10566 这类构建号标识），对应的预编译版本在 GitHub 上标记为 b10566。 前往 GitHub 的 v0.2.0 发布页面查看官方更新日志，了解具体变更内容；如果不想自行编译，可以直接下载预编译的二进制文件试用新版本。
 
-reddit · r/LocalLLaMA · /u/mt5o · 8月22日 02:24
+reddit · r/LocalLLaMA · /u/PhilippeEiffel · 8月22日 06:23
 
-**背景**: GGUF 是 llama.cpp 的模型文件格式，支持多种量化方案；IQ4_XS 是比 Q4_K_M 压缩更激进的 4-bit 格式，用少量质量换取更小的体积，让更大的模型能装进有限的显存。KV 缓存存储上下文窗口的注意力键值，会随上下文长度增长，因此把它量化到 q4_0 能在小显存显卡上大幅扩展可用上下文。MTP（多 token 预测）让模型每步预测多个 token 以加速推理，但其额外的头部权重会占用显存，所以楼主把它卸载到 CPU。
+**背景**: llama.cpp 是一个开源的 C/C++ 库，用于在本地以最少的配置运行大模型推理，由 Georgi Gerganov 于 2023 年 3 月创建，并与 GGML 张量库协同开发。它使用 GGUF 格式，该格式已成为在 Hugging Face 上分发量化本地大模型的主流方式。由于它是大多数本地推理工具的底层引擎，其更新会影响整个本地大模型生态。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md">llama.cpp/tools/server/README.md at master · ggml-org/llama.cpp</a></li>
-<li><a href="https://kaitchup.substack.com/p/choosing-a-gguf-model-k-quants-i">GGUF Quantization Compared: Q4_K_M vs IQ4_XS vs IQ4_NL</a></li>
-<li><a href="https://unsloth.ai/docs/models/mtp">How to Run MTP Models: Multi-Token Prediction Guide | Unsloth ...</a></li>
+<li><a href="https://github.com/ggml-org/llama.cpp">GitHub - ggml-org/llama.cpp: LLM inference in C/C++ · GitHub</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Llama.cpp">Llama.cpp</a></li>
+<li><a href="https://www.datacamp.com/tutorial/gguf-format-a-complete-guide">GGUF Format: A Complete Guide to Local LLM Inference | DataCamp</a></li>
 
 </ul>
 </details>
 
-**标签**: `#local-llm`, `#vram-optimization`, `#gguf`, `#quantization`, `#llama.cpp`
+**标签**: `#llama.cpp`, `#local-llm`, `#release`, `#open-source`
 
 ---
