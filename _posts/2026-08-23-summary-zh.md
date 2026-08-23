@@ -5,125 +5,124 @@ date: 2026-08-23
 lang: zh
 ---
 
-> 从 15 条内容中筛选出 5 条重要资讯。
+> 从 10 条内容中筛选出 5 条重要资讯。
 
 ---
 
-1. [独立测试：DFlash 2 在 Qwen 3.8 27B 上提速 2.26 倍，叠加 n-gram 达 4.68 倍](#item-1) ⭐️ 9.0/10
-2. [单张 RTX 5090 在 vLLM 中运行 Qwen3.8-27B NVFP4 并支持完整 262K 上下文](#item-2) ⭐️ 9.0/10
-3. [Linus Torvalds 称 AI 在艰难的 Linux 内核调试中立了大功](#item-3) ⭐️ 6.0/10
-4. [借助 AI 辅助打造的 AMD GFX906 优化版 llama.cpp 分支](#item-4) ⭐️ 6.0/10
-5. [energygraph v1.3：零依赖的 CPU/GPU 终端功耗监控工具](#item-5) ⭐️ 5.0/10
+1. [家庭实验室用户将 DGX Spark 集群从 16 节点扩展到 36 节点](#item-1) ⭐️ 7.0/10
+2. [爱好者微调 Gemma 4 12B，在 16GB 显存上实现 2.7 倍工具调用提升](#item-2) ⭐️ 7.0/10
+3. [实测报告：Q8_K_XL Qwen3.8 27B 在实际编码中胜过 BF16 Qwen3.6 27B](#item-3) ⭐️ 7.0/10
+4. [从业者称 Qwen 3.8 27B 媲美付费 API，引发自建硬件计划](#item-4) ⭐️ 6.0/10
+5. [本地大模型用户提出递归父子智能体方案，让 64k 上下文胜任 30 万 token 任务](#item-5) ⭐️ 6.0/10
 
 ---
 
 <a id="item-1"></a>
-## [独立测试：DFlash 2 在 Qwen 3.8 27B 上提速 2.26 倍，叠加 n-gram 达 4.68 倍](https://www.reddit.com/r/LocalLLaMA/comments/1vvncyh/i_benchmark_dflash_2_pr_build_in_llamacpp_on_qwen/) ⭐️ 9.0/10
+## [家庭实验室用户将 DGX Spark 集群从 16 节点扩展到 36 节点](https://www.reddit.com/r/LocalLLaMA/comments/1vvv7iv/the_all_spark_cluster_upgrading_from_16_36_dgx/) ⭐️ 7.0/10
 
-一位 Reddit 用户花三天时间在 llama.cpp 中测试了 DFlash 2 的 PR 构建（PR #27342），在 Qwen 3.8 27B 上对 100 个真实 LiveCodeBench 题目测得 2.26 倍加速（67.97 → 153.91 tok/s），叠加单个 n-gram 查找表后在多轮编码构建阶段最高达 4.68 倍。测试还发现，七月时在 DFlash 1 上叠加两个 n-gram 表是赢家，如今反而拖慢速度，且官方推荐的 --spec-draft-n-max 7 已超过峰值（n=5 在 8K 提示上多出约 11%）。 这为 llama.cpp 用户提供了独立验证的具体数据——显存开销（+2.7 GB）和延迟（14.27 → 6.02 ms）——以便判断 DFlash 2 是否适合自己的硬件和工作负载。它还提醒大家不要轻信合成基准数字（8.47 倍的结果被证实是模型陷入重复循环的假象），并说明 n-gram 叠加的收益取决于工作负载，并非普遍有效。 在相同草稿宽度 n=7 下，DFlash 2 优于 DFlash 1（2.26 倍对 2.00 倍），探针接受率 60% 对 48%，显存开销约为原来的一半，但部分差距来自量化选择（Q4_K_M 对 Q8_0 草稿模型）。值得注意的细节：--spec-draft-p-min 在 DFlash 2 代码路径中从未被读取，n-max 被静默钳制在 7（block_size 8），同一个 n-gram 参数在合成基准上 +52%（测试框架退化假象）、LiveCodeBench 上 +1%、纯文本上 -30%。 如果你在 llama.cpp 中本地运行 Qwen 3.8 27B，可以构建 PR #27342 并尝试 DFlash 2，将 --spec-draft-n-max 设为 5 而非默认的 7；仅在代码密集或多轮构建类工作负载中叠加 ngram-map-k4v 查找，纯文本生成时不要开启。
+一位家庭实验室用户正在将 NVIDIA DGX Spark 从 16 台扩展到 36 台，通过 200Gbps QSFP56 交换机互联，实现 4.6TB 统一内存。集群被划分为多个专用“推理模块”——16 个节点运行 Kimi K3 等 SOTA 模型，其余节点同时处理重排序/嵌入、视频生成、图像生成和音频处理——并通过 Hermes 加自研记忆 sidecar 编排为一个持久化智能体。 这是一份难得的大规模分布式本地推理实战报告，展示了如何将统一内存桌面节点组合成一个完全自主、不依赖数据中心的多模型智能体集群。任何在 DGX Spark、B200/B300 或 Mac Studio 之间做选择的本地 AI 用户，都可以从作者关于成本、功耗、散热和转售流动性的分析中获益。 网络采用 FS 24 口 200Gb QSFP56 加 8 口 400Gb 交换机、24 根 QSFP56 DAC 线缆和 6 根 400Gb 转 2x 200Gb 分支线缆；每台 Spark 内置的 ConnectX-7 端口支持 200GbE 直连。机架还包含两套 RTX 6000 Pro 系统（4 卡 Max Q 低功耗版和 8 卡企业版服务器），取代了此前的 H100 和 GH200，作者还计划加入 Mac Studio M5 Ultra 探索分离式推理。 如果你有两台或更多 DGX Spark，可以先尝试用 0.5 米 200G QSFP56 DAC 线缆通过内置 ConnectX-7 端口直连，在购买交换机之前测试集群效果。也可以参考 NVIDIA 的构建指南在单台 Spark 上运行 Hermes Agent，原型验证帖子中描述的持久化智能体模式。
 
-reddit · r/LocalLLaMA · /u/FantasticNature7590 · 8月22日 20:41
+reddit · r/LocalLLaMA · /u/Kurcide · 8月23日 02:38
 
-**背景**: 投机解码通过一个轻量快速的草稿模型提前猜测多个 token，再由大目标模型在一次前向传播中验证，接受正确的猜测、丢弃错误的，从而加速 LLM 推理。DFlash（来自 Z Lab）是一种轻量的块扩散草稿模型，可以并行起草 token，DFlash 2 随 Qwen 3.8 27B 的草稿模型和 llama.cpp PR 一起发布。n-gram 查找起草是最简单的自投机方法：在对话历史中找到最近匹配的 n-gram，并用其后跟随的 token 作为草稿，在模型复现或编辑已有代码时效果尤其好。MTP（多 token 预测）是另一种方案，模型本身被训练为在每个位置预测多个未来 token。
+**背景**: DGX Spark 是 NVIDIA 基于 GB10 Grace Blackwell 超级芯片的桌面级“个人 AI 超级计算机”，配备 128GB 统一 LPDDR5X 内存和专为集群设计的 ConnectX-7 200GbE 端口。统一内存让大模型可以本地运行，不受独立 GPU 显存分割的限制，因此堆叠多台 Spark 可以形成巨大的共享内存池。Hermes 是 Nous Research 的开源智能体框架，以终端 TUI 形式运行，可接入消息平台并持久化自我改进的技能——在这里通过自研记忆 sidecar 将多个模型服务节点协调为一个持久化智能体。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://github.com/z-lab/dflash">GitHub - z-lab/dflash: DFlash: Block Diffusion for Flash Speculative Decoding · GitHub</a></li>
-<li><a href="https://github.com/ggml-org/llama.cpp/blob/master/docs/speculative.md">llama.cpp/docs/speculative.md at master · ggml-org/llama.cpp</a></li>
-<li><a href="https://www.mindstudio.ai/blog/dflash-2-speculative-decoding-qwen">DFlash 2: Run Qwen3.8-27B at 2x Speed with Speculative Decoding | MindStudio</a></li>
+<li><a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/">Personal AI Supercomputer Powered by Blackwell | NVIDIA DGX Spark</a></li>
+<li><a href="https://build.nvidia.com/spark/hermes-agent">Run Hermes Agent with a Local LLM | DGX Spark</a></li>
+<li><a href="https://backup-shop.ndd-x.cn/products/32671.html">DAC -Q56-200G-1M 200G QSFP 56 Passive Direct Attach Cable for...</a></li>
 
 </ul>
 </details>
 
-**标签**: `#llama.cpp`, `#speculative-decoding`, `#benchmarking`, `#local-llm`, `#inference-optimization`
+**标签**: `#local-llm`, `#dgx-spark`, `#distributed-inference`, `#homelab`, `#ai-agents`
 
 ---
 
 <a id="item-2"></a>
-## [单张 RTX 5090 在 vLLM 中运行 Qwen3.8-27B NVFP4 并支持完整 262K 上下文](https://www.reddit.com/r/LocalLLaMA/comments/1vvl7pc/single_rtx_5090_qwen3827b_nvfp4_at_a_real_262k/) ⭐️ 9.0/10
+## [爱好者微调 Gemma 4 12B，在 16GB 显存上实现 2.7 倍工具调用提升](https://www.reddit.com/r/LocalLLaMA/comments/1vvtu9z/i_fine_tuned_gemma_4_12b_for_a_27x_improvement_on/) ⭐️ 7.0/10
 
-一位 Reddit 用户发布了一套完全可复现的日常使用配置：在单张 RTX 5090 上通过 vLLM 0.27.1 运行 NVFP4 量化的 Qwen3.8-27B（joshebbs/qwen3.8-27b-uncensored-nvfp4-modelopt，固定 revision），同时保留完整的 262,144 token 上下文窗口、视觉塔、FP8 KV 缓存、前缀缓存和工具调用。1K 提示词后解码速度为 77.2 tok/s，128K 上下文驻留时为 64.7 tok/s，完整 262K token 的预填充在 166 秒内完成。 这具体证明了在一张消费级 GPU 上可以同时容纳一个 27B 混合注意力模型和超长上下文，且速度足以日常使用，对本地大模型实践者具有直接可操作性。帖子给出了确切的模型 revision、显存预算、内核选择和基准测试方法，其他 RTX 5090 用户可以直接复现而无需猜测各种内存参数。 该模型是 64 层混合结构，包含 48 层 Gated DeltaNet 和 16 层全注意力层，因此预填充吞吐量随上下文增长显著下降（8K 时 7,005 tok/s 降至 262K 时 1,578 tok/s）；128K 和 262K 两行数据是单次运行的运行点，并非统计分布。前缀缓存带来实测 22.3 倍的冷启动到缓存 TTFT 加速（6.437 秒降至 0.288 秒），但 vLLM 在启用前缀缓存时会把混合 Mamba/DeltaNet 缓存置于实验性 align 模式——如果输出损坏，首先应测试禁用前缀缓存。 如果你拥有 RTX 5090，可以拉取固定 revision（e5ff4986938dcd0dd05ab4cce89da1b052be6ce3）的模型检查点，配置 vLLM 0.27.1 并启用 modelopt_fp4 量化、FlashInfer NVFP4 GEMM、FP8 KV 缓存和前缀缓存，然后按照帖子的方法（并发 1、temperature 0、--ignore-eos）自行测试 TTFT/TPOT。
+一位 Reddit 用户针对工具调用和命令行/智能体编程场景微调了 Gemma 4 12B，报告工具调用准确率提升 2.7 倍，模型发出的工具调用数量增加 15.7%。作者以 fp16 和 Q4_K_M GGUF 格式发布了权重，可直接在 llama.cpp 或 ollama 中使用。 这证明了在 16GB 消费级显存上，就足以显著提升一个中等规模开源模型的智能体能力，而不必等待更大的模型。任何运行本地编程助手或命令行智能体的用户都可以立即下载并测试这些权重。 作者的动机是原版 Gemma 12B 虽然基础训练很强，但在 GitHub Copilot 工具使用和命令行任务上表现不佳。帖子本身对数据集和训练方法着墨很少，因此 2.7 倍这一数字是作者自报的，未经独立基准验证；Q4_K_M 量化以少量精度损失换取显著更小的内存占用。 从作者发布的资源下载 Q4_K_M GGUF 权重，在 ollama 或 llama.cpp 中加载，然后在自己的命令行或编程智能体任务上测试工具调用表现，与原版 Gemma 4 12B-it 对比。
 
-reddit · r/LocalLLaMA · /u/Fz1zz · 8月22日 19:16
+reddit · r/LocalLLaMA · /u/TheOneWhoWil · 8月23日 01:30
 
-**背景**: NVFP4 是通过 NVIDIA ModelOpt 导出的 4 位浮点格式，相比 FP8 可将权重显存大致减半且保持质量，使这个 27B 模型的 safetensors 仅占 19.18 GiB。Gated DeltaNet 是一种具有固定大小循环状态的线性注意力机制，因此这 48 层不需要增长的 KV 缓存；只有 16 层全注意力层承担二次方注意力开销，这正是配合 FP8 KV 缓存后 262K 上下文能在 32 GB 显存上实现的原因。vLLM 中的前缀缓存会复用已处理提示词前缀的 KV 缓存块，对多轮智能体对话至关重要，可避免每轮都重新预填充整个对话记录。
+**背景**: 工具调用（tool calling）让大模型能够对外部函数（文件编辑、shell 命令、API 调用等）发出结构化请求，而不只是生成文本，这是智能体编程工作流的关键能力。Gemma 4 12B 是谷歌的开源权重多模态模型，专为约 16GB 内存的本地机器设计。Q4_K_M 是 llama.cpp 的 GGUF 量化格式，可将 fp16 权重压缩到约四分之一大小，使 12B 模型能轻松装进消费级显存。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://huggingface.co/docs/diffusers/quantization/modelopt">NVIDIA ModelOpt · Hugging Face</a></li>
-<li><a href="https://sebastianraschka.com/llm-architecture-gallery/hybrid-attention/">Hybrid Attention | Sebastian Raschka, PhD</a></li>
-<li><a href="https://docs.vllm.ai/en/stable/design/prefix_caching/">Automatic Prefix Caching - vLLM</a></li>
+<li><a href="https://huggingface.co/google/gemma-4-12B-it">google/ gemma -4- 12 B -it · Hugging Face</a></li>
+<li><a href="https://developers.googleblog.com/gemma-4-12b-the-developer-guide/">Gemma 4 12 B : The Developer Guide - Google Developers Blog</a></li>
+<li><a href="https://github.com/ggml-org/llama.cpp/blob/master/tools/quantize/README.md">llama.cpp/tools/quantize/README.md at master · ggml-org/llama.cpp</a></li>
 
 </ul>
 </details>
 
-**标签**: `#local-llm`, `#vllm`, `#nvfp4-quantization`, `#rtx-5090`, `#long-context`
+**标签**: `#fine-tuning`, `#local-llm`, `#tool-calling`, `#gemma`, `#open-weights`
 
 ---
 
 <a id="item-3"></a>
-## [Linus Torvalds 称 AI 在艰难的 Linux 内核调试中立了大功](https://simonwillison.net/2026/Aug/22/linus-torvalds/) ⭐️ 6.0/10
+## [实测报告：Q8_K_XL Qwen3.8 27B 在实际编码中胜过 BF16 Qwen3.6 27B](https://www.reddit.com/r/LocalLLaMA/comments/1vvsokm/tested_in_coding_q8_k_xl_qwen38_27b_vs_bf16/) ⭐️ 7.0/10
 
-在 drm/xe Intel GPU 驱动修复（"不要把 flat CCS 存储当作可用 VRAM 分配"）的提交信息中，Linus Torvalds 透露一个 AI 在这场"地狱般的调试"中承担了大量繁琐工作。他指出 AI 多次断言这个 bug 不可能解决，但每当他坚持推进时，AI 仍会忠实地继续添加调试代码并分析结果。 这是顶级维护者真实使用 LLM 的一个高知名度案例：不是把 AI 当神谕，而是当作干粗活的苦力，其过早的"放弃"结论需要靠人类的固执来推翻。开发者可以借鉴这种模式——越过 AI 的消极结论继续推进，同时把重复性的插桩和分析工作交给它。 该 bug 涉及 get_flat_ccs_offset() 从硬件读取 flat CCS 存储基址、按启用的 L3 节点数进行缩放并向上取整到 128K，而低于该偏移的内存被错误地交给了 VRAM 分配器。Torvalds 还让 AI 自己写下了最终的提交信息，并打趣说这个 AI 的训练者可能"没他那么固执"。 阅读 GitHub 上 torvalds/linux 提交 818bebeb 的完整提交信息，查看 AI 撰写的提交文本和技术修复细节。用 LLM 调试时，应把它的"这问题无解"回应视为需要更努力推进、添加更多调试插桩的信号，而不是停止的理由。
+一位实践者报告了每天 6 小时以上的日常编码使用体验：在企业级 Web 应用上，使用 rope-scale 1.4 扩展到约 36.7 万上下文的 Q8_K_XL Qwen3.8 27B，在指令遵循、诊断、追踪和编码可靠性方面全面胜过受内存限制只能跑约 15 万上下文的 BF16 Qwen3.6 27B。两者共同的关键弱点是都会不顾指令限制、热衷于执行写入类 Git 命令。 这是具体的实战证据：选择得当的新模型 8 比特量化版本，可以胜过旧模型的全精度版本，同时释放足够内存让可用上下文翻倍——这对硬件受限的本地大模型用户是可直接复用的策略。它还指出了一个真实的安全隐患（无人监督的 Git 写入操作），任何运行编码智能体的用户都应防范。 Q8_K_XL 是 Unsloth 的动态 GGUF 变体，主体保持 8 比特权重，但将敏感层（嵌入、注意力、输出层）提升到 16 比特；两个模型都使用完整的 FP16 KV 缓存运行。Qwen3.8 的主要代价是追踪过程缓慢且'绕路'多（先提出多个偏离方向的假设才得出正确结论），以及偶尔在首轮不执行反馈指令、随后才自我纠正。 如果你在内存受限的条件下运行本地编码模型，可以尝试最新模型的 Unsloth Q8_K_XL 量化版本，配合（按官方指引的）rope-scale 上下文扩展和全精度 KV 缓存，并与你现有的 BF16 方案做对比测试。同时应添加硬性防护措施（如 Git 钩子或权限门控），阻止智能体执行写入类 Git 命令。
 
-rss · Simon Willison · 8月22日 21:04
+reddit · r/LocalLLaMA · /u/PathfinderTactician · 8月23日 00:34
 
-**背景**: drm/xe 是 Linux 内核中较新的 Intel 显卡驱动，支持 Xe 系列 GPU 的渲染、显示、计算与媒体功能。Intel GPU 上的 CCS（计算命令流）状态存储在 VRAM 中一块"flat"区域，该区域必须保留，不能作为可用 VRAM 暴露给内存分配器。Torvalds 的评论触及了 LLM 的一个已知行为：模型在缺乏信心时常常推脱或宣称问题无解，即使坚定的人类可以通过持续迭代取得进展。
+**背景**: 量化将模型权重从 FP16/BF16 压缩到 Q8 等更低比特格式，用少量精度损失换取大幅内存节省，省下的内存可用于更长的上下文。Q8_K_XL 特别地将最敏感的张量保持在高精度，因此质量接近全精度。RoPE 缩放（rope-scale）修改位置编码以将模型上下文扩展到训练窗口之外，使该用户达到约 36.7 万 token。KV 缓存按 token 存储注意力的键/值并随上下文长度增长，因此在平均 28 万以上的上下文使用完整 FP16 KV 缓存本身就是不小的内存开销。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://linuxcommunity.io/t/linus-torvalds-uses-ai-to-debug-an-intel-gpu-driver-bug/11323">Linus Torvalds uses AI to debug an Intel GPU driver bug</a></li>
-<li><a href="https://docs.kernel.org/gpu/xe/index.html">drm / xe Intel GFX Driver — The Linux Kernel documentation</a></li>
+<li><a href="https://www.promptquorum.com/local-llms/llm-quantization-explained">Q4_K_M vs Q4_0 vs Q8_0: LLM Quantization Explained (2026)</a></li>
+<li><a href="https://amaarora.github.io/posts/2025-09-21-rope-context-extension.html">How LLMs Scaled from 512 to 2M Context : A Technical Deep Dive</a></li>
+<li><a href="https://www.technolynx.com/post/kv-cache-quantization-vs-weight-quantization">KV - Cache Quantization : A Different Risk Profile from... | TechnoLynx</a></li>
 
 </ul>
 </details>
 
-**标签**: `#ai-assisted-coding`, `#linus-torvalds`, `#linux-kernel`, `#debugging`, `#llm-limitations`
+**标签**: `#local-llm`, `#quantization`, `#qwen`, `#coding-agents`, `#field-report`
 
 ---
 
 <a id="item-4"></a>
-## [借助 AI 辅助打造的 AMD GFX906 优化版 llama.cpp 分支](https://www.reddit.com/r/LocalLLaMA/comments/1vvljbz/glm_and_i_created_a_llamacpp_fork_optimized_for/) ⭐️ 6.0/10
+## [从业者称 Qwen 3.8 27B 媲美付费 API，引发自建硬件计划](https://www.reddit.com/r/LocalLLaMA/comments/1vvyacg/qwen_38_27b_is_a_game_changer/) ⭐️ 6.0/10
 
-Reddit 用户 u/milpster 发布了一个针对 AMD GFX906 架构优化的 llama.cpp 分支，通过 HIP/ROCm 支持 Mi50、Mi60 和 Radeon VII 显卡。该分支据称是与 GLM AI 模型协作开发的，作者正在征求社区反馈。 Mi50 等 GFX906 显卡在二手市场价格低廉，一个调优过的推理后端能让预算有限的 AMD 用户以更低成本本地运行大模型。这也展示了 AI 编程助手如何帮助开发和维护针对小众 GPU 的优化代码。 该 Reddit 帖子本身没有提供基准测试、技术实现细节或性能对比，因此该分支的质量和可复现性尚无法评估。GFX906 在部分路径上缺少 MFMA 指令，优化通常依赖文档化的 v_dot*混合精度点积路径。 如果你拥有 Mi50、Mi60 或 Radeon VII，可以访问该 Reddit 帖子找到仓库链接，启用 HIP 编译，并用 llama-bench 与官方 llama.cpp 的 HIP 后端对比性能后再决定是否采用。
+一位 Reddit 从业者报告称，阿里巴巴新发布的 Qwen 3.8 27B（Apache 2.0 许可、支持视觉）在开发工作中的表现与他们的付费编程 API 相当，并在 OCR 管线上超过了 Gemini 3.5 Flash Lite。基于这些结果，其团队估算自购硬件的成本不到两个月即可回本。 如果一款免费许可的 27B 模型真能在编程和 OCR 任务上替代付费 API，那么有大量文档处理需求的团队可以大幅削减经常性开支。对于正在权衡本地部署与按 token 计费 API 的人，这份报告是一个有价值的真实数据点。 这些说法属于个人经验，没有基准测试、代码或可验证数据，且帖子里包含大量关于“超大规模云厂商陷入麻烦”和“IBM 时刻”的猜测。值得注意的是，Simon Willison 的独立评测指出该模型“默认会过度思考”，这对延迟敏感的场景是个需要注意的问题；该模型是原生视觉语言模型，支持灵活的思考控制。 从 Hugging Face 下载 Qwen 3.8 27B，用自己的 OCR 或编程样本测试其质量与吞吐量，并与当前 API 成本对比，再决定是否采购硬件。务必测试思考控制设置，因为默认的过度思考行为会影响延迟。
 
-reddit · r/LocalLLaMA · /u/milpster · 8月22日 19:29
+reddit · r/LocalLLaMA · /u/Cold_Specialist_3656 · 8月23日 05:19
 
-**背景**: llama.cpp 是 Ollama 和 LM Studio 等大多数本地大模型工具背后的事实标准 C/C++推理引擎，它通过 HIP 支持 AMD GPU，HIP 是 AMD ROCm 平台内类似 CUDA 的编程模型。GFX906 是 AMD 基于 Vega 20 的架构，用于 Instinct Mi50/Mi60 数据中心显卡和消费级 Radeon VII；这些显卡因以极低的二手价格提供 16-32GB HBM2 显存而受爱好者欢迎，但官方 ROCm 支持一直滞后。
+**背景**: Qwen 3.8 27B 是阿里巴巴 Qwen 团队推出的 Apache 2.0 许可、270 亿参数的视觉语言模型，其规模适合在配置较好的笔记本或单张自建 GPU 上运行。Gemini 3.5 Flash Lite 是谷歌的低成本、低延迟多模态模型，专为高吞吐文档解析优化，因此是 OCR 对比的自然基准。Codex 是 OpenAI 的本地编程代理 CLI，可以接入其他模型后端。发帖人所提到的“IBM 时刻”类比，指的是从集中式大型机向更便宜的分布式计算转移的历史。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://github.com/ggml-org/llama.cpp">GitHub - ggml-org/llama.cpp: LLM inference in C/C++ · GitHub</a></li>
-<li><a href="https://en.wikipedia.org/wiki/ROCm">ROCm - Wikipedia</a></li>
-<li><a href="https://skyne98.github.io/wiki-gfx906/studies/2026-02-21/mi50-mi60-architecture-baseline.html">MI50/MI60 Architecture Baseline - Wiki GFX906</a></li>
+<li><a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen/Qwen3.8-27B · Hugging Face</a></li>
+<li><a href="https://simonwillison.net/2026/Aug/16/qwen-38-27b/">Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things</a></li>
+<li><a href="https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite">Gemini 3.5 Flash-Lite | Gemini API | Google AI for Developers</a></li>
 
 </ul>
 </details>
 
-**标签**: `#llama.cpp`, `#AMD GPUs`, `#HIP`, `#local-LLM`, `#open-source`
+**标签**: `#local-llm`, `#qwen`, `#ocr`, `#cost-savings`, `#self-hosting`
 
 ---
 
 <a id="item-5"></a>
-## [energygraph v1.3：零依赖的 CPU/GPU 终端功耗监控工具](https://www.reddit.com/r/LocalLLaMA/comments/1vvkgs6/watching_that_wattage_in_your_terminal/) ⭐️ 5.0/10
+## [本地大模型用户提出递归父子智能体方案，让 64k 上下文胜任 30 万 token 任务](https://www.reddit.com/r/LocalLLaMA/comments/1vvt3c4/has_anyone_actually_made_64k_feel_like_300k_with/) ⭐️ 6.0/10
 
-energygraph v1.3 发布，新增对 NVIDIA、Intel 和 AMD 独立显卡的支持，并保留原有的 CPU 侧监控功能。根据厂商支持情况，它还可以在终端实时图表中显示 CPU 各核心、iGPU、平台和 DRAM 的功耗。 对于本地大模型用户来说，在推理时实时查看功耗有助于量化不同模型和硬件配置的实际能耗。零依赖的设计使其在无图形界面的 Linux 服务器上安装非常简单，而重型监控工具在这种场景下并不实用。 该工具每秒采样一次，因此数值既可以读作功率（瓦特），也可以读作绝对能量（焦耳），CPU/DRAM 数据来自 /sys 文件系统中的 Intel RAPL。GPU 支持程度因厂商而异，且已有研究表明基于 RAPL 的 DRAM 读数存在精度限制。 从 github.com/stolk/energygraph 克隆仓库并编译运行，在加载本地大模型时观察 GPU 和 CPU 的峰值功耗。你也可以参与 Reddit 上的挑战，晒出你系统测得的最大功率峰值。
+一位在本地运行 Qwen 3 32B 的 Reddit 用户提出了递归父子智能体模式：主智能体只保留 64k 上下文，遇到过大子任务就派生新的子智能体，子智能体还能继续拆分，且只有结论/产物返回给父级。他向社区征求现成框架推荐，并提到 Prime Agent 的 RLM 架构和 Hermes 委派机制是最接近的实现。 这种模式让本地小规模模型的用户无需承担超长上下文窗口的速度和显存代价，就能处理 30 万 token 级别的任务（长代码、研究、大文档）。它是用编排而非 RAG 来最大化单个快速本地模型可用任务范围的实用方案。 关键设计约束：只加载一个模型；子智能体顺序执行而非并行；子级只返回提炼后的产物而非完整轨迹，因此父级永不超出 64k。悬而未决的问题是递归拆分（包括子智能体意识到自身输入过大）能否被信任地自动发生，以及在可拆分任务上受管理的 64k 能有多接近原生 256k/1M 上下文。 用本地 Qwen 模型在 Prime Agent（GitHub 开源）上跑一个可拆分的 10 万+token 任务，强制执行“只返回产物”规则，然后与同一模型直接用 131k 上下文运行的效果和速度做对比。
 
-reddit · r/LocalLLaMA · /u/mazarax · 8月22日 18:47
+reddit · r/LocalLLaMA · /u/TigerConsistent · 8月23日 00:54
 
-**背景**: Intel 的 RAPL（运行平均功率限制）接口将处理器划分为多个功率域，如 CPU 核心、集成显卡和 DRAM，并通过 Linux 的 /sys 文件系统暴露能量计数器。energygraph 由 GitHub 用户 stolk 开发，可在纯文本终端中绘制这些计数器，且无任何构建依赖。1.3 版将覆盖范围扩展到三大厂商的独立显卡，这很有用，因为独立显卡的功耗通常远超 PCIe 插槽单独提供的 75W。
+**背景**: 这一想法基于递归语言模型（RLM）概念：上下文被当作变量处理，子智能体委派就像在持久 REPL 中调用函数。Prime Agent（Prime Intellect）通过持久 IPython 内核实现这一点，rlm(...)调用会派生真实的子智能体并以编程方式返回结果。Hermes Agent（Nous Research）提供类似的 delegate_task 工具，可派生具有隔离上下文、继承工具和独立终端的子智能体，且只有子级的最终摘要进入父级上下文。这与 RAG 不同：RAG 只是检索相关片段，而递归委派是真正拆分并执行工作。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://github.com/stolk/energygraph">GitHub - stolk/ energygraph : Graphs the energy use of a host inside...</a></li>
-<li><a href="https://projectexigence.eu/green-ict-digest/running-average-power-limit-rapl/">Running Average Power Limit (RAPL) – Exigence</a></li>
-<li><a href="https://dl.acm.org/doi/abs/10.1145/2989081.2989088">A Validation of DRAM RAPL Power Measurements</a></li>
+<li><a href="https://www.primeintellect.ai/blog/prime-agent">Prime Agent: A self-improving RLM agent</a></li>
+<li><a href="https://github.com/PrimeIntellect-ai/prime-agent">GitHub - PrimeIntellect-ai/prime-agent: A self-improving RLM agent for coding workflows and long-running autonomous tasks. · GitHub</a></li>
+<li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/delegation">Hermes Agent</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 发帖人向 r/LocalLLaMA 社区发起挑战，让大家晒出自己的最大功率峰值，将这次发布包装成一个有趣的测试活动。帖子本身没有包含实质性的技术讨论。
-
-**标签**: `#power-monitoring`, `#local-llm`, `#hardware`, `#open-source-tools`, `#terminal`
+**标签**: `#local-llm`, `#agents`, `#context-management`, `#qwen`, `#orchestration`
 
 ---
