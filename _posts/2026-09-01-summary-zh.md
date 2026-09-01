@@ -5,172 +5,269 @@ date: 2026-09-01
 lang: zh
 ---
 
-> 从 45 条内容中筛选出 7 条重要资讯。
+> 从 71 条内容中筛选出 11 条重要资讯。
 
 ---
 
-1. [从零训练的小型 Transformer 以 67 美分在 ARC-AGI-1 上达到 44%](#item-1) ⭐️ 8.0/10
-2. [Qwen3.8-27B 在单张 RTX 3090 上实现每秒 2000 token 预填充](#item-2) ⭐️ 8.0/10
-3. [EFF 呼吁法院：不要因 AI 热潮改写版权法](#item-3) ⭐️ 7.0/10
-4. [Python 指导委员会暂停 JIT 新开发，等待 PEP 通过](#item-4) ⭐️ 7.0/10
-5. [Qwen 3.8 27B 本地一次性生成可玩的超级马里奥克隆](#item-5) ⭐️ 6.0/10
-6. [Google Play 封禁 AnkiDroid 的 Open Collective 捐赠链接](#item-6) ⭐️ 5.0/10
-7. [Python 3.15.0 第二个候选版本发布，正式版十月将至](#item-7) ⭐️ 5.0/10
+1. [Anthropic 发布 Claude Fable 5.1 和 Mythos 5.1](#item-1) ⭐️ 8.0/10
+2. [Dan Luu 审计 Ed Zitron 的 AI 怀疑论预测](#item-2) ⭐️ 8.0/10
+3. [slotstream：通过专家卸载在 16GB 内存的 Mac 上运行 125B 模型](#item-3) ⭐️ 8.0/10
+4. [Jujutsu 创始人 Martin von Zweigbergk 加入 GitHub 竞争对手 ERSC](#item-4) ⭐️ 6.0/10
+5. [OpenAI 发布案例：Basis、Clay 和 Exa Labs 如何构建 AI 原生工作流](#item-5) ⭐️ 6.0/10
+6. [Google DeepMind 为 Gemini 推出智能体式视频理解能力](#item-6) ⭐️ 6.0/10
+7. [Python 指导委员会暂停 CPython JIT 开发，等待 PEP 通过](#item-7) ⭐️ 6.0/10
+8. [Spark-X2.5 1.7B/4B 开源模型宣称原生 1M 上下文并达到 Qwen-3.5-9B 级性能](#item-8) ⭐️ 6.0/10
+9. [ChatGPT/Codex 桌面应用缓存 1.7GB 运行时捆绑包，内含 LibreOffice](#item-9) ⭐️ 5.0/10
+10. [Python 3.15.0 候选版本 2 发布，正式版定于十月推出](#item-10) ⭐️ 5.0/10
+11. [GitHub Copilot 代码审查现在可以批准拉取请求](#item-11) ⭐️ 5.0/10
 
 ---
 
 <a id="item-1"></a>
-## [从零训练的小型 Transformer 以 67 美分在 ARC-AGI-1 上达到 44%](https://mvakde.github.io/blog/44-on-arc-1/) ⭐️ 8.0/10
+## [Anthropic 发布 Claude Fable 5.1 和 Mythos 5.1](https://www.anthropic.com/claude-fable-and-mythos-5-1) ⭐️ 8.0/10
 
-一位独立研究者从零训练了一个小型 Transformer（既不是 LLM 也不是 LLM 微调），在 ARC-AGI-1 上取得 44%的成绩，总训练成本仅 67 美分。此前在该基准上的进展主要靠 LLM 或其微调版本，训练成本极高。 它证明了无需依赖大语言模型即可低成本攻克复杂的推理基准，降低了独立研究者的门槛。该方法可复现，并促使人们重新思考多少能力真正需要巨大规模。 一个关键争议是“在测试集上训练”的批评：模型在预训练中见过评测题目的输入（但未见过标签）。作者辩称这不构成作弊，因为 ARC 是一个元学习基准，本就应从评测题目中学习，而“训练在测试集上”特指训练测试标签。 阅读作者博客 mvakde.github.io/blog/44-on-ARC-1/，审查其方法论及关于数据泄漏的讨论；鉴于训练成本极低，可以尝试复现该训练。
+Anthropic 发布了 Claude Fable 5.1 和 Claude Mythos 5.1，二者是同一底层模型的两种配置，安全防护级别不同：Fable 面向普遍可用，Mythos 则是受限变体。此次发布附带系统卡和变更日志，并声称在编程和科研能力上树立了新标准。 Fable 现在是 Anthropic 高于 Opus 的旗舰层级，凡基于 Claude API 或订阅进行开发的用户都应评估其写作风格改进、冗长度变化以及思维痕迹被移除对提示词和工作流的影响。尤其是可见思维痕迹的移除，削弱了开发者调试提示词的能力。 虽然文本中的套话和专业术语更少，但系统卡本身也承认句子更长、段落间隔更少，部分用户认为输出更密集、阅读起来更累。此前用于验证提示词是否生效的思维痕迹被移除，而 Mythos 以网络安全等高级能力为由限制发布，被一些用户视为营销策略。 先阅读官方的“Fable 5.1 新特性”变更日志和系统卡 PDF，再用现有提示词在 Fable 5.1 上测试，检查冗长度和推理可见性是否出现回退，然后再迁移生产环境。
 
-hackernews · porridgeraisin · 9月1日 09:52 · [社区讨论](https://news.ycombinator.com/item?id=49519939)
+hackernews · denysvitali · 9月1日 17:53 · [社区讨论](https://news.ycombinator.com/item?id=49525378)
 
-**背景**: ARC-AGI-1 于 2019 年推出，通过新颖的视觉网格变换谜题测试系统性泛化和组合推理能力，超越表面统计模式。尽管 LLM 预训练规模扩大了约 5 万倍，它长期是最难的 AI 基准之一，并在 2024 年 12 月 OpenAI 展示 o3-preview 时被重点提及。历史上的高分大多来自 LLM 或昂贵的专用系统。
+**背景**: Anthropic 的模型阵营传统上由 Haiku、Sonnet 和 Opus 构成小、中、大三档，Fable 现在位于 Opus 之上，成为最强的一档。扩展思考（extended thinking）是让同一模型在回答前投入更多算力和时间进行推理的模式，可见的“思维痕迹”让开发者能够检查这些推理过程。Fable 与 Mythos 是“同一模型、不同防护”体现了 Anthropic 按风险评级并相应控制部署的做法。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://arcprize.org/arc-agi/1">ARC-AGI-1</a></li>
-<li><a href="https://epoch.ai/benchmarks/arc-agi">ARC-AGI-1 | Epoch AI</a></li>
+<li><a href="https://www.anthropic.com/claude-fable-and-mythos-5-1">Introducing Claude Fable 5 . 1 and Claude Mythos 5 . 1 \ Anthropic</a></li>
+<li><a href="https://platform.claude.com/docs/en/models/fable-5-1/overview">Claude Fable 5.1 - Claude Platform Docs</a></li>
+<li><a href="https://www-cdn.anthropic.com/0339e6a7c5c7b87f5c07798616dc32c215d14235/Claude+Fable+5.1+&+Claude+Mythos+5.1+System+Card.pdf">Claude Fable 5 . 1 & Claude Mythos 5 . 1 System Card</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 作者积极参与讨论，澄清这是从零训练的小型 Transformer 而非 LLM，并说明在 ARC 的元学习设定下使用评测题目输入（而非标签）是合理的。评论者要求更通俗地解释“测试集训练”的批评，也有人指出此前博客社区笔记中提到的预训练输入泄漏问题。
+**社区讨论**: 这条 494 条评论的 HN 讨论分歧明显：Anthropic 员工 felixrieseberg 称赞写作风格更自然，而其他用户则抱怨冗长度增加（“人类也有 token 上限”）、思维痕迹被移除，exabrial 还批评围绕受限 Mythos 的宣传是营销炒作。simonw 通过在不同思考努力级别下渲染鹈鹕 SVG 进行测试，发现 effort max 的效果明显更好。
 
-**标签**: `#machine-learning`, `#ARC-AGI`, `#transformers`, `#benchmarks`, `#efficiency`
+**标签**: `#anthropic`, `#llm`, `#model-release`, `#ai`, `#api`
 
 ---
 
 <a id="item-2"></a>
-## [Qwen3.8-27B 在单张 RTX 3090 上实现每秒 2000 token 预填充](https://www.reddit.com/r/LocalLLaMA/comments/1w49id7/i_pushed_qwen3827b_to_2000_prefill_per_second_and/) ⭐️ 8.0/10
+## [Dan Luu 审计 Ed Zitron 的 AI 怀疑论预测](https://danluu.com/zitron/) ⭐️ 8.0/10
 
-一位开发者将 Qwen3.8-27B 在单张 RTX 3090 上的推理优化到每秒约 2000 token 的预填充速度（此前约为 1300），解码速度达到每秒 132 token。预填充的提升主要来自一个自定义内核，它在 int8 精度下与 fp32 质量达到 0.99997 的相似度，代码已在 GitHub 上开源。 这表明只要投入自定义内核和投机解码等优化，消费级硬件就能以极低质量损失高速运行 27B 模型。开源代码和具体性能数字为本地大模型从业者提供了可复用的预填充/解码优化方案，而非泛泛之谈。 作者认为在出现更好草稿模型之前，解码速度已接近极限，因此将重心转向预填充；预填充测试是在 4k 上下文长度下进行的。与 fp32 达到 0.99997 相似度的 int8 自定义内核是关键技术贡献，意味着量化误差在这里几乎可以忽略。 克隆仓库 https://github.com/syv-ai/qwen38-27b-rtx3090，在你自己的 GPU 上跑基准测试，看看 int8 预填充内核和解码方案在你的工作负载下表现如何。
+Dan Luu 发布了一篇详细的事实核查文章（danluu.com/zitron），系统性地审计了 AI 怀疑论者 Ed Zitron 的预测和统计数据，发现它们在仔细审查下大多站不住脚。文章表明 Zitron 抛出的数字往往无法构成连贯的论点，甚至不能支持他自己的结论。 任何要做 AI 投资或采用决策的人都需要可靠的预测，而这篇文章展示了一种可迁移的方法：核查被引用的数字是否真正支持所论述的观点。它还警示了“受众俘获”现象——无论是怀疑派还是鼓吹派——如何让预测质量退化。 Luu 记录了 Zitron 数据站不住脚的具体案例，例如声称 Facebook 月活下降会导致 Meta 财务困境，但这并不能从数据中推出。评论者指出 Zitron 已从否认 LLM 有用性转向指控前沿实验室存在安然级别欺诈，这种转变与他服务于付费订阅的固化受众相吻合。 阅读 danluu.com/zitron 上的原文并练习其方法：下次看到 AI 预测（无论看多还是看空）时，先核实被引用的数字是否真能推出结论，再据此行动。
 
-reddit · r/LocalLLaMA · /u/iamMess · 9月1日 11:43
+hackernews · jatins · 9月1日 18:35 · [社区讨论](https://news.ycombinator.com/item?id=49526069)
 
-**背景**: 大模型推理分为两个阶段：预填充阶段处理输入上下文（决定首 token 延迟），解码阶段逐个生成 token。投机解码通过一个更小的草稿模型提出候选 token，再由大模型并行验证，从而加速解码。Int8 量化将权重和激活压缩为 8 位整数以降低计算量和显存带宽消耗，而编写自定义 GPU 内核（如用 Triton 或 CUTLASS）可以融合算子，在不损失质量的情况下恢复大部分速度。
+**背景**: Ed Zitron 是一位科技评论人，撰写通讯“Where's Your Ed At”并主持播客“Better Offline”，已成为最响亮的 AI 怀疑论者之一，主张 AI 经济学不成立（例如每兆瓦 AI 数据中心成本约 4400 万美元）。Dan Luu 是一位受人尊敬的工程师和散文作者，以细致、数据驱动的分析著称。“受众俘获”指作者的激励转向说受众爱听的话，因为承认错误会损失订阅者和地位。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.parasail.io/blog/prefill-vs-decode-llm-inference">Prefill vs . decode in LLM inference</a></li>
-<li><a href="https://neurips2024-enlsp.github.io/papers/paper_68.pdf">Speculative Diffusion Decoding</a></li>
-<li><a href="https://blog.speechmatics.com/gpu-quantisation">Fast and Accurate GPU Quantization for Transformers | Speechmatics</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Ed_Zitron">Ed Zitron - Wikipedia</a></li>
+<li><a href="https://www.newsweek.com/ai-skeptic-ed-zitron-says-math-on-data-centers-doesnt-add-up-11594219">AI Skeptic Ed Zitron Says Math on Data Centers Doesn’t Add Up - Newsweek</a></li>
 
 </ul>
 </details>
 
-**标签**: `#local-llm`, `#inference-optimization`, `#custom-kernels`, `#quantization`, `#gpu`
+**社区讨论**: 评论者总体认同 Luu 的审计；pcstl 认为一旦怀疑主义变成带有固化受众的政治立场，Zitron 就成了他所嘲讽的 AI 鼓吹者的扭曲镜像，simonw 也证实 Zitron 的数字从未构成连贯论证。tolugenius 等人则反问是否存在对 AI 融资和政治的有效批评者，指出大多数评论者都倒向某一阵营。
+
+**标签**: `#ai-skepticism`, `#forecasting`, `#critical-thinking`, `#dan-luu`, `#llm-economics`
 
 ---
 
 <a id="item-3"></a>
-## [EFF 呼吁法院：不要因 AI 热潮改写版权法](https://www.eff.org/deeplinks/2026/08/eff-courts-dont-rewrite-copyright-over-ai-hype) ⭐️ 7.0/10
+## [slotstream：通过专家卸载在 16GB 内存的 Mac 上运行 125B 模型](https://github.com/carloslfu/slotstream) ⭐️ 8.0/10
 
-电子前哨基金会（EFF）发文，敦促法院不要因 AI 训练争议而改写或扩张版权法。此时正值相关诉讼进行中，包括美国联邦法院在 Bartz 诉 Anthropic 案中裁定，在合法取得的版权书籍上训练模型构成合理使用。 这些案件的结局将决定普通 AI 用户、开发者和研究者能否合法地在版权数据上训练模型，以及新限制是否会波及日常的合理使用行为。它还影响开源许可体系，因为法院确立的规则可能重塑 copyleft 代码在 AI 系统中的流转方式。 EFF 的核心观点是：版权是有限定的法定契约，不是让创作者控制一切下游用途的工具，法院不应仅因 AI 是新事物就扩大其范围。美国版权局也认为 AI 训练并非一概属于合理使用，结论取决于具体情境，例如作品如何取得（Anthropic 案部分取决于其使用了盗版书籍）。 如果你在版权数据上训练或部署模型，请阅读 EFF 的完整文章，并关注主要的 AI 版权案件（如 Bartz 诉 Anthropic 案）和版权局的 AI 报告。如果你的工作依赖 copyleft 代码，请审视模型输出和许可条款如何处理源自 GPL 的材料。
+开发者 carloslfu 发布了开源工具 slotstream，它基于 MLX 和 Swift，通过专家卸载（expert offloading）与 SSD 流式加载技术，让仅有 16GB 内存的 Mac 也能以约 12 tok/s 的速度运行 104GB 的 Qwen3.8-Flash-Next 4-bit（125B 参数）模型。工具还提供自动模式来平衡内存占用与速度，作者下一步计划实现基于 MTP 的投机解码。 它展示了一种具体且可复现的技术，让消费级硬件也能运行前沿规模的 MoE 模型，大幅降低了本地 LLM 推理的门槛。任何拥有一台普通 Mac 的用户都可以体验 125B 模型，而无需购买大内存机器或租用云端 GPU。 其核心技巧利用了混合专家（MoE）的稀疏性：每个 token 只激活一小部分专家权重，未激活的专家可以留在 SSD 上按需流入内存，用 I/O 延迟换取极小的内存占用。约 12 tok/s 的速度可用但远低于全内存推理，作者也提到实际瓶颈往往是 Hugging Face 的下载带宽而非技术本身。 从 GitHub 克隆 slotstream，在你的 Mac（最低 16GB 内存）上试用其自动模式，亲身体验内存与速度的权衡；如果你是开发者，可以研读其专家卸载与 SSD 流式加载的实现，这套模式可迁移到其他 MoE 模型。
 
-hackernews · DeepLogin · 9月1日 12:53 · [社区讨论](https://news.ycombinator.com/item?id=49521315)
+hackernews · carloslfu · 9月1日 16:42 · [社区讨论](https://news.ycombinator.com/item?id=49524447)
 
-**背景**: 合理使用是美国法律原则，允许在未经许可的情况下有限使用版权作品，判断因素包括目的、性质、数量和市场影响。Copyleft（如 GPL 许可证）利用版权法要求衍生作品以相同许可保持开放。近期的 AI 判决——例如 Anthropic 案认定训练构成合理使用但获取盗版不合法——造成了 HN 评论者指出的不对称：个人受严格的合理使用限制，而 AI 公司却大规模利用合理使用。
+**背景**: 像 Qwen3.8-Flash-Next 这样的混合专家（MoE）模型的总参数量远大于每个 token 实际激活的参数量，因此 4-bit 的 125B 模型完整加载需要约 100GB 内存，但任一时刻只用到了一小部分专家。专家卸载领域的研究（如 HOBBIT、ADEPT）表明，通过智能缓存和预取，把专家权重存放在 CPU/SSD 上可以让 MoE 推理在边缘设备上可行，代价是速度与内存之间的权衡。MLX 是苹果开源的、针对 Apple 芯片统一内存架构优化的数组框架，提供 Python、C++ 和 Swift API，非常适合 Mac 原生的 LLM 推理。MTP（多 token 预测）是一种投机解码方法，模型每步原生预测多个 token 以加速生成。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.gnu.org/licenses/copyleft.en.html">What is Copyleft ? - GNU Project - Free Software Foundation</a></li>
-<li><a href="https://distillation.technology/learn/is-ai-training-fair-use">Is AI Training Fair Use ? What Bartz v. Anthropic Actually</a></li>
-<li><a href="https://copyrightalliance.org/copyright-offices-ai-report-takeaways/">5 Takeaways from the Copyright Office’s Report on Generative AI ...</a></li>
+<li><a href="https://github.com/ml-explore/mlx">GitHub - ml-explore/mlx: MLX: An array framework for Apple silicon</a></li>
+<li><a href="https://arxiv.org/html/2411.01433v2">HOBBIT: A Mixed Precision Expert Offloading System for Fast MoE Inference</a></li>
+<li><a href="https://docs.vllm.ai/en/latest/features/speculative_decoding/mtp/">MTP (Multi-Token Prediction) - vLLM</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 评论者普遍认为现行规则感觉不对称：teeray 指出几十年来合理使用对个人执行严厉，而 AI 公司却像挥舞大锤一样借其获利。fny 提出“copyleft 洗白”问题——专有 LLM 可以吸收 copyleft 代码而无需开放自身权重。其他人主张结构性改革：trashburger 建议版权期限改为 20 年（类似专利），anonyfox 主张彻底废除日常版权，gwbas1c 则希望在创作者获酬与公众非预期使用之间取得平衡。
+**社区讨论**: 评论者普遍支持在低成本硬件上普及大模型推理，jacquesm 警告说如果没有这类效率优化，前沿模型可能会把通用计算锁死在昂贵硬件之后。其他人则提出了实用反馈：mulemisterX 在 48GB 的 M5 上把上下文窗口推到了约 71,680 tokens，embedding-shape 批评 README 像未经整理的会话日志，atif089 则询问 Flash-Next 到底能解决哪些 27B 模型解决不了的实际任务。
 
-**标签**: `#copyright`, `#AI policy`, `#fair use`, `#legal`, `#EFF`
+**标签**: `#LLM inference`, `#Mac`, `#MLX`, `#model offloading`, `#local AI`
 
 ---
 
 <a id="item-4"></a>
-## [Python 指导委员会暂停 JIT 新开发，等待 PEP 通过](https://lwn.net/Articles/1090385/) ⭐️ 7.0/10
+## [Jujutsu 创始人 Martin von Zweigbergk 加入 GitHub 竞争对手 ERSC](https://ersc.io/blog/martin-joins-ersc) ⭐️ 6.0/10
 
-今年六月，Python 指导委员会宣布，在一个证明 JIT 应成为受支持组件的 PEP 被接受之前，除错误和安全修复外，JIT 的新开发不得进入 CPython 主分支。由此产生了 PEP 836（《JIT Go Brrr：通往 CPython 受支持 JIT 编译器之路》），目前正在讨论中。 这一决定影响 Python 运行时性能演进的节奏，因为 JIT 是多年来 CPython 执行方式最重大的变化。它也展示了项目治理机制的正常运作：重大架构变更必须通过 PEP 流程，而不能非正式地合入。 暂停仅针对主分支，仍允许错误和安全修复；JIT 本身已按照 PEP 744 作为实验性、默认关闭的特性合入 Python 3.13。PEP 836 旨在论证将 JIT 变成 CPython 受支持（非实验性）组件的理由，但其被接受的时间尚不确定。 如果你关注或依赖 CPython 性能进展，可阅读 PEP 836 并跟踪 discuss.python.org 上的相关讨论；由于 JIT 仍是实验性且默认关闭的，无需进行任何代码改动。
+版本控制系统 Jujutsu (jj) 的创始人 Martin von Zweigbergk 已加入 ERSC，一家定位为 GitHub 竞争对手的公司。该消息在 Hacker News 上引发了关于 jj 相对 git 的优势以及对 ERSC 差异化价值的质疑的讨论。 这表明已在 Google 生产环境中使用的 jj 可能获得商业支持和更深入的基础设施投入，从而加快它作为更友好的 git 替代品的普及。这也引发了 ERSC 是否会为 jj 构建除 git 之外的替代后端的疑问。 Jujutsu 与 git 完全兼容——可以把它看作一个存储数据在现有 git 仓库中的新前端，因此所有 jj 操作都能映射到 git 能力上。评论者指出 jj 的突出特性是全局撤销、工作区自动快照，以及更安全的 rebase 体验。 如果你还没用过 jj，可以直接在现有的 git 仓库上安装试用（它直接兼容 git 仓库），体验撤销和 rebase 工作流，亲自判断其体验提升。关注 ERSC 博客和 Steve Klabnik 的发文，了解讨论中暗示的即将到来的公告。
 
-rss · LWN.net · 9月1日 14:40
+hackernews · steveklabnik · 9月1日 17:46 · [社区讨论](https://news.ycombinator.com/item?id=49525297)
 
-**背景**: 即时（JIT）编译器在运行时将字节码转换为机器码，能够基于实际运行时行为进行优化，而非提前编译全部代码。CPython 的 JIT 于 2024 年初合入主分支，并在 Python 3.13 中以实验性方式发布。Python 指导委员会是依据 PEP 13 选出的、负责语言方向的小组，它以 PEP（Python 增强提案）作为接受重大设计变更的正式机制。
+**背景**: Jujutsu (jj) 是一个分布式版本控制系统，融合了 git 和 Mercurial 的优点，既新颖又令人熟悉，并且已在 Google 内部使用，说明其长期生命力。与 git 不同，jj 会自动为工作区做快照，把提交视为可修改的一等对象，并允许撤销任何操作，从而避免许多常见的误操作。ERSC 是一个新入局者，目标是在代码托管与协作领域与 GitHub 竞争，但其具体差异化尚未被广泛了解。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://peps.python.org/pep-0744/">PEP 744 – JIT Compilation - Python Enhancement Proposals</a></li>
-<li><a href="https://realpython.com/ref/glossary/python-steering-council/">Python Steering Council | Python Glossary – Real Python</a></li>
-<li><a href="https://realpython.com/ref/glossary/jit-compiler/">JIT compiler | Python Glossary – Real Python</a></li>
+<li><a href="https://news.ycombinator.com/item?id=49525297">The creator of Jujutsu has joined ERSC | Hacker News</a></li>
+<li><a href="https://neugierig.org/software/blog/2024/12/jujutsu.html">Tech Notes: The Jujutsu version control system - neugierig.org</a></li>
+<li><a href="https://thenewstack.io/jujutsu-dealing-with-version-control-as-a-martial-art/">Jujutsu: Dealing With Version Control as a Martial Art - The New Stack</a></li>
 
 </ul>
 </details>
 
-**标签**: `#python`, `#cpython`, `#jit-compiler`, `#performance`, `#governance`
+**社区讨论**: 讨论意见不一：jph 和 minraws 等支持者称赞 jj 是更聪明、更安全的 git，尤其是全局撤销功能；而 fallat 持怀疑态度，认为 jj 只是 git 之上的 UX 层，并质疑 ERSC 相对 GitHub 提供了什么额外价值。ksymph 猜测 ERSC 可能在为 jj 构建非 git 的替代后端，steveklabnik（Martin 的同事）则确认很快会有更多消息公布。
+
+**标签**: `#jujutsu`, `#git`, `#version-control`, `#developer-tools`, `#hiring`
 
 ---
 
 <a id="item-5"></a>
-## [Qwen 3.8 27B 本地一次性生成可玩的超级马里奥克隆](https://www.reddit.com/r/LocalLLaMA/comments/1w4821c/qwen_38_27b_q4km_oneshot_a_super_mario_clone/) ⭐️ 6.0/10
+## [OpenAI 发布案例：Basis、Clay 和 Exa Labs 如何构建 AI 原生工作流](https://openai.com/index/ai-native-company-workflows) ⭐️ 6.0/10
 
-一位 Reddit 用户在配备 4070ti（12GB 显存）的 PC 上通过 llama.cpp 本地运行 Qwen 3.8 27B（Q4_K_M GGUF），一次性生成了一个完整可玩、自包含的超级马里奥克隆。该运行使用简单的提示词、64k 上下文、xhigh 思考模式，平均速度 7.6 tokens/秒，耗时 117 分钟。 这是一个具体的能力基准，表明中等规模的开源权重模型在普通消费级硬件上就能一次性生成一个不小的交互式应用，可供开发者评估本地模型的实际能力。作者分享的配置（llama.cpp 设置、RPC 连接、提示词）也让其他人容易复现。 该设置通过 llama.cpp 的 RPC 后端将推理分布在 Macbook M5 Air 和 Windows PC 两台机器上，使用 Q4_K_M 量化、8 位 KV 缓存、MTP=1，以及 minimal 模式的 DeepSeek harness。7.6 tokens/秒、耗时 117 分钟的速度较慢，反映了硬件有限和长一次性输出，而非典型的交互式编码工作流。 尝试复现这个演示：下载 Qwen 3.8 27B 的 Q4_K_M GGUF 文件，通过 llama.cpp 以 64k 上下文和 xhigh 思考模式运行，并让它生成一个完全自包含的 HTML 小游戏，看看在你的硬件上的表现。
+OpenAI 发布了一篇博客文章，介绍了 Basis、Clay 和 Exa Labs 这三家 AI 原生公司，它们将 AI 智能体嵌入到客户入职、账户管理和开发者集成等核心工作流中。文章展示了这些公司如何将 AI 智能体从实验性工具转变为可复用的运营能力。 这些案例为想知道智能体究竟能在哪里创造实际价值（而不只是演示）的企业提供了可迁移的模式。从事会计自动化、销售/GTM 以及面向开发者的搜索的团队可以直接借鉴这些具体的工作流设计，而无需从零开始。 Basis 使用 OpenAI 的 o3、o3-Pro、GPT-4.1 和 GPT-5 驱动智能体，自动完成对账、日记账分录和财务摘要等工作，同时让会计师保持完全的可见性和控制权。Clay 专注于数据富化和 AI 驱动的 GTM 工作流，Exa Labs 则提供专为需要实时网络数据的 AI 智能体设计的搜索 API。需要注意的是，这是 OpenAI 的博客文章，带有宣传性质，实现细节可能有限。 阅读 openai.com/index/ai-native-company-workflows 上的完整文章，并从你自己的入职、账户管理或集成流程中挑一个环节用智能体做原型验证。可以进一步查看 Basis、Clay 和 Exa 的官方文档，了解其方案背后的具体实现机制。
 
-reddit · r/LocalLLaMA · /u/zannix · 9月1日 10:31
+rss · OpenAI Blog · 9月1日 17:00
 
-**背景**: Q4_K_M 是常用推荐的 GGUF 量化格式，能以极小的质量损失大幅压缩模型显存占用，使 27B 模型可以部分装入 12GB 显存的 GPU。llama.cpp 的 RPC 功能可以让一台机器将张量计算卸载到远程 ggml-rpc-server 实例，从而跨设备汇集显存和内存。“一次性生成”意味着模型在单次补全中输出整个游戏代码而无需迭代修复，这是对长输出代码连贯性的高难度测试。
+**背景**: AI 原生公司从第一天起就围绕 AI 智能体来构建产品和内部流程，而不是在传统工作流上外挂 AI。智能体是能够端到端完成多步骤工作的自主系统——例如 Basis 的智能体做的是真正的会计工作，而不只是起草建议。Clay（营收增长自动化）和 Exa（面向智能体的搜索基础设施）等公司代表了这种方式催生的新兴工具栈和运营模式。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://github.com/ggml-org/llama.cpp/blob/master/tools/rpc/README.md">llama . cpp /tools/ rpc /README.md at master · ggml-org/ llama . cpp</a></li>
-<li><a href="https://www.promptquorum.com/local-llms/llm-quantization-explained">Q 4 _ K _ M vs Q 4 _0 vs Q8_0: LLM Quantization Explained (2026)</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Qwen">Qwen - Wikipedia</a></li>
+<li><a href="https://openai.com/index/basis/">Basis scales accounting by turning OpenAI model progress into trusted agents | OpenAI</a></li>
+<li><a href="https://www.clay.com/">Clay | Build systems to grow revenue</a></li>
+<li><a href="https://exa.ai/">Exa | Search API for AI Agents — Real-Time Web Data</a></li>
 
 </ul>
 </details>
 
-**标签**: `#local-llm`, `#qwen`, `#llama.cpp`, `#code-generation`, `#benchmark`
+**标签**: `#AI agents`, `#enterprise workflows`, `#case study`, `#automation`, `#OpenAI`
 
 ---
 
 <a id="item-6"></a>
-## [Google Play 封禁 AnkiDroid 的 Open Collective 捐赠链接](https://github.com/ankidroid/Anki-Android/issues/21656) ⭐️ 5.0/10
+## [Google DeepMind 为 Gemini 推出智能体式视频理解能力](https://deepmind.google/blog/introducing-agentic-video-in-gemini/) ⭐️ 6.0/10
 
-Google Play 以 Play 结算规则为由拒绝了 AnkiDroid 指向 Open Collective 的捐赠链接，禁止应用内使用替代性捐赠渠道。拒绝理由涉及税务状态的技术细节，在 Hacker News 上引发了对应用商店把关行为的讨论。 通过 Google Play 分发免费应用的开源维护者需要知道，捐赠链接受严格且有时不一致的政策约束执行，这可能切断项目唯一的收入来源。此案也说明了保留 F-Droid 等其他分发渠道作为后备的重要性。 Google 政策禁止对“免税捐赠”使用 Play 结算；Open Source Collective 属于 501(c)(6)（组织免税但捐赠不可抵税），评论者指出拒绝可能源于 Google 的措辞与该状态和 501(c)(3) 慈善机构之间的不匹配。Google 在 2019 年也曾有类似操作，将 WireGuard 从 Play 商店下架。 如果你在 Play 上维护开源应用，请核查 Google 的捐赠政策以及你所在财政托管方的税务状态；考虑只在官网而非应用内放置捐赠链接，并确保应用在 F-Droid 上可用，作为不受该政策影响的渠道。
+Google DeepMind 宣布在 Gemini 中推出智能体式（agentic）视频理解能力，使模型能够以交互方式分析和推理视频内容，而不是被动地生成摘要。据官方介绍，Gemini 3.7 能够在回答关于视频内容的复杂问题时，相比静态分析消耗明显更少的 token。 智能体式视频理解将视频 AI 从一次性描述转变为交互式、可调用工具的分析方式，对构建视频搜索、内容审核和分析应用的开发者都有价值。官方声称的 token 效率提升也使得长视频处理在成本和延迟上更加可行。 这主要是一篇产品发布公告，未提供公开的实现细节、代码或基准测试，因此其具体的智能体机制（如帧选择或工具调用）尚无文档说明。该能力似乎与较新的 Gemini 模型（公告提到 Gemini 3.7）相关，可用性可能取决于模型版本和 API 访问权限。 可以通过 Gemini API 或应用上传一段长视频，并提出针对性的多轮问题，测试智能体式理解的实际效果，并与一次性摘要提示对比 token 消耗情况。
 
-hackernews · hexa555 · 9月1日 10:11 · [社区讨论](https://news.ycombinator.com/item?id=49520022)
+rss · Google DeepMind Blog · 9月1日 17:08
 
-**背景**: AnkiDroid 是一款流行的免费开源 Android 记忆卡片应用。Google Play 的结算政策限制应用接受付款和捐赠的方式，在很多情况下实际上要求使用 Play 自身的结算系统或禁止某些链接。Open Source Collective 以 501(c)(6) 会员组织的形式为许多开源项目托管财务，与捐赠可抵税的 501(c)(3) 慈善机构不同。项目也可以通过 F-Droid 等 Play 之外的渠道分发，不受此类支付限制。
+**背景**: 传统多模态模型分析视频时会均匀读取帧并生成一次性摘要，这对长视频而言 token 开销巨大，且难以回答针对性的后续问题。“智能体式”（agentic）AI 指的是能够规划、执行动作并迭代使用工具的模型，而非一次性作答。将其应用于视频，意味着模型在回答问题时可以有选择地查看视频中相关的片段，就像人类回放视频核对细节一样。Gemini 是 Google DeepMind 的多模态模型系列，通过 Gemini API 支持文本、图像、音频和视频输入。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://support.google.com/googleplay/?hl=en">Google Play Help</a></li>
+<li><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/">Introducing Agentic Video in Gemini</a></li>
+<li><a href="https://ai.google.dev/gemini-api/docs/models">Models - Gemini API | Google AI for Developers</a></li>
+<li><a href="https://valossa.com/2026/06/ai-video-analysis/">AI Video Analysis Explained: Agentic Video AI (2026)</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 评论者大多批评 Google 的把关行为，引用 2019 年 WireGuard 被下架的先例，主张软件分发不应被单一垄断者控制；有人认为应用应退出 Play 商店转投 F-Droid。也有人提出更细致的分析，认为拒绝的原因是 501(c)(6) 的捐赠在 Google 的定义下并不属于“免税捐赠”；还有评论者直接向 AnkiDroid 捐款以示支持。
-
-**标签**: `#google-play`, `#open-source`, `#app-distribution`, `#policy`, `#monetization`
+**标签**: `#AI`, `#Gemini`, `#multimodal`, `#video-understanding`, `#product-launch`
 
 ---
 
 <a id="item-7"></a>
-## [Python 3.15.0 第二个候选版本发布，正式版十月将至](https://simonwillison.net/2026/Sep/1/python-315-rc-2/) ⭐️ 5.0/10
+## [Python 指导委员会暂停 CPython JIT 开发，等待 PEP 通过](https://lwn.net/Articles/1090385/) ⭐️ 6.0/10
 
-Python 3.14 和 3.15 的发布经理 Hugo van Kemenade 宣布了 Python 3.15.0 的第二个（也是最后一个）候选版本，正式版计划于十月发布，在此之前只允许合入明确的错误修复。 官方强烈建议第三方 Python 项目维护者现在就在 PyPI 上构建并发布 Python 3.15 的 wheel 包，因为基于候选版本构建的 wheel 保证可以在最终的 3.15.0 上运行。在候选阶段测试自己的项目还能在正式发布前发现 bug——Simon Willison 曾因未在 RC 阶段测试而让 Python 3.10 的一个 bug 溜进了正式版。 该候选版本尚未在 GitHub Actions 上提供预装，因此 setup-python 需要 allow-prereleases 和 check-latest 两个标志才能自动获取 RC 版本（并在之后自动切换到正式版）。在 RC2 与正式版之间，只允许经过评审的 bug 修复类代码变更。 在 CI 测试矩阵中加入 "3.15"，使用 actions/setup-python@v7 并设置 allow-prereleases: true 和 check-latest: true，修复测试中发现的问题后向 PyPI 发布 3.15 的 wheel 包。
+今年六月，Python 指导委员会宣布，在接受一份将 JIT 确立为受支持特性的 PEP 之前，CPython 主分支不得合入新的 JIT 开发内容（错误和安全修复除外）。这促成了 PEP 836（"JIT Go Brrr: The Path to a Supported JIT Compiler for CPython"）的提出，目前该提案正在讨论中。 这一决定影响了 Python 性能演进的未来方向，因为 Python 3.13 引入的实验性 JIT 是让 CPython 更快的关键一环。它也表明，CPython 的重大特性如今需要经过正式的治理流程论证，才能被视为受支持的功能。 JIT 的错误和安全修复仍允许合入主分支，暂停的仅是新特性开发。PEP 836 仍在讨论中，虽然 JIT 的开发工作很可能最终会继续，但时间表尚不确定。 如果你的项目依赖 CPython 的性能规划，请关注 Python 官方论坛和 peps.python.org 上关于 PEP 836 的讨论。在 PEP 被接受且发布计划明确之前，不要指望 JIT 成为受生产支持的功能。
 
-rss · Simon Willison · 9月1日 14:59
+rss · LWN.net · 9月1日 14:40
 
-**背景**: 候选版本（Release Candidate，RC）是功能完整、代码冻结的预发布版本，如果没有发现严重 bug 就会成为正式版。wheel（.whl 文件）是 Python 的标准二进制分发格式，包含针对特定平台编译的代码，用户无需自己安装编译器。CPython 遵循每年一次的发布周期，新版本通常在十月定稿，因此 RC 阶段是在正式发布前发现回归问题的最后机会。
+**背景**: Python 3.13（2024 年发布）内置了一个实验性的即时（JIT）编译器，基于 copy-and-patch 编译技术，用于加速 CPython 的代码执行。Python 的治理采用指导委员会模式（由 PEP 13 和 PEP 8016 定义），委员会拥有广泛的权力但极少直接行使，主要通过确立流程来治理。PEP（Python 增强提案）是对 Python 提出重大变更并加以论证的正式机制。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://tms-outsource.com/blog/posts/what-is-a-software-release-candidate/">What Is a Software Release Candidate ?</a></li>
-<li><a href="https://cantera.org/dev/develop/distribution-packages/pypi-sdist-wheel.html">Distributing sdist and Wheel Packages via PyPI</a></li>
+<li><a href="https://peps.python.org/pep-0013/">PEP 13 – Python Language Governance | peps.python.org</a></li>
+<li><a href="https://realpython.com/python313-free-threading-jit/">Python 3.13: Free Threading and a JIT Compiler</a></li>
+<li><a href="https://tonybaloney.github.io/posts/python-gets-a-jit.html">Python 3.13 gets a JIT - GitHub Pages</a></li>
+
+</ul>
+</details>
+
+**标签**: `#Python`, `#CPython`, `#JIT compiler`, `#governance`, `#PEP`
+
+---
+
+<a id="item-8"></a>
+## [Spark-X2.5 1.7B/4B 开源模型宣称原生 1M 上下文并达到 Qwen-3.5-9B 级性能](https://www.reddit.com/r/LocalLLaMA/comments/1w4dsrw/new_model_sparkx254b_sparkx2517b/) ⭐️ 6.0/10
+
+科大讯飞开源了 Spark-X2.5-4B 和 Spark-X2.5-1.7B 两款采用自研架构的小型端侧模型，原生支持最高 100 万 token 的上下文窗口，覆盖 200 多种语言。社区基准测试显示 4B 版本的性能与 Qwen 3.5 9B 大致相当。 如果 4B 级模型能在原生 1M 上下文下匹敌 9B 模型，对在消费级 GPU 或边缘设备上运行本地大模型的用户将是重大利好。这表明以效率为导向的小型架构也能在长上下文任务上与更大的模型竞争。 这些模型目前无法直接在原版 llama.cpp 上运行——支持正在等待 llama.cpp PR #27868 合并，XHToken 发布的 GGUF 量化版本暂时需要作者自制的 llama.cpp 分支。由于这是全新自研架构而非微调模型，实际质量（尤其是有效长上下文召回能力，通常低于标称上下文上限）尚待验证。 有探索精神的用户可以从 Hugging Face 下载官方 GGUF 文件（XHToken/Spark-X2.5-1.7B-GGUF 或 -4B-GGUF），并从 Spark-X2.5 的 GitHub 仓库编译作者定制的 llama.cpp 分支进行测试；其他用户可以关注 PR 27868 是否合并入主线。
+
+reddit · r/LocalLLaMA · /u/insraq · 9月1日 14:35
+
+**背景**: 大多数小型开源模型（如 Llama、Qwen 系列）都复用 llama.cpp 等推理引擎已原生支持的成熟架构。当模型采用自研架构时，引擎需要合并新代码才能运行 GGUF 文件，这就是本发布依赖 PR 27868 的原因。GGUF 是 llama.cpp 进行本地推理的标准量化文件格式。需要注意的是，宣称的上下文窗口只是标称上限——研究表明有效工作记忆可能在远未达到上限时就已退化。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://github.com/XHToken/Spark-X2.5">GitHub - XHToken/ Spark - X 2 . 5 : Spark - x 2 . 5 open model series.</a></li>
+<li><a href="https://news.aibase.com/news/30716">iFLYTEK to Launch Spark X 2 . 5 General Large Model</a></li>
+<li><a href="https://towardsdatascience.com/your-1m-context-window-llm-is-less-powerful-than-you-think/">Your 1M+ Context Window LLM Is Less Powerful Than You Think | Towards Data Science</a></li>
+
+</ul>
+</details>
+
+**社区讨论**: 该 Reddit 帖子还只是早期发现帖，尚无实质性讨论；发帖人询问是否有人试过这些模型，随后补充了 GGUF 量化版本的链接。
+
+**标签**: `#local-llm`, `#open-source-models`, `#llama.cpp`, `#small-language-models`, `#long-context`
+
+---
+
+<a id="item-9"></a>
+## [ChatGPT/Codex 桌面应用缓存 1.7GB 运行时捆绑包，内含 LibreOffice](https://simonwillison.net/2026/Sep/1/codex-libreoffice/) ⭐️ 5.0/10
+
+Simon Willison 发现 OpenAI Codex 桌面应用（已更名为 ChatGPT）在 ~/.cache/ 下有一个 1.7GB 的 codex-primary-runtime 文件夹，包含完整的 Python 和 Node.js 安装，以及 Poppler、git 和 LibreOffice 的原生二进制文件。该捆绑包位于 ~/.cache/codex-runtimes/ 下，还包含指导 Codex 如何使用这些二进制文件的插件“技能”。 这揭示了 AI 编程代理如何内置独立、沙箱化的工具链，从而在不依赖用户系统环境的情况下执行代码和处理文档。对开发者和高级用户来说，这既解释了磁盘空间被悄悄占用的原因，也提供了一种打包可复现运行时的思路。 具体构成为：771MB 原生二进制文件（其中 libreoffice-headless 429.7MB、poppler 187.9MB、git 148.1MB）、446.4MB 的 node 和 440.6MB 的 python。相关技能文件位于 ~/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime/plugins/documents 目录。 在自己的机器上运行 OmniDiskSweeper 或执行 `du -sh ~/.cache/*`，检查 ~/.cache/codex-runtimes/ 目录，查看 ChatGPT/Codex 应用安装了什么，并浏览 plugins/skills 文件夹以了解它提供了哪些能力。
+
+rss · Simon Willison · 9月1日 19:03
+
+**背景**: OpenAI 的 Codex 是一个编程代理，后来演变为 ChatGPT 桌面应用，增加了计算机操作、浏览、插件和多代理工作流等功能。为了可靠地运行生成的代码并处理 PDF、Office 文档等文件，该应用内置了固定版本的解释器和工具，而不依赖宿主机上已安装的软件。Poppler 是一个开源的 PDF 渲染库，LibreOffice（2010 年从 OpenOffice.org 分叉而来）可进行无头模式的文档转换。Willison 是在使用 macOS 免费磁盘分析工具 OmniDiskSweeper 时发现这个捆绑包的。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://openai.com/index/codex-for-almost-everything/">Codex for (almost) everything - OpenAI</a></li>
+<li><a href="https://en.wikipedia.org/wiki/OmniDiskSweeper">OmniDiskSweeper - Wikipedia</a></li>
+<li><a href="https://poppler.freedesktop.org/">Poppler</a></li>
+
+</ul>
+</details>
+
+**标签**: `#openai`, `#codex`, `#desktop-apps`, `#disk-usage`, `#ai-tooling`
+
+---
+
+<a id="item-10"></a>
+## [Python 3.15.0 候选版本 2 发布，正式版定于十月推出](https://simonwillison.net/2026/Sep/1/python-315-rc-2/) ⭐️ 5.0/10
+
+Python 3.14 和 3.15 的发布经理 Hugo van Kemenade 宣布了 Python 3.15.0 候选版本 2（RC2），正式版 3.15.0 计划于 2026 年 10 月 1 日发布。从该候选版本到正式版之间，只允许合并经过审核的明确缺陷修复。 发布经理强烈建议第三方包的维护者现在就构建并发布适用于 Python 3.15 的 wheel 到 PyPI，以便在十月正式版发布时生态系统已准备就绪。基于候选版本构建的二进制 wheel 保证可与未来的 3.15.x 版本兼容，因此现在是构建的最佳时机。 由于候选版本阶段 ABI 已经锁定，基于 3.15.0 RC 构建的 wheel 可用于未来所有 Python 3.15 版本。该 RC 尚未进入 GitHub Actions 的 python-versions，使用 actions/setup-python 并设置 allow-prereleases 和 check-latest 标志后，版本上线时会自动切换。 在 GitHub Actions 测试矩阵中加入 "3.15"，使用 actions/setup-python 并设置 allow-prereleases: true 和 check-latest: true，这样现在会自动测试 RC2，之后自动切换到稳定版。如果你维护着包含二进制 wheel 的包，请在此 RC 阶段构建并向 PyPI 发布 3.15 的 wheel。
+
+rss · Simon Willison · 9月1日 14:59
+
+**背景**: Python 采用年度发布周期，在十月正式版之前依次经历 alpha、beta 和候选版本（RC）阶段；RC 阶段只接受缺陷修复，且 ABI 被冻结。wheel 是 PyPI 上 Python 包的标准二进制分发格式，二进制 wheel 绑定特定的 CPython ABI 版本，因此每个新的 Python 版本都需要重新构建。Simon Willison 指出，在 RC 阶段而非发布后进行测试可以赶在缺陷随正式版流出之前发现它——他曾因未在 RC 期间测试而在 Python 3.10 正式发布后才发现一个 bug。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.python.org/downloads/release/python-3150rc2/">Python Release Python 3.15.0rc2 | Python .org</a></li>
+<li><a href="https://briefly.co/anchor/Python/story/python-3150-beta-4-is-here--python-insider">Python 3.15.0 beta 4 is here! | Python Insider - Briefly</a></li>
 
 </ul>
 </details>
 
 **标签**: `#python`, `#release`, `#packaging`, `#pypi`
+
+---
+
+<a id="item-11"></a>
+## [GitHub Copilot 代码审查现在可以批准拉取请求](https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests) ⭐️ 5.0/10
+
+GitHub 宣布 Copilot 代码审查现在可以在判断拉取请求已就绪时正式批准它，前提是组织管理员启用该功能。该批准能力默认关闭，需要管理员显式开启。 这使得 AI 审查可以计入分支保护的批准要求，可能加快信任自动化审查的团队的合并流程。同时也带来治理问题：团队应该把多少批准权限委托给 AI。 该功能默认禁用，管理员必须显式授权 Copilot 签署批准。变更日志几乎没有技术细节，团队应查阅 GitHub 的 Copilot 代码审查文档以了解配置方法以及与分支保护规则的交互方式。 如果你是 GitHub 组织管理员，请查看 Copilot 代码审查的设置和文档，决定是否启用 AI 批准，并考虑将其与分支保护规则结合，对关键分支仍要求至少一次人工审查。
+
+rss · GitHub Changelog · 9月1日 19:25
+
+**背景**: GitHub Copilot 代码审查会审查拉取请求的改动、建议修复，并通过 GitHub Actions 运行代理能力。此前 Copilot 只能评论或建议修改，正式批准必须来自人类审查者才能满足分支保护要求。允许 AI 批准改变了 GitHub 对审查关卡的处理方式，因为拉取请求批准是大多数团队在合并前保证代码质量的机制。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://docs.github.com/en/copilot/concepts/agents/code-review">About GitHub Copilot code review</a></li>
+<li><a href="https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review">Using GitHub Copilot code review</a></li>
+
+</ul>
+</details>
+
+**标签**: `#GitHub Copilot`, `#AI code review`, `#developer tools`, `#automation`
 
 ---
