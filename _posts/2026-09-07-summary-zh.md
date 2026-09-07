@@ -5,125 +5,163 @@ date: 2026-09-07
 lang: zh
 ---
 
-> 从 20 条内容中筛选出 5 条重要资讯。
+> 从 32 条内容中筛选出 7 条重要资讯。
 
 ---
 
-1. [爱好者基准测试：七个视觉大模型估算餐食卡路里](#item-1) ⭐️ 7.0/10
-2. [腾讯开源 EVIE 视觉文档检索模型](#item-2) ⭐️ 7.0/10
-3. [LG 智能电视被发现在息屏时录音并扫描本地网络设备](#item-3) ⭐️ 6.0/10
-4. [MobileWorld：用用户交互与 MCP 任务评测手机自主 GUI 智能体](#item-4) ⭐️ 6.0/10
-5. [瑞士联邦政府在 3000 台电脑上试点替换微软办公套件](#item-5) ⭐️ 5.0/10
+1. [Ling-3.0-flash 在 DGX Spark 上的 MTP 测试：n=1 优于 n=2/3](#item-1) ⭐️ 7.0/10
+2. [CodePen 2.0 会在你输入时将编辑器内容发送到服务器](#item-2) ⭐️ 6.0/10
+3. [针对 6.19 内核导致 TCMalloc 损坏的问题，有人提出新的 RSEQ API 扩展](#item-3) ⭐️ 6.0/10
+4. [OpenBMB 发布 MiniCPM5-2B，在 AA 智能指数上领跑 4B 以下模型](#item-4) ⭐️ 6.0/10
+5. [教程：本地 LLM 通过 FreeCAD MCP 生成可 3D 打印的实体模型](#item-5) ⭐️ 6.0/10
+6. [“去脑腐”假期随笔引发 Hacker News 关于注意力的讨论](#item-6) ⭐️ 5.0/10
+7. [Asahi Linux 安装器现已支持 Apple M3 系列 Mac](#item-7) ⭐️ 5.0/10
 
 ---
 
 <a id="item-1"></a>
-## [爱好者基准测试：七个视觉大模型估算餐食卡路里](https://www.reddit.com/r/LocalLLaMA/comments/1w9jmo8/benchmarking_calories_evaluation_with_llms/) ⭐️ 7.0/10
+## [Ling-3.0-flash 在 DGX Spark 上的 MTP 测试：n=1 优于 n=2/3](https://www.reddit.com/r/LocalLLaMA/comments/1w9v4yz/higher_acceptance_length_slower_prose_lings_n123/) ⭐️ 7.0/10
 
-一位 Reddit 用户使用谷歌 Nutrition5k 数据集中随机挑选的 25 份餐食，测试了七个具备视觉能力的大模型的卡路里估算表现，评判标准是估算误差在 20% 以内的比例。Muse Spark 1.3 表现最佳（48% 达标，中位误差 45 千卡），而 Qwen 3.8 27b 最差（16%，中位误差 148 千卡）。 结果显示没有任何模型能可靠地从照片估算卡路里，且排名与模型大小无关——Muse Glimmer 30b 远超更大的 Qwen 3.8 27b。这有力地提醒我们：消费级硬件上的"最佳模型"取决于具体任务，任何想开发拍照计数卡路里应用的人都必须针对自己的任务验证模型。 方法是将 Nutrition5k 照片与一个可查询 USDA FoodData Central 和 MEXT 营养数据库的工具结合，超出本地硬件能力的模型通过 OpenCode Go/OpenRouter 运行。注意事项：仅测试了 25 份餐食，各模型平均偏差差异很大（从 -24 到 +64 千卡），即便最好的模型也有超过一半的餐食误差超过 20%。 如果你要开发基于照片的卡路里计数应用，先在自己的餐食照片上复现这个小规模测试再做模型选型，并考虑让模型只负责识别食物、再通过 USDA FoodData Central 查询卡路里，而不是直接信任模型给出的卡路里数字。
+sudoingX 发布了 8 月 22 日修正后的测试数据：在 128GB DGX Spark 上使用 vLLM 分支运行 INT4 量化的 Ling-3.0-flash，单独分离出 CUDA graphs 带来约 10% 的提升（20.8 到 22.9 tok/s），MTP 再带来约 79% 的提升（代码任务 n=1 时达 40.9 tok/s）。但将 num_speculative_tokens 提高到 n=2（平均接受长度 2.39）和 n=3（2.77）时，文本生成反而从 38.7 降至 33.6 和 31.6 tok/s。 该测试用干净的对照实验证明：更高的投机解码接受长度并不等于更高的吞吐量，且最优草稿深度取决于输出类型（代码 vs 文本）。任何在 vLLM 上调优本地大模型推理的人都可以照搬这套方法：先测量无 MTP 的基线，再针对自己的实际负载扫描 n 值。 vLLM 的接受长度指标每次验证会包含一个奖励 token，因此即使 n=1 也可能出现高于 1 的数值，且它并非优化目标。这些数据来自作者在厂商分支上的测量，没有独立复现，且扫描测试未完全说明计时分母，因此应视为报告吞吐量而非精确基准。 复现这套对照实验：先在 eager 模式下测试模型，再只开 CUDA graphs，最后在实际的代码和文本负载上从 1 到 3 扫描 num_speculative_tokens，以吞吐量（而非接受长度）作为优化目标。
 
-reddit · r/LocalLLaMA · /u/mr_tolkien · 9月7日 05:56
+reddit · r/LocalLLaMA · /u/niacolhealth · 9月7日 15:23
 
-**背景**: Nutrition5k 是谷歌研究的真实食堂菜品数据集，包含 RGB-D 图像和逐食材的详细营养标注，由于仅在加州少数食堂采集，存在菜系偏差。USDA FoodData Central 是美国农业部整合的食物成分数据库，可为营养估算提供权威数据依据。视觉大模型接受图像加文本输入，但仅凭单张照片估算分量本身就很困难，这解释了观察到的较大误差。
+**背景**: 投机解码让模型每步草拟多个 token 并在一次前向传播中验证，MTP 是其中一种变体：目标模型自身原生预测额外 token，无需单独的草稿模型。CUDA graphs 通过捕获并重放 GPU 操作序列来降低 CPU 内核启动开销，对每 token 需启动大量小内核的自回归解码尤其有效。投机解码的收益高度依赖内容——代码（结构可预测）通常比自由文本接受更多草稿 token。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://github.com/google-research-datasets/Nutrition5k">GitHub - google-research-datasets/Nutrition5k: Detailed ...</a></li>
-<li><a href="https://fdc.nal.usda.gov/">USDA FoodData Central</a></li>
+<li><a href="https://docs.vllm.ai/en/latest/features/speculative_decoding/mtp/">MTP (Multi-Token Prediction) - vLLM</a></li>
+<li><a href="https://developer.nvidia.com/blog/optimizing-llama-cpp-ai-inference-with-cuda-graphs/">Optimizing llama.cpp AI Inference with CUDA Graphs | NVIDIA ...</a></li>
+<li><a href="https://developers.redhat.com/articles/2025/07/01/fly-eagle3-fly-faster-inference-vllm-speculative-decoding">Faster inference with vLLM & speculative decoding</a></li>
 
 </ul>
 </details>
 
-**标签**: `#LLM benchmark`, `#vision models`, `#practical evaluation`, `#local LLM`, `#experiment`
+**标签**: `#llm-inference`, `#speculative-decoding`, `#vllm`, `#benchmarking`, `#local-llm`
 
 ---
 
 <a id="item-2"></a>
-## [腾讯开源 EVIE 视觉文档检索模型](https://www.reddit.com/r/LocalLLaMA/comments/1w9nphc/tencentevie8b_and_evie45b_highcapacity_visual/) ⭐️ 7.0/10
+## [CodePen 2.0 会在你输入时将编辑器内容发送到服务器](https://news.ycombinator.com/item?id=49596976) ⭐️ 6.0/10
 
-腾讯开源了 EVIE-8B 和 EVIE-4.5B 视觉文档检索模型，8B 版本在 ViDoRe V3 上取得 66.75 nDCG@10 的 SOTA 成绩，4.5B 版本为 66.02。模型采用 4096 维逐 token 多向量嵌入，并使用类似套娃（Matryoshka）的 Prefix-MRL 投影，可在运行时从 2048 维自由截断到 64 维。 任何在 PDF、扫描件或富视觉文档上构建检索或 RAG 管线的开发者，都可以本地运行顶级检索模型而无需支付 API 费用。4.5B 模型的弹性维度截断和免训练的 HAC 压缩（每页压缩到 32 个向量，每百万页索引约 3.81 GiB）使其在普通硬件上也可实际部署。 EVIE-4.5B 通过 EVIE-ARD（锚点保持、容量感知的关系蒸馏）方法从 8B 教师模型蒸馏而来，性能接近教师模型。两个模型在覆盖 ViDoRe V1/V2/V3 和 JinaVDR 的 138 个任务上、以四类指标（nDCG、Recall、MAP、MRR）进行了评估。 从 Hugging Face 下载 tencent/EVIE-8B 和 tencent/EVIE-4.5B，并使用 vidore-benchmark 评估代码在你自己的文档样本上测试，再决定是否将其接入 RAG 管线。
+一位用户用唯一标记验证，CodePen 2.0 会在输入后 1-2 秒内将编辑器内容发送到 codepen.dev 服务器，甚至发生在保存之前。把标记输入 index.html 后会触发一次 "save:false" 的构建，标记随后原样出现在生成的 *.codepen.dev 预览页面的 HTML 中。 这意味着即使在 CodePen 编辑器中误输入了密钥、密码或令牌，无论是否保存或发布，都会被传到他们的服务器，应视为已泄露。这也提醒我们：云端编辑器“即时预览”的便利通常以把按键内容实时发给后端为代价。 CodePen 并未在服务条款或隐私政策中披露该行为，只在 Builds 文档中提到：“当你使用 CodePen 时，你的 Pens 会持续通过 CodePen 编译器运行”。在浏览器 Network/Response 标签页中，输入后几秒内就能观察到该传输。 切勿在任何云端代码编辑器中输入或粘贴真实密钥；如果你曾在 CodePen 上这样做，请立即更换这些凭据。如需测试包含敏感值的代码，可改用本地或自托管的编辑器（如 VS Code）。
 
-reddit · r/LocalLLaMA · /u/jacek2023 · 9月7日 09:47
+hackernews · maxim-fin · 9月7日 11:22
 
-**背景**: 视觉文档检索（以 ColPali 生态的 ViDoRe 基准为代表）直接将文本查询与文档页面图像匹配，用视觉编码器生成多向量嵌入（每个 patch/token 一个向量）并通过后期交互比较，从而绕过有损的 OCR。套娃表示学习（Matryoshka Representation Learning, MRL）训练出的嵌入在截断到更小维度（如 2048 到 64 维）后仍有良好表现，使单一模型可在运行时权衡精度与存储、延迟。
+**背景**: CodePen 2.0 是全新编辑器体验，包含文件系统、编译器、实时与异步协作以及部署功能。它的实时预览依赖在服务器端通过 Vite 持续编译代码，因此即时更新必然要求输入即上传。类似模式在网络上极为普遍：像 FullStory 这样的会话回放工具会记录许多大站的每一次按键和鼠标移动，很多输入框也会为了自动补全等 UX 功能提前发送数据。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://github.com/illuin-tech/vidore-benchmark">GitHub - illuin-tech/vidore-benchmark: Vision Document Retrieval (ViDoRe): Benchmark. Evaluation code for the ColPali paper. · GitHub</a></li>
-<li><a href="https://huggingface.co/blog/matryoshka">Introduction to Matryoshka Embedding Models - Hugging Face</a></li>
-<li><a href="https://arxiv.org/abs/2205.13147">[2205.13147] Matryoshka Representation Learning - arXiv.org Introduction to Matryoshka Embedding Models - Hugging Face Matryoshka Representation Learning - arXiv.org Matryoshka Representation Learning, Explained — Supermemory Matryoshka Embeddings — Sentence Transformers documentation Matryoshka Representation Learning - NeurIPS Matryoshka Representation Learning (MRL) Explained | AI/TLDR</a></li>
+<li><a href="https://codepen.io/2/whats-new">CodePen 2.0</a></li>
+<li><a href="https://blog.codepen.io/2026/07/23/two-point-oh/">The Launch of CodePen 2.0 – CodePen</a></li>
 
 </ul>
 </details>
 
-**标签**: `#embedding-models`, `#visual-document-retrieval`, `#open-source`, `#RAG`, `#local-LLM`
+**社区讨论**: 评论者大多并不意外：有人指出 CodePen 一直有自动保存，且许多输入框为了 UX 功能会提前发送数据。也有人指出披露缺口（仅在 Builds 文档提及，未写入服务条款或隐私政策），并链接了类似的 Reddit 讨论，还强调 FullStory 等会话回放工具实际上在许多大站记录每一次按键。
+
+**标签**: `#privacy`, `#security`, `#web-development`, `#telemetry`, `#codepen`
 
 ---
 
 <a id="item-3"></a>
-## [LG 智能电视被发现在息屏时录音并扫描本地网络设备](https://www.notebookcheck.net/LG-smart-TVs-caught-logging-audio-with-screen-off-and-snooping-on-local-devices.1391214.0.html) ⭐️ 6.0/10
+## [针对 6.19 内核导致 TCMalloc 损坏的问题，有人提出新的 RSEQ API 扩展](https://lwn.net/Articles/1092555/) ⭐️ 6.0/10
 
-据报道，LG 智能电视在屏幕关闭时仍记录音频，并扫描本地网络中的其他设备。这一在 Hacker News 上广泛传播的报道表明，即使电视看似已关机，其监听行为仍在继续。 对于在家、办公室或会议室使用智能电视的人来说，这是一份具体且可操作的隐私报告——能录音并扫描网络的设备一旦捕获敏感对话或设备清单，会带来真实的商业法律责任。缓解措施简单且可复用：关闭联网功能，或将 IoT 设备隔离到独立的网络分区。 这种行为与自动内容识别（ACR）技术一致——这是大多数现代智能电视内置的广告追踪技术，通过监测观看内容（有时还包括音频）来建立用户画像。ACR 通常只能通过深藏在菜单中的退出设置关闭，而且电视仍可能通过 UPnP 和 mDNS 等协议进行本地网络发现。 检查智能电视设置中的 ACR/观看数据退出选项并禁用，或者干脆关闭电视的联网功能，把它当作纯 HDMI 显示器使用；在企业环境中，应将智能电视放在与敏感设备隔离的 VLAN 中。
+Linux 6.19 中合并的可重启序列（RSEQ）性能优化破坏了 Google 的 TCMalloc 分配器，尽管文档化的 API 完全没有被改动。Olivier Dion 现在提议为 RSEQ API 增加扩展，以恢复 TCMalloc 的兼容性。 这是海勒姆定律（Hyrum's Law）的典型案例：任何可观察的系统行为，无论是否文档化，最终都会被人依赖。底层库和分配器的开发者可以由此认识到，即使官方 API 保持稳定，依赖未文档化的内核行为仍然脆弱。 TCMalloc 此前依赖的是内核在可重启序列被抢占时的信号传递方式中一种非预期、未文档化的行为。6.19 的改动重构了内核处理 RSEQ 用户空间退出的方式，虽保持了文档化契约，却破坏了这种未文档化的依赖。 如果你维护使用 rseq 或其他底层内核接口的代码，在升级到 6.19 之前应审查其是否依赖未文档化的行为。如果你的软件受影响，值得持续关注 LWN 上关于 Dion 的 API 提案的讨论进展。
 
-hackernews · chris_overseas · 9月7日 07:03 · [社区讨论](https://news.ycombinator.com/item?id=49594878)
+rss · LWN.net · 9月7日 14:33
 
-**背景**: 自动内容识别（ACR）会对电视显示或听到的内容生成特征签名，将观看历史汇入数据库以构建广告画像；三星、LG 和 Vizio 都使用过自研或第三方的 ACR 技术。纽约大学的研究表明，本地网络中的 IoT 设备可能通过 UPnP 和 mDNS 等标准协议无意间暴露敏感数据，而用户通常认为本地网络是可信环境。禁用 ACR 能显著改善隐私，网络隔离则是应对不可信智能设备的常见防御手段。
+**背景**: 可重启序列（rseq）在 Linux 4.18 中引入，允许用户空间对每 CPU 数据进行无锁更新：若线程在序列执行中途被抢占或迁移，内核会从头重启该序列。TCMalloc 是 Google 为 C/C++ 定制的 malloc 实现，用于高性能内存分配，并利用 rseq 实现快速的每 CPU 分配缓存。6.19 的优化旨在降低内核处理 rseq 转换的开销，使该特性在原有小众用户群之外更具吸引力。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Automatic_content_recognition">Automatic content recognition - Wikipedia</a></li>
-<li><a href="https://www.zdnet.com/home-and-office/home-entertainment/how-to-disable-acr-tv/">How to disable ACR on your TV (and why it makes such a big difference when you do) - ZDNET</a></li>
-<li><a href="https://engineering.nyu.edu/news/new-research-reveals-alarming-privacy-and-security-threats-smart-homes">New research reveals alarming privacy and security threats in Smart...</a></li>
+<li><a href="https://lwn.net/Articles/1070072/">Restartable sequences, TCMalloc, and Hyrum's Law - lwn.net</a></li>
+<li><a href="https://lwn.net/Articles/1033955/">Bringing restartable sequences out of the niche [LWN.net]</a></li>
+<li><a href="https://docs.kernel.org/userspace-api/rseq.html">Restartable Sequences — The Linux Kernel documentation</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 评论者基本认同该报道并分享了缓解措施：一位用户描述自己在 LG 电视上禁用所有联网功能长达五年，尽管遭到朋友嘲笑；还有人指出许多现代电视自带允许屏幕捕获的开发者模式。多位评论者提出了商业责任方面的担忧，认为将语音转为文本的电视一旦捕获信用卡等敏感信息就会成为巨大风险；也有人指出，即使出于善意收集的数据，最终也会招致不良用途。
-
-**标签**: `#privacy`, `#IoT security`, `#smart devices`, `#surveillance`, `#network security`
+**标签**: `#linux-kernel`, `#tcmalloc`, `#restartable-sequences`, `#memory-allocation`, `#systems-programming`
 
 ---
 
 <a id="item-4"></a>
-## [MobileWorld：用用户交互与 MCP 任务评测手机自主 GUI 智能体](https://www.reddit.com/r/LocalLLaMA/comments/1w9kfs3/lit_review_on_benchmarking_llms_running_in_your/) ⭐️ 6.0/10
+## [OpenBMB 发布 MiniCPM5-2B，在 AA 智能指数上领跑 4B 以下模型](https://www.reddit.com/r/LocalLLaMA/comments/1w9skjz/minicpm52b_release_day/) ⭐️ 6.0/10
 
-一篇 Reddit 文献综述介绍了 MobileWorld 基准：包含约 20 个安卓应用（通讯、消息、生产力等）中的 201 个任务，并引入两个全新评测维度——需要向 GPT-4 模拟用户追问缺失信息的用户交互任务，以及允许智能体直接调用 GitHub、arXiv 等 MCP 工具的任务。最佳组合（Gemini-3-Pro 规划器 + UI-Inst-7B 定位模型）平均成功率仅约 52%，端到端纯 GUI 模型表现更差。 现有手机智能体基准大多只测试静态 GUI 操作；MobileWorld 新增的交互追问与工具增强任务维度更贴近真实部署场景，为端侧 LLM 智能体的开发者和评测者提供了更严格的标尺。约 52%的成功率上限表明这些新能力仍是未解决的难题。 架构采用规划器-执行器设计：VLM 规划器只接收截图（不使用无障碍树），输出“点击发送按钮”这类自然语言动作，再由单独的定位模型转换为精确的(x,y)坐标。应用多为日常应用的开源替代品（系统应用不足约 5%），生态代表性受限；模型失败主要集中在两个新任务维度上。 如果你在开发或评测手机智能体，建议阅读 MobileWorld 论文（以及 Reddit 综述中附带的统计图），并考虑在自己 的评测集中加入用户交互和 MCP 工具类任务，以压力测试追问澄清与工具使用能力。
+OpenBMB 发布了 MiniCPM5-2B，这是一个 20 亿参数的开放权重模型，在 Artificial Analysis Intelligence Index v4.2 上获得 15 分，是所有 40 亿参数及以下开放权重模型中的最高分。模型权重已上传至 Hugging Face，代码托管在 GitHub。 对于在笔记本、手机或边缘设备上本地运行大模型的用户来说，这把 40 亿参数以下这一内存预算紧张但实用性强的尺寸级别的能力上限再次推高。作为开放权重模型，它可以免费下载并自行部署，无需 API 费用，也不受厂商锁定。 需要指出的是，在满分 100 的 AA Intelligence Index v4.2 上 15 分属于绝对值较低的水平，因此这是小模型范围内的相对领先，而非前沿级性能。该指数是对多个生产级基准（包括 Humanity's Last Exam、Terminal-Bench v2.1、SciCode 和 GDPval-AA v2）的加权平均，评分依据 1,275 条专家撰写的原子化标准。 从 Hugging Face 下载 openbmb/MiniCPM5-2B 的权重，在你的本地推理环境中试用，并用自己的任务将其与其他 4B 以下模型（如 Qwen 或 Gemma 小尺寸版本）的实际表现进行对比。
 
-reddit · r/LocalLLaMA · /u/East-Muffin-6472 · 9月7日 06:39
+reddit · r/LocalLLaMA · /u/Equivalent-Grass-527 · 9月7日 13:43
 
-**背景**: 手机 GUI 智能体利用 LLM/VLM 通过点击、输入、滑动等操作手机；此前多数基准（如 AndroidWorld）只评测自主多步应用操作。MCP（模型上下文协议）是 Anthropic 于 2024 年 11 月推出的开放标准，用于规范 AI 应用与外部工具和数据源的连接方式，让智能体一次调用即可获取信息或执行操作，而无需缓慢的 GUI 操作。定位模型负责将自然语言动作描述映射到屏幕精确坐标，与仅凭截图推理的 VLM 规划器形成互补。
+**背景**: Artificial Analysis Intelligence Index 将推理、编程和智能体等多方面基准的表现汇总为单一分数（0-100 分），是比较不同模型常用标尺。开放权重模型会公开发布训练好的参数，任何人都可以使用 llama.cpp、Ollama 或 vLLM 等工具下载并在本地运行。OpenBMB 是 MiniCPM 系列模型背后的团队，在高效小模型方面有良好记录，其多模态模型也已上架 Ollama。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Model_Context_Protocol">Model Context Protocol - Wikipedia</a></li>
-<li><a href="https://www.anthropic.com/news/model-context-protocol">Introducing the Model Context Protocol \ Anthropic</a></li>
+<li><a href="https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-2">Announcing Artificial Analysis Intelligence Index v 4 . 2</a></li>
+<li><a href="https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index">Artificial Analysis Intelligence Index v 4 . 2 | Artificial Analysis</a></li>
 
 </ul>
 </details>
 
-**标签**: `#LLM agents`, `#mobile GUI agents`, `#benchmarks`, `#MCP`, `#LocalLLaMA`
+**标签**: `#local-llm`, `#open-source-models`, `#small-language-models`, `#model-release`
 
 ---
 
 <a id="item-5"></a>
-## [瑞士联邦政府在 3000 台电脑上试点替换微软办公套件](https://itsfoss.com/news/switzerland-replace-microssoft-pilot/) ⭐️ 5.0/10
+## [教程：本地 LLM 通过 FreeCAD MCP 生成可 3D 打印的实体模型](https://www.reddit.com/r/LocalLLaMA/comments/1w9r73k/9_easy_steps_for_llamacpp_a_local_model_freecad/) ⭐️ 6.0/10
 
-瑞士联邦政府启动试点项目，在约 3000 台工作站（约占联邦机器的 5-7%）上用开源替代方案替换 Microsoft 365，目标在 2027 年底前完成迁移。 这是政府 IT 减少厂商锁定、实现数字主权的真实案例，在变更管理、许可证费用节省和迁移可行性方面提供了借鉴。计划类似迁移的组织可以学习政府如何以分阶段的部分迁移而非整体更换操作系统来推进。 该试点重点替换的是 Microsoft 365（办公套件和邮件），而非 Windows 操作系统本身，这限制了范围和风险。评论者指出的一个关键技术难题是用 Linux 兼容方案替代微软的设备管理体系（Entra/Intune），这仍然复杂且不成熟。 如果考虑类似迁移，可先在少量用户中开展小规模试点，梳理哪些桌面应用是真正必需的、哪些可由网页版替代，并在下定决心前评估 Linux 兼容的设备管理工具（即 Entra/Intune 的替代品）。
+一位 Reddit 用户发布了 9 步 Linux 教程，通过 llama.cpp 的 MCP 支持将本地 GGUF 模型（Unsloth 量化的 Qwen 27B）连接到 FreeCAD，让 AI 代理构建参数化实体模型。该设置支持用 pi 编码代理或 llama-server 作为建模代理，并可选加载 mmproj 多模态组件，让模型通过 FreeCAD 截图验证几何操作的正确性。 它展示了从自然语言提示到机械上合理、可 3D 打印的 CAD 几何体的完全本地化流程，无需任何云端 API。任何拥有足够 GPU 的人都可以复现它来原型化零件，而且同样的模式（llama.cpp MCP 服务器）可扩展到其他工具连接的本地代理。 关键配置包括将 llama-server 的 Agentic 轮数提高到约 99 以便完成长工具调用链、在 webui 的 Tools 设置中启用 freecad_*工具，以及从 FreeCAD 的 MCP 插件工作台启动 RPC 服务器。教程使用 Q4_K_M 量化模型加 F16 mmproj 投影器，意味着需要同时支持工具调用和视觉的模型才能通过截图自我检查结果。 在 Linux 上按步骤操作：克隆 freecad-mcp，将其插件复制到 FreeCAD 的 Mod 目录，为 pi 或 llama-server 配置 MCP JSON（--mcp-servers-config 和--mmproj 参数），然后尝试教程中的提示词：生成一个带五角星形通孔的立方体。
 
-hackernews · ivell · 9月7日 05:33 · [社区讨论](https://news.ycombinator.com/item?id=49594251)
+reddit · r/LocalLLaMA · /u/DevelopmentBorn3978 · 9月7日 12:45
 
-**背景**: 厂商锁定使客户依赖单一供应商的产品，切换需在重新培训、数据迁移和工具建设上付出高昂成本。欧洲各国政府对依赖美国云服务商日益担忧，部分原因在于美国 CLOUD 法案允许美国执法机构访问美国公司持有的数据，无论数据存储在哪里。LibreOffice 和 Linux 发行版等开源替代方案可节省许可费用并提升主权可控性，但在设备管理和企业集成方面历来较弱。
+**背景**: llama.cpp 是流行的 C++本地推理引擎，用于运行量化后的 GGUF 模型，其新版本增加了原生 MCP（Model Context Protocol）客户端支持。MCP 是一个开放协议，让 AI 助手能安全调用外部工具服务器；freecad-mcp（由 neka-nat 开发）通过 RPC 桥接将开源参数化 CAD 软件 FreeCAD 暴露为这样的服务器。pi 编码代理是一个终端代理，同样可通过 JSON 配置使用 MCP 服务器。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://itsfoss.com/news/switzerland-replace-microssoft-pilot/">Switzerland 's Federal Government is Replacing Microsoft on 3,000...</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Vendor_lock-in">Vendor lock-in - Wikipedia</a></li>
+<li><a href="https://github.com/neka-nat/freecad-mcp">GitHub - neka-nat/ freecad - mcp : FreeCAD MCP (Model Context...)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Model_Context_Protocol">Model Context Protocol - Wikipedia</a></li>
+<li><a href="https://qwen.readthedocs.io/en/latest/quantization/llama.cpp.html">llama.cpp - Qwen</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 评论者普遍支持这一试点，认为这是摆脱美国供应商依赖的迟来一步，但也警告变更管理会非常艰难，Linux 设备管理的重建是主要障碍。有人指出网页应用（Figma、Google Docs、Outlook 网页版）降低了对桌面操作系统的依赖，使迁移更容易；也有人希望试点更进一步，用 Linux Mint 替换 Windows 本身，并将节省的费用投入开源开发。
+**标签**: `#llama.cpp`, `#local-llm`, `#MCP`, `#FreeCAD`, `#cad-automation`
 
-**标签**: `#linux-migration`, `#open-source`, `#government-it`, `#microsoft-365`, `#vendor-independence`
+---
+
+<a id="item-6"></a>
+## [“去脑腐”假期随笔引发 Hacker News 关于注意力的讨论](https://devz.cl/posts/i-spent-my-vacations-de-brainrotting/) ⭐️ 5.0/10
+
+一位开发者发表了个人随笔，讲述自己如何在假期里“去脑腐”——即刻意摆脱对持续数字刺激上瘾的大脑习惯。这篇文章在 Hacker News 上引发了一场关于成瘾媒体与 AI 时代脑力劳动变得可选的深入讨论。 这篇文章和讨论触及了知识工作者普遍的体验：随着刷手机和 AI 辅助工作减少了脑力付出，注意力和深度思考明显衰退。读者可以从跨世代的观点中获益，认识到这是结构性问题，而非个人意志薄弱。 这篇随笔是个人反思，没有提供具体方法、数据或可操作的步骤——其价值主要在于引发的讨论。评论者指出，体力劳动在工业化后变得可选，与今天脑力劳动变得可选形成了历史性的类比。 可以自己尝试一段有边界的数字戒断——比如一个周末或假期不碰信息流和短视频——并观察自己阅读长文的能力如何变化。需要注意的是，原文本身没有给出具体方案，你需要自己设计规则。
+
+hackernews · DanielVZ · 9月7日 13:00 · [社区讨论](https://news.ycombinator.com/item?id=49597907)
+
+**背景**: “脑腐”（brainrot）是网络用语，指过度消费低质量、快节奏网络内容后出现的认知迟钝和注意力缩短。这篇文章的前提与“多巴胺戒断”理念相呼应：持续的、无需努力的刺激会提高专注于阅读、编程等慢速高耗能活动的成本。Hacker News 的讨论还补充了一个历史类比——正如机械化使体育锻炼变得可选，人们后来不得不通过健身房刻意恢复锻炼，AI 和成瘾媒体可能也会迫使我们刻意安排脑力锻炼。
+
+**社区讨论**: 评论者普遍认同“我的大脑和以前不一样了”这种感受非常普遍，一位 1988 年入行的资深工程师确认自己 50 多岁也和青少年一样刷手机上瘾，但他至少记得互联网出现前的基准状态。一个流行观点将今天可选的脑力付出与上一代体力锻炼变得可选类比，认为刻意的“认知锻炼”可能成为必需。还有多位评论者分享了在乡村断网、甚至卖掉笔记本电脑以重建专注力的亲身经历。
+
+**标签**: `#digital wellbeing`, `#attention`, `#productivity`, `#personal essay`, `#hackernews`
+
+---
+
+<a id="item-7"></a>
+## [Asahi Linux 安装器现已支持 Apple M3 系列 Mac](https://lwn.net/Articles/1092768/) ⭐️ 5.0/10
+
+Asahi Linux 项目已在安装器中加入对 M3 系列芯片的支持，使 M3 设备获得与 M1/M2 几乎相同的功能：摄像头、麦克风、最高 10 Gb/s 的 USB、包含 AV1 的硬件视频解码、WiFi 和蓝牙等。目前主要的缺口是 GPU 驱动和完整的 DCP 显示控制器支持，官方承诺未来数月会有更多消息。 这使完全开源的 Linux 平台在没有任何官方文档的情况下扩展到第三代 Apple Silicon，证明社区的逆向工程能力可以跟上新芯片的迭代。M3 Mac 用户现在可以在大多数日常任务上使用 Linux，但不包括图形密集型任务。 项目明确警告用户目前不要期待 M3 上高效或省电的 3D 加速，完整的 DCP 显示支持也仍缺失。AV1 硬件解码在 M3 上可用值得注意，因为 AV1 解码是 Apple 从 M3 代 GPU 才开始加入的特性。 如果你有 M3 Mac 并想尝试，请先阅读 Asahi 博客文章中的限制说明，并按项目官方指引运行安装器，同时保留 macOS 以便需要时可以双启动切回。
+
+rss · LWN.net · 9月7日 12:25
+
+**背景**: Asahi Linux 是由 Hector Martin 发起的志愿者项目，由于 Apple 不公开任何硬件文档，它通过逆向工程将 Linux 内核和用户空间移植到 Apple Silicon Mac 上。Apple M3 于 2023 年 10 月发布，是采用 3 纳米工艺的 ARM 架构 SoC 系列，GPU 经过重新设计。DCP（显示控制器引擎）是 Apple 私有的显示管线，同样需要逆向工程，在新一代芯片上它的支持进度历来落后于 GPU 驱动。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Asahi_Linux">Asahi Linux - Wikipedia</a></li>
+<li><a href="https://asahilinux.org/2022/12/gpu-drivers-now-in-asahi-linux/">Apple GPU drivers now in Asahi Linux - Asahi Linux</a></li>
+<li><a href="https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/">Apple unveils M3, M3 Pro, and M3 Max, the most advanced chips ... Apple M3 - Wikipedia Apple M3 - Benchmarks, Specifications, User Reviews & CPU ... Apple's M3 Chip: Everything We Know - MacRumors Apple reveals M3 Ultra, taking Apple silicon to a new extreme Apple M3 Processor - Benchmarks and Specs - Notebookcheck Apple M-series Chips Explained: M1, M2, M3, M4, M5 - SimplyMac</a></li>
+
+</ul>
+</details>
+
+**标签**: `#linux`, `#asahi-linux`, `#apple-silicon`, `#hardware-support`, `#open-source`
 
 ---
