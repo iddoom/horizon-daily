@@ -5,246 +5,196 @@ date: 2026-09-08
 lang: zh
 ---
 
-> 从 50 条内容中筛选出 10 条重要资讯。
+> 从 55 条内容中筛选出 8 条重要资讯。
 
 ---
 
-1. [DeepMind 发布 AlphaGenome Atlas，预测全部 90 亿个 DNA 单碱基变异的影响](#item-1) ⭐️ 6.0/10
-2. [《麻省理工科技评论》报道 Vaire Computing 的可逆计算节能芯片](#item-2) ⭐️ 6.0/10
-3. [数学家指控 OpenAI 模型复现了其未发表的解题成果](#item-3) ⭐️ 6.0/10
-4. [社区 GPU 选购指南：按每美元显存和带宽对比本地 LLM 显卡](#item-4) ⭐️ 6.0/10
-5. [DaVinci Resolve 21.1 集成 Claude 与 ChatGPT Codex 等 AI 助手](#item-5) ⭐️ 5.0/10
-6. [Copperhead 发布：让硬件设计像软件一样快的 AI 工具](#item-6) ⭐️ 5.0/10
-7. [PISA 2025：OECD 国家阅读与数学成绩大幅下滑](#item-7) ⭐️ 5.0/10
-8. [《麻省理工科技评论》报道 Danijar Hafner 隐秘创业公司开发前瞻规划型 AI 智能体](#item-8) ⭐️ 5.0/10
-9. [AI 驱动的漏洞发现推动微软 Patch Tuesday 创纪录](#item-9) ⭐️ 5.0/10
-10. [Rust 的 never 类型（!）历时两年终于稳定](#item-10) ⭐️ 5.0/10
+1. [Qwen3.8 27B 量化基准测试：4-bit 基本无损，1-bit 崩溃](#item-1) ⭐️ 8.0/10
+2. [OpenAI 宣称在 Navier–Stokes 难题上取得进展，但陷入署名争议](#item-2) ⭐️ 7.0/10
+3. [在 2017 年三星 Note 8 手机上运行的 Qwen3-0.6B 驱动真实桌面 Chrome 浏览器](#item-3) ⭐️ 7.0/10
+4. [MIT 研究员用 GPT-5.6 Sol 和 Codex 自主运行量子计算实验](#item-4) ⭐️ 6.0/10
+5. [Qwen 发布 Qwen-Drive-1.0-4B：面向自动驾驶的开源权重视觉语言模型](#item-5) ⭐️ 6.0/10
+6. [蚂蚁集团发布 Ling-3.0-flash-VL：124B 稀疏多模态开源模型](#item-6) ⭐️ 6.0/10
+7. [美国能源部提供 19 亿美元贷款，重启谷歌支持的艾奥瓦核电站](#item-7) ⭐️ 5.0/10
+8. [Dependabot 现可自动访问私有 GitHub Packages 注册表](#item-8) ⭐️ 5.0/10
 
 ---
 
 <a id="item-1"></a>
-## [DeepMind 发布 AlphaGenome Atlas，预测全部 90 亿个 DNA 单碱基变异的影响](https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/) ⭐️ 6.0/10
+## [Qwen3.8 27B 量化基准测试：4-bit 基本无损，1-bit 崩溃](https://quesma.com/blog/qwen38-27b-quantizations-benchmarked/) ⭐️ 8.0/10
 
-Google DeepMind 发布了 AlphaGenome Atlas，这是一个预先计算好的数据库，预测人类基因组中每一个可能的单核苷酸变异（约 90 亿个）的分子效应和 AVI 分数。该数据库基于去年发布的 AlphaGenome AI 模型生成，该模型用于分析 DNA 序列变化如何影响基因调控。 大多数与疾病相关的变异位于占基因组约 98% 的非编码区域，其解读一直极为困难；这个全面的预计算目录让研究者和临床医生可以快速筛选潜在致病变异，而无需进行昂贵的实验或逐个变异的计算。它有望加速遗传疾病的诊断和药物靶点的发现。 该 Atlas 仅覆盖单碱基（单核苷酸）变异，不包括插入、缺失或结构变异，且预测结果仍属于计算假设，需要实验验证。它建立在 AlphaGenome 对非编码 DNA 中基因表达、剪接和染色质等调控效应的建模能力之上，并通过 AVI（AlphaGenome 变异影响）分数进行汇总。 从事变异解读的研究者和生物信息学家可以访问 DeepMind 博客和 AlphaGenome Atlas 界面，查询目标变异的 AVI 分数，并与 VEP、V2P 等现有工具的结果对比，从而优先筛选值得实验验证的变异。
+Quesma 发布了 Qwen3.8-27B 在不同 GGUF 量化等级下的基准测试，结果显示 4-bit 及以上质量损失极小，2-bit 略有下降，而 1-bit 出现明显崩溃。误差条采用的是按题目结果的 Wilson 95% 置信区间。 这为本地运行大模型的用户提供了具体数据，可以根据显存预算选择量化等级而不必猜测质量损失。它直接回答了 27B 模型能压缩到什么程度才会出现质量退化这一实际问题。 用于误差条的 Wilson 置信区间反映的是按题目的抽样不确定性，而非多次运行之间的方差，评论者指出这是方法论上的局限。值得注意的是，该基准在 3-bit 量化附近存在空白——这正是 16GB 以下显卡的关键区间——并且未覆盖对长上下文场景很重要的 KV-cache 量化。 如果你在本地运行 Qwen3.8-27B，默认选择 4-bit 量化（如 Q4_K_M）作为质量与显存的平衡点，若在 24GB 显存内需要长上下文，可搭配 8-bit KV cache。如果你的显卡低于 16GB，由于基准测试未覆盖该区间，建议自行测试 Q3 量化。
 
-rss · Google DeepMind Blog · 9月8日 14:00
+hackernews · stared · 9月8日 14:49 · [社区讨论](https://news.ycombinator.com/item?id=49611128)
 
-**背景**: 人类基因组约有 30 亿个碱基对，每个位置都可以变成另外三种碱基，因此共约 90 亿个可能的单核苷酸变异。其中大多数位于非编码 DNA，这些区域不编码蛋白质，但调控基因在何时、何处活跃。像 Ensembl 的 Variant Effect Predictor 这样的工具早已能注释编码区变异，但在全基因组规模上系统性预测调控效应尚属首次。AlphaGenome 于 2025 年发布，是一个基于大规模功能基因组学数据训练的深度学习模型，可预测序列变化如何改变各种调控层面的分子指标。
+**背景**: 量化通过降低模型权重的数值精度来减少内存占用；研究表明 4-bit 量化的 27B 模型可以在单张消费级显卡上运行，性能与全精度相当。GGUF 是目前分发量化模型、配合 llama.cpp 在消费级硬件上推理的主流格式。Qwen3.8-27B 是阿里巴巴开源的稠密视觉语言模型，带有思考模式，据称可以通过更长的推理来抵消量化带来的损伤。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/">AlphaGenome Atlas: Molecular predictions for 9 Billion human DNA variants — Google DeepMind</a></li>
-<li><a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/alphagenome-atlas/">AlphaGenome Atlas: a high-resolution map of human DNA</a></li>
-<li><a href="https://www.scientificamerican.com/article/new-google-deepmind-alphagenome-atlas-could-transform-our-understanding-of-genetic-diseases/">New Google DeepMind atlas could transform our understanding of genetic diseases | Scientific American</a></li>
+<li><a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen/Qwen3.8-27B · Hugging Face</a></li>
+<li><a href="https://arxiv.org/html/2402.16775v1">A Comprehensive Evaluation of Quantization Strategiesfor Large Language Models</a></li>
 
 </ul>
 </details>
 
-**标签**: `#AI`, `#genomics`, `#DeepMind`, `#machine-learning`, `#bioinformatics`
+**社区讨论**: spider-mario 批评了方法论，指出 Wilson 置信区间与多次运行间的波动无关。sharmajai 提出假设：Qwen3.8-27B 在默认 XHIGH 思考级别下通过更长时间的思考来抵消量化对采样分布的影响。purpleflame1257 指出测试缺少 16GB 以下显卡 / Q3 区间的覆盖，alentred 则希望看到针对长上下文下 KV-cache 量化的类似基准。
+
+**标签**: `#llm`, `#quantization`, `#benchmarking`, `#local-ai`, `#open-source-models`
 
 ---
 
 <a id="item-2"></a>
-## [《麻省理工科技评论》报道 Vaire Computing 的可逆计算节能芯片](https://www.technologyreview.com/2026/09/08/1142079/hannah-earley-computer-chips-recycle-energy/) ⭐️ 6.0/10
+## [OpenAI 宣称在 Navier–Stokes 难题上取得进展，但陷入署名争议](https://openai.com/index/navier-stokes-solution/) ⭐️ 7.0/10
 
-《麻省理工科技评论》刊发了对 Vaire Computing 联合创始人兼 CTO Hannah Earley（31 岁）的人物报道，这家初创公司正在基于可逆计算技术开发芯片，回收通常以废热形式浪费掉的能量。文章指出，废热并非计算的必然代价，而是一种可以通过设计消除的选择。 随着 AI 工作负载推高数据中心的能耗，可逆计算提供了一条通往近零能耗芯片的可能路径，而不仅是渐进式的能效提升。了解这一新兴硬件前沿，有助于工程师和决策者预判在摩尔定律放缓后、以能源而非晶体管数量为核心瓶颈的计算格局。 在可逆计算中，每个逻辑操作都是双射的——每个状态与其后继状态一一对应——因此计算原则上可以逆向运行并回收消耗的能量，产生的热量微乎其微。本文属于概念性人物报道，并未提供 Vaire 芯片的实现细节、性能基准或产品时间表。 阅读维基百科的可逆计算条目和 Vaire 官网（vaire.co）以理解双射逻辑的原理；如果你从事数据中心硬件或能效路线图的评估，可以持续关注 Vaire 的后续动态。
+OpenAI 宣称其 AI 生成了 Navier–Stokes 存在性与光滑性千禧年大奖难题的证明，并称一个训练不到两周的内部模型在数学能力上是其一周前刚发布模型的两倍以上。但该证明尚未公开，外部数学家（尤其是 Tristan Buckmaster，Terence Tao 也有相关评论）质疑这项工作是否依赖了他们未发表的先前研究。 若得到验证，这一声明将是 AI 辅助数学在七大克雷千禧年难题上的历史性里程碑。这场争议也暴露了 AI 辅助科学的核心信任问题：研究者是否还能安全地在前沿实验室的工具中处理未发表的成果而不失去署名权。 该证明尚未公开发布，也未经过独立验证；已公开的相关流体方程论文和形式化材料也未被确认即为所声称的解。关于研究行为的指控仍有争议，使用私人草稿一事亦无实证；克雷数学研究所的百万美元奖金仍未被认领。 阅读 Tristan Buckmaster 的声明（https://cims.nyu.edu/~tristanb/statement.pdf）和 Terence Tao 的帖子（https://mathstodon.xyz/@tao/117233528517340774）了解数学家一方的说法；在公开可核查的证明出现之前，应将 OpenAI 的声明视为未经证实。
 
-rss · MIT Technology Review · 9月8日 10:36
+hackernews · tedsanders · 9月8日 17:13 · [社区讨论](https://news.ycombinator.com/item?id=49613262)
 
-**背景**: 传统芯片耗能的原因在于标准逻辑门（如 AND、OR）会销毁信息——两个输入映射到一个输出——根据兰道尔原理，这必然产生以热量形式释放的能量代价。可逆计算通过使用不擦除信息的操作来避免这一点，使能量得以回收再利用；这一概念与量子计算密切相关，因为量子演化本身就是可逆的。Vaire Computing（vaire.co）正在将这一路线商业化，将其定位为解决 AI 能耗问题的方案。
+**背景**: Navier–Stokes 存在性与光滑性问题问的是：描述流体运动的方程是否总产生光滑、行为良好的解，还是可能产生奇性（解爆破）。它是克雷数学研究所选定的七大千禧年大奖难题之一，完整的正确证明可获得一百万美元奖金。尽管历经数十年努力，至今无人摘得该奖。AI 推理模型正越来越多地被用于此类开放难题，这也在机器生成的证明与数学家未发表的工作交织时，引发了关于署名和验证的新问题。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Reversible_computing">Reversible computing</a></li>
-<li><a href="https://vaire.co/">Near-zero energy computing - Vaire</a></li>
+<li><a href="https://www.axios.com/2026/09/08/openai-math-solution-navier-stokes-credit">OpenAI's historic math solution overshadowed by credit controversy</a></li>
+<li><a href="https://kingy.ai/blog/navier-stokes-ai-proof-claims-dispute/">Navier–Stokes and AI: What Is Proved, Claimed and Unknown</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Navier–Stokes_existence_and_smoothness">Navier – Stokes existence and smoothness - Wikipedia</a></li>
 
 </ul>
 </details>
 
-**标签**: `#hardware`, `#reversible-computing`, `#semiconductors`, `#energy-efficiency`, `#startups`
+**社区讨论**: 评论者贴出了 Tristan Buckmaster 和 Terence Tao 的独立声明链接，质疑 OpenAI 如何得到该结果，并指控这项工作基于外部数学家的先前研究和提示词。也有评论者跳出争议本身，指出“训练不到两周的模型数学能力翻倍”这一声明在技术上已足够惊人；还有人表示不信任 OpenAI 的动机，希望此类成果出自公共控制的机构。
+
+**标签**: `#AI`, `#mathematics`, `#openai`, `#research-integrity`, `#navier-stokes`
 
 ---
 
 <a id="item-3"></a>
-## [数学家指控 OpenAI 模型复现了其未发表的解题成果](https://www.reddit.com/r/LocalLLaMA/comments/1wapjaw/openai_alleged_of_stealing_mathematicians_work/) ⭐️ 6.0/10
+## [在 2017 年三星 Note 8 手机上运行的 Qwen3-0.6B 驱动真实桌面 Chrome 浏览器](https://www.reddit.com/r/LocalLLaMA/comments/1wapzjg/qwen306b_400_mb_on_a_samsung_note_8_2017_phone/) ⭐️ 7.0/10
 
-两位数学家公开指控称，他们花了一年时间攻克一道数学难题，并把每一份草稿都输入了 Codex，而 OpenAI 的模型（Sol 和 Astra）在他们发表前几天拿出了相同的解法。根据其公开声明，当被问及模型是否用他们的私人对话进行训练时，OpenAI 没有正面回答。 这一事件对任何处理机密或未发表工作的人都是具体的警示：将敏感材料输入云端 LLM 可能会被服务商用于训练或复现。它也强化了在处理专有或未发表内容时应采用本地/私有模型部署的理由。 这些仍属指控，尚无独立证实的证据表明模型使用了私人对话进行训练，且 Reddit 原帖缺乏技术细节。模型输出与解法一致也可能有其他成因，因此读者应将因果关系视为未经证实。 阅读数学家的完整声明（cims.nyu.edu/~tristanb/statement.pdf），并检查你所用 LLM 服务商的数据使用政策；对于机密或未发表的工作，改用 Ollama 或 LM Studio 等本地模型。
+一位开发者展示了在 2017 年的 Galaxy Note 8 上通过 Termux 中的 llama.cpp 运行 Qwen3-0.6B（Q4_K_M 量化，约 400 MB），在输入结构化的约 200 token 页面表示而非原始 HTML 时，能在三个可验证的浏览器自动化任务上全部 10/10 完成，包括在真实 Wikipedia 上导航。实验使用相同脚本和提示词测试了 12 个小模型，并公开了仓库、日志和离线重放脚本，完全可复现。 核心经验在于架构而非模型本身：当外部技术栈负责页面结构化、候选选择和结果验证时，不到 10 亿参数的小模型也能成为可靠的智能体，甚至能在 2017 年的旧手机上跑智能体任务。构建本地优先或边缘端浏览器智能体的人可以复用这一模式，把上下文从 46.7 万字符的 HTML 压缩到约 200 token，单任务耗时从 22 分钟降到 80 秒。 任务仅限于名称匹配和事实誊写进 JSON——一旦需要对页面做真正判断（如从多个相近干扰项中选出“下一页”按钮），1.5B 级模型就会失败，分页场景也未测试。用原始 HTML 做对照时性能急剧下降：沙盒任务在 12k token、22 分钟下仅 4/5 成功；Wikipedia 页面上 46.7 万字符只有 9%能塞进 16k 上下文，结果 0/3。即使有结构化输入，LFM2.5-1.2B 和 Gemma-3-1B 等模型仍输出占位符而失败。 克隆仓库 github.com/e2llm/edge-browser-agent 并运行 replay.py，它会从记录的 JSONL 日志重建提示词，并在任何兼容 OpenAI 接口的本地服务器上离线重放模型侧——无需中继服务或账号，大约十分钟就能测出你自己的模型能否从干扰项中选出“Note 8”。
 
-reddit · r/LocalLLaMA · /u/bakawolf123 · 9月8日 14:12
+reddit · r/LocalLLaMA · /u/Mean-Standard7390 · 9月8日 14:29
 
-**背景**: OpenAI Codex 是一个云端编程代理，其底层模型在大规模文本和代码语料上训练。云端 LLM 服务商通常在其服务器上处理用户对话，视服务条款和设置而定，这些数据可能被用于模型改进，除非用户选择退出。本地 LLM（例如通过 Ollama 或 LM Studio 在个人硬件上运行）将所有数据保留在本地，因此常被推荐用于敏感、大批量或离线任务。
+**背景**: llama.cpp 是一个 C/C++推理引擎，可在 CPU 上运行量化后的 GGUF 模型，并能通过 Termux 终端模拟器安装在安卓手机上，实现完全本地的 LLM 推理。Q4_K_M 是一种基于 k-means 的 4 比特量化格式，能把 0.6B 参数的模型压缩到约 400 MB 且质量损失适中，是内存受限设备的标准选择。浏览器智能体通常把原始 HTML 或截图喂给模型，这会淹没小上下文窗口；此前的 AgentOccam、WebLINX 和 MindAct 等工作已证明结构化页面表示能带来巨大提升，而本实验把这个思路推到极致：在 2017 年的硬件上用未经微调的不到 1B 参数模型。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://openai.com/codex/">Codex | AI Coding Partner from OpenAI</a></li>
-<li><a href="https://freeacademy.ai/blog/local-llms-vs-cloud-llms-ollama-privacy-comparison-2026">Local LLMs vs Cloud LLMs in 2026: Privacy, Speed & Cost Compared</a></li>
-<li><a href="https://dasroot.net/posts/2026/01/privacy-preserving-ai-local-llms-vs-cloud-apis-2026/">Privacy-Preserving AI: Local LLMs vs Cloud APIs - A 2026 ...</a></li>
+<li><a href="https://huggingface.co/Qwen/Qwen3-0.6B">Qwen/Qwen3-0.6B · Hugging Face</a></li>
+<li><a href="https://github.com/ggml-org/llama.cpp/blob/master/docs/android.md">llama.cpp/docs/android.md at master · ggml-org/llama.cpp</a></li>
+<li><a href="https://zenn.dev/taku_sid/articles/20250415_llm_quantization?locale=en">The Complete Guide to LLM Quantization : Demystifying q 4 _ K _ M</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 该新闻未提供评论内容，因此无法总结社区讨论情绪。
-
-**标签**: `#AI privacy`, `#LLM`, `#data security`, `#local LLM`, `#OpenAI`
+**标签**: `#local-llm`, `#llama.cpp`, `#browser-automation`, `#edge-inference`, `#qwen3`
 
 ---
 
 <a id="item-4"></a>
-## [社区 GPU 选购指南：按每美元显存和带宽对比本地 LLM 显卡](https://www.reddit.com/r/LocalLLaMA/comments/1waq7hu/gpu_guide_gb_per_dollar_bandwidth/) ⭐️ 6.0/10
+## [MIT 研究员用 GPT-5.6 Sol 和 Codex 自主运行量子计算实验](https://openai.com/index/codex-quantum-computing-experiments) ⭐️ 6.0/10
 
-Reddit 用户 jacek2023 分享了一个脚本生成的对比图表，汇总了 LocalLLaMA、LowEndLocalAI 和 LocalLLM 子版块中讨论最多的 GPU，按每美元显存和内存带宽进行排名。价格数据是在 ChatGPT 协助下收集的，优先采用全新价格，其次使用二手价格。 对本地 LLM 用户来说，显存容量决定能运行多大的模型，而内存带宽很大程度上决定自回归解码时的每秒 token 数，因此这两个指标的性价比视图能直接指导选购决策。无论是选二手 RTX 3090 还是更新的显卡，都可以把这份数据作为快速起步的参考基线。 作者明确提醒价格是由 ChatGPT 收集的，可能存在误差，并称这只是“聊胜于无”的基础对比，并非深入分析。图表只收录了这三个子版块中讨论较多的 GPU，因为加入更多型号会导致可读性变差。 购买前，请将图表中的价格与 eBay 或本地二手平台的当前报价核对，并到 TechPowerUp 的 GPU 规格数据库验证带宽数据，因为作者已提示价格可能有误。如需更全面的决策依据，可结合 bestgpuforllm.com 等网站的每秒 token 数基准测试数据一起参考。
+OpenAI 发布了一篇案例研究，介绍一位 MIT 研究员如何使用 GPT-5.6 Sol 结合 Codex 智能体，自主运行量子计算实验、分析结果并校准量子比特。这标志着 Codex 的应用从传统软件工程扩展到了科学实验室自动化。 该案例展示了 AI 编程智能体不仅能生成代码，还能应用于实际的实验科学工作流程，有望加速量子比特校准等繁琐任务。量子计算及相关实验领域的研究人员可以将其作为构建智能体驱动实验室自动化的参考模板。 现有摘要几乎没有提供实现细节——没有代码、校准协议，也没有关于准确率或加速效果的指标——而且这篇文章更像是宣传材料而非技术报告。在独立细节公布之前，读者应将其视为厂商案例研究。 阅读 OpenAI 原文案例，注意智能体实际负责校准流程中的哪些环节、哪些仍需人工监督，并与现有的开源校准框架（如 QUAlibrate）对比，评估其在你自己实验环境中的可行性。
 
-reddit · r/LocalLLaMA · /u/jacek2023 · 9月8日 14:37
+rss · OpenAI Blog · 9月8日 17:00
 
-**背景**: 在 LLM 推理中，每生成一个 token 都需要从显存读取模型权重，因此在小批量推理下，瓶颈通常是内存带宽而非 TFLOPS 算力；这也是 RTX 3090（936 GB/s）虽已老旧却仍受本地部署用户欢迎的原因。显存容量决定了能加载的量化模型大小（例如 4-bit 量化下约 24GB 可跑 30B 级模型）。二手 3090 是社区传统的性价比参照点，因此指南能让你看出其他显卡“纸面上”比 3090 快还是慢。
+**背景**: GPT-5.6 Sol 是 OpenAI 旗舰模型家族的一员（与 Terra 和 Luna 并列），目前在编程智能体指数基准上领先。Codex 是 OpenAI 的 AI 编程智能体，可通过 ChatGPT、命令行工具、桌面应用和 IDE 集成使用，每周活跃用户超过 200 万，正逐步发展为通用企业智能体平台。量子比特校准是测量量子比特行为并调整控制信号以使量子门精确运行的常规过程——这项重复且耗时的工作正是研究人员希望通过自动化工具（如 Quantum Machines 的 QUAlibrate）解决的问题。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.hardware-corner.net/memory-bandwidth-llm-speed/">Memory Bandwidth: How Does It Boost Tokens per Second in ...</a></li>
-<li><a href="https://dev.to/kavs/why-memory-bandwidth-matters-more-than-tflops-for-llm-inference-4e6g">Why memory bandwidth matters more than TFLOPS for LLM inference</a></li>
-<li><a href="https://bestgpuforllm.com/compare/">Compare GPUs for Local LLM — tok/s, VRAM ... - Best GPU for LLM</a></li>
+<li><a href="https://en.wikipedia.org/wiki/OpenAI_Codex_(AI_agent)">OpenAI Codex (AI agent)</a></li>
+<li><a href="https://www.tryai.dev/models/gpt-5.6-sol">GPT - 5 . 6 Sol — chat with GPT - 5 . 6 Sol online · TryAI</a></li>
+<li><a href="https://www.quantum-machines.co/products/qualibrate/">Qualibrate: Quantum Control Calibration | Quantum Machines</a></li>
 
 </ul>
 </details>
 
-**标签**: `#GPU`, `#local-LLM`, `#hardware`, `#cost-analysis`, `#memory-bandwidth`
+**标签**: `#AI agents`, `#quantum computing`, `#Codex`, `#automation`, `#case study`
 
 ---
 
 <a id="item-5"></a>
-## [DaVinci Resolve 21.1 集成 Claude 与 ChatGPT Codex 等 AI 助手](https://www.blackmagicdesign.com/media/release/20260908-03) ⭐️ 5.0/10
+## [Qwen 发布 Qwen-Drive-1.0-4B：面向自动驾驶的开源权重视觉语言模型](https://www.reddit.com/r/LocalLLaMA/comments/1wauxg9/qwenqwendrive104b_hugging_face/) ⭐️ 6.0/10
 
-Blackmagic Design 发布了 DaVinci Resolve 21.1 版本更新，新增对 Claude、Claude Code 和 ChatGPT Codex 等 AI 助手的集成支持。用户可以用日常对话式语言来分析项目、整理媒体、调整设置、批量渲染、从长视频中制作集锦剪辑以及删除不需要的片段。 这表明 AI 智能体集成正从开发者工具扩展到专业创意软件领域，有望降低 DaVinci Resolve 众所周知的陡峭学习曲线。视频剪辑师和后期制作团队可以从中受益，将媒体整理和批量渲染等重复性任务自动化。 AI 助手集成允许用户将项目分析和成片渲染等任务交给 AI 处理，但评论者指出，节点式调色等核心创意技能仍需多年磨练，不会被 AI 取代。Linux 用户仍面临音频方面的限制，包括 Fairlight 缺少 VST3 插件、JACK 和 MIDI 控制面支持。 从 Blackmagic Design 官网下载 DaVinci Resolve 21.1，尝试让连接的 AI 助手整理杂乱的媒体池或批量渲染时间线，看看对话式工作流在实际项目中的表现。
+阿里巴巴 Qwen 团队发布了 Qwen-Drive-1.0-4B，这是一个在 Qwen 基础上微调的开源权重视觉语言模型，将 3D 感知、视觉问答和运动规划统一到同一框架中。该版本在 Hugging Face 上提供了完整的 Bf16 权重（总计约 9B 参数），并附带 GitHub 仓库及一份约 40 页的技术报告。 这是首批专门为驾驶任务构建并开源的 VLM 之一，将语言理解与显式 3D 感知和轨迹规划结合在一起，使研究者和自动驾驶团队可以在完整技术栈上开展研究，而不必依赖闭源系统。这也表明中国 AI 实验室正将开源权重模型推进到自动驾驶等垂直领域。 在架构上，该模型保留了预训练 VLM 主干，并外接一个鸟瞰图（BEV）感知头，联合执行 3D 目标检测、语义占据预测和 BEV 地图分割，作为对 VLM 内部 3D 表示的可检查探针。另有一个规划专家模块基于共享的 VLM 表示生成自车未来轨迹；训练采用分阶段方案，将驾驶监督数据与通用视觉语言数据混合，以保留通用能力；评测覆盖开环、伪闭环和闭环三种设置。 从 Hugging Face 上的 Qwen/Qwen-Drive-1.0-4B 仓库下载权重，并阅读 GitHub 上链接的技术报告，评估其 BEV 感知头和规划专家的设计是否可以迁移到你自己的驾驶或机器人研究中。
 
-hackernews · tosh · 9月8日 13:36 · [社区讨论](https://news.ycombinator.com/item?id=49610181)
+reddit · r/LocalLLaMA · /u/FullstackSensei · 9月8日 17:27
 
-**背景**: DaVinci Resolve 是 Blackmagic Design 开发的专业非线性视频剪辑软件，将剪辑、调色（Color 页面）、视觉特效（Fusion 页面）和音频后期（Fairlight 页面）整合在一个应用中。它分为免费版和付费的 Studio 版，Blackmagic 历来提供免费的大版本升级而非订阅制。Claude Code 和 ChatGPT Codex 是智能体式 AI 工具，能够理解上下文、执行命令并自动完成多步骤工作流，最初是为软件开发而设计的。
+**背景**: 视觉语言模型（VLM）将图像理解与语言推理结合，近期研究开始探索将其用于自动驾驶，以提升可解释性以及在罕见长尾场景中的泛化能力。BEV（鸟瞰图）感知将多摄像头传感器数据转换为统一的俯视表示，已成为现代自动驾驶技术栈中 3D 检测和地图分割等任务的核心模块。语义占据预测则对周围 3D 环境的几何和语义信息进行估计，与目标检测互补。此前的 GPT-Driver 等方法将运动规划转化为语言建模问题，而 Qwen-Drive 则选择在 VLM 主干上外接显式的感知和规划模块。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/DaVinci_Resolve">DaVinci Resolve</a></li>
-<li><a href="https://claude.com/product/claude-code">Claude Code by Anthropic | AI Coding Agent, Terminal, IDE</a></li>
-<li><a href="https://chatgpt.com/codex/">Codex in ChatGPT | AI Coding Agents for Software Engineering</a></li>
+<li><a href="https://arxiv.org/pdf/2507.20342">VLMPlanner: Integrating Visual Language Models with Motion ...</a></li>
+<li><a href="https://www.researchgate.net/publication/380653076_Vision_Language_Models_in_Autonomous_Driving_A_Survey_and_Outlook">(PDF) Vision Language Models in Autonomous Driving : A Survey...</a></li>
+<li><a href="https://www.researchgate.net/publication/383397799_BEV_Perception_for_Autonomous_Driving_State_of_the_Art_and_Future_Perspectives">BEV Perception for Autonomous Driving : State of the Art and Future...</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 老用户称赞 Resolve 的稳定性和 Blackmagic 无订阅的免费升级政策，有人为 AI 集成辩护，认为它能帮助初学者应对陡峭的学习曲线。Linux 用户则抱怨 Fairlight 缺少 VST3、JACK 和 MIDI 支持，被迫用 Reaper 处理音频。还有人调侃“智能体末日”蔓延到了创意工具领域，希望改善 Linux 安装体验，并认为这次更新是对 Adobe 的有力竞争。
+**社区讨论**: Reddit 发帖者认为这一发布值得关注，因为它表明中国 AI 实验室正用开源权重模型进军自动驾驶领域，但帖子下尚无实质性讨论。
 
-**标签**: `#video-editing`, `#AI-agents`, `#software-release`, `#blackmagic-design`, `#creative-tools`
+**标签**: `#open-source-models`, `#autonomous-driving`, `#vision-language-models`, `#Qwen`, `#AI-research`
 
 ---
 
 <a id="item-6"></a>
-## [Copperhead 发布：让硬件设计像软件一样快的 AI 工具](https://copperhead.sh/) ⭐️ 5.0/10
+## [蚂蚁集团发布 Ling-3.0-flash-VL：124B 稀疏多模态开源模型](https://www.reddit.com/r/LocalLLaMA/comments/1wasdnn/inclusionailing30flashvl_hugging_face/) ⭐️ 6.0/10
 
-Copperhead（copperhead.sh）在 Hacker News 上以 Show HN 项目发布，宣称要让硬件设计变得和软件开发一样快。此次发布正值一批类似的 AI PCB/硬件设计初创公司涌现之际，包括 Flux.ai、Quilter、DeepPCB 和 Silixon。 AI 进入 EDA 领域正迅速吸引关注和风险投资（例如 Quilter 融资 1000 万美元、Diode 融资 1140 万美元 A 轮），跟踪新入场者有助于读者了解电路板设计工作流可能如何变化。工程师和硬件初创公司可以从中了解哪些工具能加速迭代周期。 评论者指出，一键导出 Gerber、DXF/STEP、渲染和 BOM 以及超越 KiCad 的 Altium 支持等有吸引力的功能都被放在付费云计划中，这让人们对托管式 EDA 工具的价值产生疑问。还有用户报告在桌面版 Chrome/macOS 上存在登录后文本输入框无法输入的 bug。 访问 copperhead.sh 试用其免费版本，并与 Flux.ai 或 Quilter 等成熟替代品在真实项目上做对比。注意该工具似乎仍处于早期阶段（有用户报告发布时的 bug），在投入生产设计前应谨慎评估。
+inclusionAI 在 Hugging Face 上发布了 Ling-3.0-flash-VL，这是一个拥有 124B 总参数、每个 token 仅激活 5.5B 参数的开放多模态模型，支持 100 万 token 上下文窗口，并原生支持图像和视频理解。该模型基于 Ling-3.0-flash，新增了 ViT 视觉编码器、VideoRoPE 位置编码，以及按 5:1 比例交替使用 KDA 与 Gated-MLA 层的 42 层混合骨干网络。 稀疏 MoE 设计意味着每个 token 仅激活 5.5B 参数，使硬件资源有限的用户也能在本地运行一个总容量达 124B 的模型，兼顾多模态推理与推理效率。100 万 token 上下文和视频理解能力使其在长视频问答、事件定位和本地智能体工作流等场景中尤其值得关注。 ViT 编码器提取视觉特征，通过两层 MLP 投影器与文本表示对齐；VideoRoPE 同时编码空间位置和时间顺序以支持视频推理。42 层混合骨干网络按 5:1 的比例交替使用 KDA（Kolmogorov-Doob Attention）与 Gated Multi-head Latent Attention 层以实现高效的长上下文处理，但运行完整的 124B 模型仍需要足够的显存来容纳全部专家权重。 前往 Hugging Face 上的 Ling-3.0-flash-VL 模型页面查看许可证条款、量化版本和支持的推理框架（如 vLLM/SGLang），然后在本地上用视频问答或长文档任务测试其质量和显存占用。
 
-hackernews · animeshchouhan · 9月8日 13:26 · [社区讨论](https://news.ycombinator.com/item?id=49610059)
+reddit · r/LocalLLaMA · /u/jacek2023 · 9月8日 15:57
 
-**背景**: EDA（电子设计自动化）软件涵盖 PCB 布局、电路仿真和 IC 设计等工具；传统厂商包括 Altium、Cadence 和开源的 KiCad。近来多家初创公司将 AI 应用于自动化 PCB 布局和布线——Quilter 专注于物理驱动的自动化布局，Flux.ai 是成熟的浏览器端 PCB 工具，DeepPCB 和 Silixon 则提供 AI 辅助设计。此外，OpenAI 近期的硬件设计演示也进一步激发了该领域的热度。
+**背景**: 混合专家（MoE）模型保留很大的总参数量，但每个 token 只路由到一小部分专家，从而在保持容量的同时大幅降低每个 token 的计算量。RoPE（旋转位置编码）是长上下文大模型中编码位置信息的标准机制，VideoRoPE 将其扩展到视频领域，联合建模时间和空间维度，从而支持长视频问答、事件定位等任务。Multi-head Latent Attention（MLA）通过将 key 和 value 压缩为潜在表示来减少 KV 缓存内存，这对于服务百万级 token 上下文至关重要。该模型来自 inclusionAI，即蚂蚁集团旗下发布 Ling 系列开放权重模型的团队。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Electronic_design_automation">Electronic design automation - Wikipedia</a></li>
-<li><a href="https://www.quilter.ai/ai-pcb-design-for-startups">AI PCB Design for Startups</a></li>
-<li><a href="https://www.businessinsider.com/ai-circuit-board-diode-a16z-series-a-y-combinator-2025-7">AI-Powered Circuit Board Design Startup Diode Lands $11.4 Million Series a - Business Insider</a></li>
+<li><a href="https://arxiv.org/html/2502.05173v1">VideoRoPE: What Makes for Good Video Rotary Position Embedding?</a></li>
+<li><a href="https://github.com/Wiselnn570/VideoRoPE">GitHub - Wiselnn570/VideoRoPE: [ICML 2025 Oral] An official implementation of VideoRoPE & VideoRoPE++ · GitHub</a></li>
+<li><a href="https://magazine.sebastianraschka.com/p/visual-attention-variants">From MHA and GQA to MLA , sparse attention , and hybrid architectures</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 评论者对托管云模式持怀疑态度，质疑为什么会有人为 Gerber/BOM 导出等云端功能付费。其他人梳理了日益拥挤的竞争格局（Flux.ai、Quilter、DeepPCB、Silixon、OpenAI 的演示），分享了基于规则预设计子电路的经验，报告了输入框 bug，并希望能有一项寄送完全组装好的电路板的端到端服务。
-
-**标签**: `#hardware`, `#EDA`, `#PCB design`, `#AI tools`, `#startups`
+**标签**: `#open-weights-models`, `#multimodal`, `#local-llm`, `#moe`, `#video-understanding`
 
 ---
 
 <a id="item-7"></a>
-## [PISA 2025：OECD 国家阅读与数学成绩大幅下滑](https://www.oecd.org/en/about/news/press-releases/2026/09/pisa-2025-students-reading-and-mathematics-performance-declined-sharply-across-the-oecd.html) ⭐️ 5.0/10
+## [美国能源部提供 19 亿美元贷款，重启谷歌支持的艾奥瓦核电站](https://techcrunch.com/2026/09/08/googles-revived-nuclear-power-plant-gets-1-9b-loan-from-us-government/) ⭐️ 5.0/10
 
-OECD 发布了 PISA 2025 测试结果，显示 OECD 各成员国的阅读和数学成绩大幅下滑，第一卷《面向未来的学生》于 2026 年 9 月 8 日前后发布。值得注意的是，数据显示在总结文本、起草文稿等作业中使用 AI 的学生，其科学成绩低于不使用 AI 的学生。 使用 AI 的学生成绩更低这一发现，对任何开发或部署教育科技产品的人来说都是重要数据点，表明 AI 工具可能是在替代学习而非增强学习。各国的成绩差异也提供了一个天然实验，可用来分析哪些教育政策与更好或更差的结果相关。 有评论者分析了 2015 至 2025 年的数学数据，发现明显的地区分化：台湾+9、新加坡+1、韩国-1、日本-3，而德国-45、法国-38、瑞典-33、美国-10，说明下滑主要集中在西方工业化国家。AI 使用与低分只是相关性而非因果关系，不能排除混杂因素的影响。 阅读 PISA 2025 完整报告或数据仪表板中的国家层面数据，在就课堂中的 AI 或屏幕使用下结论之前，先比较表现优异的东亚教育体系与下滑的西方体系之间的政策差异。
+美国能源部已与 NextEra Energy 敲定一笔 19 亿美元贷款，用于重启艾奥瓦州的 Duane Arnold 核电站，该电站此前由谷歌承诺推动复活。重启项目由与谷歌签订的 25 年购电协议支持，主要为其 AI 数据中心供电。 这表明超大规模云厂商正在通过长期购电协议加联邦融资的方式，为 AI 负载锁定基荷核能电力。它为受能源约束的数据中心运营商提供了一个获取稳定、无碳电力的具体模板。 这笔贷款由特朗普政府时期的能源部敲定，发放对象是电站所有者 NextEra Energy，而非谷歌本身。行业内类似交易正在涌现，例如微软重启三里岛核电站的协议，但重启的时间表和成本仍是重大风险。 数据中心运营商和能源团队应研究这笔交易中“购电协议+联邦贷款”的结构作为融资模式，并关注能源部贷款项目办公室的公告以寻找类似融资机会。
 
-hackernews · mazokum · 9月8日 11:13 · [社区讨论](https://news.ycombinator.com/item?id=49608697)
+rss · TechCrunch · 9月8日 15:25
 
-**背景**: PISA（国际学生评估项目）是 OECD 主导的评估，自 2000 年起每三年进行一次，测试 15 岁学生将阅读、数学和科学知识应用于现实问题的能力；2025 年周期有 91 个国家和经济体参加。评论者将西方国家的成绩下滑与“弗林效应逆转”联系起来——即西方国家 IQ 分数自上世纪 90 年代至 2000 年代初开始下降，而全球南方许多国家的分数仍在上升。
+**背景**: 艾奥瓦州的 Duane Arnold 电站此前已关闭，如今因 AI 数据中心需要大量稳定的基荷电力（仅靠可再生能源无法满足）而得以重启。购电协议（PPA）是一种长期合同，由谷歌等买方承诺购买电站电力，从而让贷款方有信心为昂贵的重启项目融资。能源部贷款担保计划依据 2005 年《能源政策法案》设立，为难以吸引私人资本的高风险能源项目提供融资。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.oecd.org/en/publications/pisa-2025-results-volume-i_73451bc5-en/full-report.html">Full Report: PISA 2025 Results (Volume I) | OECD</a></li>
-<li><a href="https://www.oecd.org/en/data/dashboards/pisa-education-and-skills.html">PISA Dashboard | OECD</a></li>
-<li><a href="https://www.ei-ie.org/en/item/32893:what-you-need-to-know-about-pisa-2025">What you need to know about PISA 2025 - ei-ie.org</a></li>
+<li><a href="https://cryptobriefing.com/trump-doe-loan-nextera-duane-arnold-nuclear-restart/">Trump administration loans $1.9B to restart NextEra Energy's Iowa...</a></li>
+<li><a href="https://thebestblogever.co/economics/nuclear-renaissance-ai-data-centers">Why AI Data Centers Are Funding Nuclear 's Second Act</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 讨论氛围担忧但具有分析性。评论者强调成绩下滑集中在西方国家，而东亚国家保持稳定甚至进步；有人将此趋势与弗林效应逆转联系起来，认为 PISA 显示 AI 使用者分数更低应成为对教育科技和课堂 AI 应用的重大警示；还有人指出社交媒体、侵蚀注意力的应用设计和 LLM 是叠加因素。
-
-**标签**: `#education`, `#PISA`, `#AI impact`, `#society`, `#data analysis`
+**标签**: `#nuclear-energy`, `#data-centers`, `#AI-infrastructure`, `#energy-policy`, `#Google`
 
 ---
 
 <a id="item-8"></a>
-## [《麻省理工科技评论》报道 Danijar Hafner 隐秘创业公司开发前瞻规划型 AI 智能体](https://www.technologyreview.com/2026/09/08/1142088/danijar-hafner-developing-plan-ahead-agents/) ⭐️ 5.0/10
+## [Dependabot 现可自动访问私有 GitHub Packages 注册表](https://github.blog/changelog/2026-09-08-automatic-dependabot-access-to-github-hosted-registries) ⭐️ 5.0/10
 
-《麻省理工科技评论》发表了对 AI 研究者 Danijar Hafner 的专访报道，他在旧金山新创办的隐秘模式创业公司正在开发能够预见意外情况并提前规划的 AI 智能体，而非仅仅被动响应。该创业公司目前尚未公开名称，仍处于最早期阶段。 Hafner 是世界模型（world models）领域的领军人物，他从 Google DeepMind 转向创业，预示着前沿智能体研究的走向：从被动的工具使用转向能推理未来状态的智能体。这一方向直指当前智能体的公认弱点——难以处理多步骤任务和意外情况。 由于创业公司仍处于隐秘模式，这篇文章属于叙事性报道，没有披露任何技术细节、代码或可操作的方法。同一方向的学术工作包括 TraceR1（arXiv 2603.16777），这是一个两阶段强化学习框架，通过在执行前预测动作轨迹来训练前瞻性规划能力。 想了解具体技术的读者可以在该公司走出隐秘模式之前，研读关于多模态智能体前瞻规划的 TraceR1 论文（arXiv 2603.16777），以及 Hafner 之前的世界模型论文（Dreamer、DayDreamer）。
+只要软件包通过其设置中的“Manage Actions access”授予了仓库访问权限，Dependabot 现在无需个人访问令牌（PAT）即可读取私有 GitHub Packages 注册表。这省去了为私有注册表访问而创建 PAT 并将其存储为 Dependabot secrets 的步骤。 使用 GitHub Packages 托管私有依赖的团队可以简化 dependabot.yml 配置，降低密钥管理负担和安全风险。这让 Dependabot 的认证模型与 GitHub Actions 已有的模型保持一致，使私有包的依赖更新更加顺畅。 该自动访问仅适用于 GitHub 托管的注册表（GitHub Packages），第三方注册表仍需配置凭据。访问权限由软件包上已有的“Manage Actions access”授权决定，因此未获授权的仓库仍需显式配置令牌。 检查你的 dependabot.yml 文件，删除那些依赖已存储 PAT 的 GitHub 托管软件包的 registries 配置块，然后验证下一次 Dependabot 运行是否成功。同时确认目标软件包的设置中已通过“Manage Actions access”授权给你的仓库。
 
-rss · MIT Technology Review · 9月8日 10:34
+rss · GitHub Changelog · 9月8日 16:46
 
-**背景**: Danijar Hafner 以世界模型（world models）研究闻名——这类预测模型让 AI 通过想象未来结果来学习，代表工作包括 PlaNet、Dreamer 以及将世界模型应用于物理机器人学习的 DayDreamer；他此前是 Google DeepMind 的资深研究科学家。目前大多数 AI 智能体是被动式的，孤立地选择动作而不推理未来状态，这限制了它们在长程多步骤任务上的可靠性。“隐秘模式”指创业公司刻意对产品和计划保密，直到合适的发布时机。
+**背景**: Dependabot 是 GitHub 内置的依赖更新服务，通过仓库中的 .github/dependabot.yml 文件配置，会自动创建拉取请求来升级过期的依赖。此前，如果项目依赖 GitHub Packages 中的私有软件包，用户必须创建个人访问令牌（一种代替密码的长效凭据）并将其存入 Dependabot secrets，Dependabot 才能向注册表认证。“Manage Actions access”是软件包级别的设置，控制哪些仓库可以在 GitHub Actions 工作流中使用该软件包；Dependabot 现在复用了同一权限模型。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://arxiv.org/abs/2603.16777">[2603.16777] Anticipatory Planning for Multimodal AI Agents Anticipatory Planning for Multimodal AI Agents - arXiv.org Anticipatory Planning for Multimodal AI Agents - NASA/ADS Anticipatory Planning for Multimodal AI Agents — The Commonplace Adobe Research » Anticipatory Planning for Multimodal Agents [PDF] Anticipatory Planning for Multimodal AI Agents ... Anticipatory Planning for Multimodal AI Agents</a></li>
-<li><a href="https://danijar.com/">Danijar Hafner</a></li>
-<li><a href="https://scholar.google.com.tr/citations?user=VINmGpYAAAAJ&hl=en">Danijar Hafner - Google Scholar</a></li>
+<li><a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry">Working with the npm registry - GitHub Docs</a></li>
+<li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">Managing your personal access tokens - GitHub Docs</a></li>
 
 </ul>
 </details>
 
-**标签**: `#AI agents`, `#planning`, `#startups`, `#research`
-
----
-
-<a id="item-9"></a>
-## [AI 驱动的漏洞发现推动微软 Patch Tuesday 创纪录](https://www.theverge.com/tech/991178/microsoft-patch-tuesday-record-breaking-ai-notepad) ⭐️ 5.0/10
-
-据 The Verge 报道，由于新型 AI 模型快速发现软件漏洞，微软的 Windows 和安全工程师度过了一个异常忙碌的夏季，并又一次创下 Patch Tuesday 补丁数量的纪录。 这标志着安全运营的结构性转变：AI 发现漏洞的速度已超过厂商传统的分类和修补节奏，这将给补丁流程带来压力，并改变防御者的优先级安排。安全团队和 IT 管理员应预期未来补丁量会更大、更频繁。 该报道基于匿名消息来源，属于新闻摘要，未披露所用的 AI 模型或受影响产品的技术细节。业界已有类似现象，例如谷歌的 Big Sleep 和 OSS-Fuzz 项目，以及 CSA 关于 Project Glasswing 等 AI 发现漏洞浪潮的警告。 IT 和安全团队应审查补丁管理流程，以应对每月更大的更新量，优先及时部署关键修复，并尽可能实现自动化。
-
-rss · The Verge · 9月8日 14:00
-
-**背景**: Patch Tuesday 是微软每月第二个星期二定期发布安全补丁的机制，自 2003 年 10 月起正式化。近年来，AI 模型在自动化漏洞发现方面的能力显著增强——谷歌已使用 Big Sleep 和 OSS-Fuzz 等工具主动发现并修复漏洞，而分析机构也警告 AI 发现的漏洞可能会以快速、大规模的浪潮形式涌现。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Patch_Tuesday">Patch Tuesday</a></li>
-<li><a href="https://cloud.google.com/blog/topics/threat-intelligence/defending-enterprise-ai-vulnerabilities">Defending Your Enterprise When AI Models Can Find Vulnerabilities Faster Than Ever | Google Cloud Blog</a></li>
-<li><a href="https://cloudsecurityalliance.org/artifacts/the-ai-vulnerability-storm">AI Vulnerability: Security Program Guide for CISOs | CSA</a></li>
-
-</ul>
-</details>
-
-**标签**: `#security`, `#AI`, `#Microsoft`, `#vulnerability-discovery`, `#patching`
-
----
-
-<a id="item-10"></a>
-## [Rust 的 never 类型（!）历时两年终于稳定](https://lwn.net/Articles/1091015/) ⭐️ 5.0/10
-
-8 月 24 日，Rust 贡献者 "waffle" 通过 PR #155499 将长期处于不稳定状态的 never 类型（!）正式稳定化，这项工作历时两年多。之所以耗时这么久，部分原因是稳定化涉及对旧版 Rust edition 的一个小型破坏性变更。 never 类型让开发者能够在类型系统中表达“函数永不返回”或“该位置的值不可能存在”，从而改进类型推断并设计更精确的 API。它的稳定化也展示了 Rust 如何通过 edition 机制安全地处理破坏性变更，这一过程对其他语言设计者有借鉴意义。 never 类型长期以来只在编译器内部使用，在稳定版 Rust 中一直无法直接使用。稳定化过程需要验证对旧 edition 的小型破坏性变更不会影响太多实际代码，这也是整个过程耗时超过两年的原因。 Rust 开发者可以查阅稳定后的 never 类型文档，并在此功能进入某个稳定版本后，尝试在发散函数签名或穷尽匹配分支中使用 ! 类型。
-
-rss · LWN.net · 9月8日 13:34
-
-**背景**: 在 Rust 中，never 类型用感叹号（!）表示，在类型理论上称为空类型（empty type）——它没有任何值，用于标记如 panic!() 或无限循环这类“永不返回”的发散函数。Rust 使用 "edition"（版本）机制作为可选方式引入不向后兼容的变更：现有 crate 在显式迁移到新 edition 之前不会受到影响。Rust 的特性稳定化需经过正式流程，包括最终评论期（FCP）以及类型团队或语言团队等相关团队的审查。正是这一机制使 never 类型的小型破坏性变更得以在不强制大多数现有代码修改的情况下引入。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://notes.lesleylai.info/Concepts/Rust-never-type">Rust never type | Lesley's Digital Garden</a></li>
-<li><a href="https://doc.rust-lang.org/edition-guide/editions/index.html">What are editions? - The Rust Edition Guide</a></li>
-<li><a href="https://lang-team.rust-lang.org/how_to/stabilize.html">Stabilize a feature - The Rust Language Design Team</a></li>
-
-</ul>
-</details>
-
-**标签**: `#Rust`, `#programming languages`, `#type systems`, `#compiler`
+**标签**: `#GitHub`, `#Dependabot`, `#DevOps`, `#Dependency Management`
 
 ---
