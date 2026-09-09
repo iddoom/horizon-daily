@@ -5,143 +5,255 @@ date: 2026-09-09
 lang: zh
 ---
 
-> 从 47 条内容中筛选出 7 条重要资讯。
+> 从 64 条内容中筛选出 11 条重要资讯。
 
 ---
 
-1. [在 10-12 块 RTX 3090 上运行 DeepSeek-V4-Flash-Vision-Exp（285B MoE）的完整指南](#item-1) ⭐️ 9.0/10
-2. [Tailwind Labs 加入 Shopify，AI 冲击其商业模式](#item-2) ⭐️ 8.0/10
-3. [我在谷歌广告上投放恶意软件广告](#item-3) ⭐️ 7.0/10
-4. [DeepSeek V4.1 Flash 将于 2026 年 9 月 10 日发布，性能与成本全面超越 V4 Pro](#item-4) ⭐️ 7.0/10
-5. [内核融合让 GLM-5.3-Flash Q4 在 M3 Ultra 上达到 40 t/s 解码与 550 t/s 预填充](#item-5) ⭐️ 7.0/10
-6. [GitHub 支持批量使用智能体自动修复 Code Quality 发现的问题](#item-6) ⭐️ 6.0/10
-7. [Suno 推出仅用授权音乐训练的 v6 模型，应对版权诉讼](#item-7) ⭐️ 5.0/10
+1. [Sebastian Raschka 解析 GPT-6 Astra、循环 Transformer 与隐藏推理](#item-1) ⭐️ 8.0/10
+2. [CoT 前缀续写测试表明 Qwen 3.8 可能蒸馏自 OpenAI 模型](#item-2) ⭐️ 7.0/10
+3. [Planet Labs 的开放卫星数据源](#item-3) ⭐️ 7.0/10
+4. [GitHub 规则集现在可以阻止包含暴露密钥的 PR 合并](#item-4) ⭐️ 7.0/10
+5. [使用 INT4 量化在本地运行 NVIDIA 64B Cosmos3 图像模型](#item-5) ⭐️ 7.0/10
+6. [Read the Docs 发布自适应 DDoS 攻击事后分析](#item-6) ⭐️ 6.0/10
+7. [Wired 记者用去除安全护栏的 AI 智能体入侵自家网络](#item-7) ⭐️ 6.0/10
+8. [苹果推出 Apple Reference Image 功能，识别照片是否被 AI 修改](#item-8) ⭐️ 5.0/10
+9. [8 月头部企业人均 AI 支出下滑](#item-9) ⭐️ 5.0/10
+10. [Rustls 迎来十周年，0.23 稳定并展望 1.0](#item-10) ⭐️ 5.0/10
+11. [Typst 0.15 新增可变字体、MathML 和多参考文献支持](#item-11) ⭐️ 5.0/10
 
 ---
 
 <a id="item-1"></a>
-## [在 10-12 块 RTX 3090 上运行 DeepSeek-V4-Flash-Vision-Exp（285B MoE）的完整指南](https://www.reddit.com/r/LocalLLaMA/comments/1wbi5u1/deepseekv4flashvisionexp_285b_moe_on_1012x_rtx/) ⭐️ 9.0/10
+## [Sebastian Raschka 解析 GPT-6 Astra、循环 Transformer 与隐藏推理](https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and) ⭐️ 8.0/10
 
-一位 Reddit 用户发布了完全可复现的方案，通过打了补丁的 SM86 兼容 vLLM 构建，在 10-12 块消费级 RTX 3090 上运行 DeepSeek-V4-Flash-Vision-Exp（285B MoE，FP4 专家+FP8 注意力，权重共 157 GB）。该方案在 10 卡上借助 DSpark 投机解码（k=3）实现 60+ tok/s 的解码速度，在 12 卡上达到 120+ tok/s，且视觉、工具调用以及最高 1M（RAM 卸载下 4M）上下文均可正常工作。 这表明一个前沿规模的多模态 MoE 模型可以在廉价二手消费级 GPU（RTX 3090）上以可用速度自托管，对本地 LLM 爱好者和注重隐私的部署具有直接可操作性。预构建的 Docker 镜像、启动脚本以及详细记录的补丁（投机解码、视觉 OOM 修复、调度器行交叉修复）能为他人节省数周的调试时间。 该方案在 10 卡上采用 TP2xPP5 并行，在 12 卡上采用 TP4xPP3 并行，功耗限制在 240 W，长上下文预填充约 3,500 tok/s。补丁修复了 DSpark propose-gate（投机解码与视觉的交互）、调度器多模态/投机解码行交叉、语法位掩码校验、视觉 ViT OOM 以及 FlashInfer workspace-lane 键值等问题。 如果你有 10-12 块 RTX 3090，可执行 `docker pull ghcr.io/ciprianveg/3090-vllm:dsv4-flash-vision-sm86` 拉取预构建镜像，并按照 GitHub 仓库（https://github.com/ciprianveg/3090-vllm）中的构建指南和启动脚本进行部署。
+Sebastian Raschka 发表了一篇技术分析，探讨循环 Transformer（迭代复用固定的 Transformer 层）以及“隐藏推理”（未以文字表达的中间计算）可能如何塑造 OpenAI 的 GPT-6 Astra 等模型。文章将这种参数高效的递归架构与“推理是否发生在潜在表示而非可见的思维链文本中”这一更广泛的争论联系起来。 理解循环 Transformer 为从业者提供了一个具体的架构抓手：在同一潜在表示上反复应用相同的层，可以在不成比例增加参数量的情况下提升推理深度。它还说明了为什么监视思维链文本可能无法捕捉模型的全部计算过程，这对能力评估以及可解释性/安全性研究都很重要。 循环 Transformer 会迭代地（通常几十次）应用一个固定的层块，这与 2018 年的 Universal Transformer 思想相呼应——HN 评论者指出这一先前工作已基本被遗忘；较新的研究甚至展示了免训练的循环方式，即在推理时包装并循环冻结检查点的中间层块，无需任何微调。关键未解问题包括如何设定每个 token 的循环次数或停机机制，以及当循环输出被内部回送而非以文字表达时，这是否算作“隐藏推理”。 在阅读 Raschka 文章的同时，结合 Merrill 的思维链表达能力论文（arXiv:2310.07923）和 Universal Transformers 论文（arXiv:1807.03819），然后在自己的模型检查点上尝试免训练的循环 Transformer 方法——在推理时包装并循环冻结模型的中间层块——以低成本衡量推理能力的提升。
 
-reddit · r/LocalLLaMA · /u/ciprianveg · 9月9日 10:50
+hackernews · ModelForge · 9月9日 14:37 · [社区讨论](https://news.ycombinator.com/item?id=49627370)
 
-**背景**: DeepSeek-V4-Flash-Vision-Exp 是一个 285B 参数的混合专家（MoE）多模态模型，专家权重采用 FP4 量化、注意力采用 FP8，使总权重压缩至 157 GB。vLLM 是流行的开源推理引擎；投机解码通过让较小的模型提出候选 token、再由主模型批量验证来加速生成。RTX 3090 是 Ampere 架构（SM86）显卡，每块 24 GB 显存，二手市场供应充足，但不支持一些较新的算子特性，因此需要打了补丁的 SM86 兼容定制构建。
+**背景**: 标准 Transformer 在每次前向传播中让每个 token 恰好通过固定的层堆栈一次。循环则递归地复用这些层，在不增加参数的情况下提高每个 token 的有效计算深度，类似于循环网络或扩散式的迭代精炼机制。“隐藏推理”指的是有证据表明 LLM 会在任何思维链文本被表达之前，就在隐藏状态中编码中间甚至最终答案的正确性，意味着大量计算是潜在进行的。Will Merrill 的表达能力理论工作形式化了哪些问题类别在可证明意义上需要多长的思维链，为循环能带来什么提供了理论视角。
 
-**标签**: `#local-llm`, `#vllm`, `#moe`, `#deepseek`, `#gpu-inference`
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://arxiv.org/abs/1807.03819">Abstract page for arXiv paper 1807.03819: Universal Transformers</a></li>
+<li><a href="https://arxiv.org/abs/2605.23872">[2605.23872] Training-Free Looped Transformers</a></li>
+
+</ul>
+</details>
+
+**社区讨论**: shawntan 向读者推荐了关于哪些计算问题最少需要多少思维链的博客文章和 Will Merrill 的论文，并指出 Universal Transformers 是被遗忘的循环式先前工作。wolttam 认为将整个 Transformer 自我循环“从定义上”就是隐藏推理，而 frunkp 将其类比为扩散模型中重掩码步骤对生成推理的隐藏；其他评论则讨论了 OpenAI Astra 产品的变化以及实时 MS Paint 计算机操作演示。
+
+**标签**: `#transformers`, `#llm-architecture`, `#reasoning`, `#chain-of-thought`, `#ai-research`
 
 ---
 
 <a id="item-2"></a>
-## [Tailwind Labs 加入 Shopify，AI 冲击其商业模式](https://tailwindcss.com/blog/tailwind-is-joining-shopify) ⭐️ 8.0/10
+## [CoT 前缀续写测试表明 Qwen 3.8 可能蒸馏自 OpenAI 模型](https://gist.github.com/wsxiaoys/e0286dc6bb624ff5fdf49e7f4c528ba3) ⭐️ 7.0/10
 
-流行的实用优先 CSS 框架 Tailwind CSS 背后的公司 Tailwind Labs 宣布被 Shopify 收购。此前在 2026 年 1 月，由于 AI 导致流量和收入大幅下滑，该公司裁掉了 75% 的工程团队。 这是 AI 颠覆开源和开发者内容业务的具体案例：尽管框架比以往更流行，Tailwind 的文档流量自 2023 年初下降约 40%，因为开发者现在直接问 AI 助手而不读文档，破坏了带动 Tailwind Plus 模板销售的转化漏斗。任何依靠文档、模板或开发者教育变现的人都应关注这一信号。 Tailwind Labs 的收入模式依赖文档流量转化为 Tailwind Plus（原 Tailwind UI）模板和组件的购买；AI 代码生成同时减少了流量和模板需求，据报道收入下降约 80%。Shopify 收购的主要是团队和品牌，而非一项可持续的业务。 如果你的业务依赖文档流量或模板销售，请审计漏斗分析数据中 AI 造成的流量下滑，并向不易被 AI 替代的收入来源（如托管服务、企业支持）多元化转型。
+作者运用其知名的 CoT 恢复漏洞（来自 stolen-thoughts.com 论文），测试 Qwen 3.8 是否会续写取自 GPT-5.5 Pro 的推理前缀，发现了暗示蒸馏的证据。该方法先从前沿模型恢复可读的思维链，截取前约 1%的内容，再将其作为开源模型自身推理的开头输入。 这提供了一种可复现、低成本的取证技术，用于检测开源模型是否在专有模型的输出上训练——这正是 OpenAI、Anthropic 与中国 AI 实验室之间蒸馏争议的核心问题。对于评估模型来源的开发者以及关注 LLM 训练是否违反服务条款的人都有实际价值。 该发现只是暗示性而非决定性的：评论者指出，公开可得的 GPT-5.5 推理痕迹仅来自 stolen-thoughts 论文本身（8 月 10 日发布），而 Qwen 3.8 0902 在该日期之后训练，因此可能只是学习到了这些已公开的特定痕迹。还有人质疑原始推理 token 是否真的可访问，且该技术也无法泛化为提升模型性能的通用提示方法。 阅读原 gist 和 stolen-thoughts 论文（stolen-thoughts.com/paper.pdf）以理解前缀续写方法论，然后尝试复现该测试：向本地模型输入一小段 CoT 前缀并测量续写的重合度。任何阳性结果都只应视为暗示性证据，因为已公开痕迹造成的污染是一个合理的替代解释。
 
-hackernews · EdwinHoksberg · 9月9日 13:27 · [社区讨论](https://news.ycombinator.com/item?id=49626190)
+hackernews · wsxiaoys · 9月9日 17:24 · [社区讨论](https://news.ycombinator.com/item?id=49630026)
 
-**背景**: Tailwind CSS 是一个开源的实用优先 CSS 框架，与 Bootstrap 等组件框架不同，它通过在 HTML 中直接使用小型可组合的类来完成样式。与许多开源公司一样，Tailwind Labs 通过免费产品（框架加文档）吸引用户，再引导他们购买付费产品（如专业设计的 UI 模板）。如今在大量公开文档上训练的大语言模型可以直接回答开发者的问题，访问文档的开发者变少，切断了销售漏斗的顶端。
+**背景**: 蒸馏是指用更强的专有模型的输出（包括推理痕迹）来训练模型，而 OpenAI 和 Anthropic 的服务条款禁止以此构建竞争产品。前缀续写的原理是：如果某模型曾见过某段文本的训练数据，它续写该文本时会比从未见过的模型更流畅、更忠实。stolen-thoughts 漏洞能从通常隐藏原始推理 token 的模型中恢复可读的思维链，从而进行跨模型的痕迹比对。类似证据此前已被用于指控 DeepSeek、MiniMax 和 Moonshot。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://chyshkala.com/blog/tailwindcss-layoffs-ai-impact-documentation-revenue">TailwindCSS Lays Off 75% of Team as AI Crushes Documentation ...</a></li>
-<li><a href="https://www.remio.ai/post/tailwind-css-ai-impact-docs-traffic-collapse-triggers-75-engineering-layoffs">Tailwind CSS AI Impact: Docs Traffic Collapse Triggers 75% ...</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Tailwind_CSS">Tailwind CSS - Wikipedia</a></li>
+<li><a href="https://www.birjob.com/blog/distillation-wars-anthropic-openai-chinese-labs">The Distillation Wars: Anthropic and OpenAI Accuse Chinese... | BirJob</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 评论者重点讨论了 simonw 引用的 Adam Wathan 一月的披露：因 AI 影响，75% 的工程师失业、文档流量下降 40%。有人认为 Shopify 买的是人和品牌，因为现在销售 UI 模板已是死路；也有人质疑在 AI 代理和现代原生 CSS 时代新项目是否还需要 Tailwind，还有人偏好 Bootstrap、jQuery 和 HTMX 这类简单且易于维护的技术栈。
+**社区讨论**: 评论者澄清了方法论（恢复 CoT 后取前 1%作为前缀），但提出了关键疑问：Qwen 3.8 在 stolen-thoughts 论文发布之后训练，因此可能只是见过这些已公开的痕迹，而非直接从 OpenAI 蒸馏；还有人质疑是否能访问原始推理 token。一位用户指出该技术并非可泛化的本地模型性能提升手段，另一位则报告 GPT-5.6 Sol 在 Pi 中曾把推理泄露到工具调用里。
 
-**标签**: `#tailwind`, `#shopify`, `#acquisition`, `#ai-business-impact`, `#developer-tools`
+**标签**: `#AI models`, `#distillation`, `#chain-of-thought`, `#open-source LLMs`, `#model analysis`
 
 ---
 
 <a id="item-3"></a>
-## [我在谷歌广告上投放恶意软件广告](https://xlii.space/eng/malicious-software-on-google-ads/) ⭐️ 7.0/10
+## [Planet Labs 的开放卫星数据源](https://tech.marksblogg.com/planet-labs-open-satellite-feed.html) ⭐️ 7.0/10
 
-一位实验者记录了恶意软件广告如何轻易通过谷歌广告的审核，而正当提交却被拒绝，引发了对谷歌自动审核机制失效的讨论。
+一份关于使用 Planet Labs 开放卫星数据源的实用指南，涵盖数据访问方式和格式。社区评论还提到了相关的开放影像项目以及非营利组织的定价难题。
 
-hackernews · xlii · 9月9日 11:43 · [社区讨论](https://news.ycombinator.com/item?id=49624856)
+hackernews · marklit · 9月9日 15:44 · [社区讨论](https://news.ycombinator.com/item?id=49628429)
 
-**标签**: `#google-ads`, `#security`, `#ad-fraud`, `#platform-moderation`, `#case-study`
+**标签**: `#satellite-imagery`, `#open-data`, `#data-engineering`, `#geospatial`, `#tutorial`
 
 ---
 
 <a id="item-4"></a>
-## [DeepSeek V4.1 Flash 将于 2026 年 9 月 10 日发布，性能与成本全面超越 V4 Pro](https://news.ycombinator.com/item?id=49624603) ⭐️ 7.0/10
+## [GitHub 规则集现在可以阻止包含暴露密钥的 PR 合并](https://github.blog/changelog/2026-09-09-block-pull-requests-with-exposed-secrets-from-merging) ⭐️ 7.0/10
 
-DeepSeek 宣布 V4.1 Flash 将于 2026 年 9 月 10 日（北京时间）前后正式发布，声称在性能、成本、速度和任务完成时间上全面超越 V4 Pro。所有发往 Pro 模型的请求将被自动路由到 V4.1 Flash 并按 Flash 价格计费；新定价于当天 12:00 生效，非高峰时段缓存命中输入 $0.003、缓存未命中输入 $0.15、输出 $0.6，高峰时段价格为两倍。 Pro 请求被强制路由到 Flash，意味着已在 V4 Pro 上验证过的生产工作流会被静默更换模型，任何依赖 API 的团队都应为此做预案。极低的缓存命中价格也使 Flash 成为高吞吐、缓存友好型负载（如编程智能体）中性价比最高的模型之一。 测试者现在即可通过 API 端点 "deepseek-v4.1-flash-expires-on-0910" 调用测试版；评论者反馈其速度快，但网页版聊天语言跟随能力不稳定（英文提问有时返回中文思维链或中文回答）。另需注意 DeepSeek API 默认会使用你的数据进行训练，且高缓存命中率下的实际成本可能与标价差异巨大。 如果你在生产环境中使用 DeepSeek，请立即显式固定模型选择，并在 9 月 10 日前用测试端点 "deepseek-v4.1-flash-expires-on-0910" 对照 V4 Pro 工作流做回归测试，发现问题及时向 DeepSeek 反馈以抵制强制换模。
+GitHub 宣布仓库规则集（repository rulesets）现在可以在 Pull Request 引入暴露密钥时阻止其合并。这将 GitHub 的密钥扫描能力直接接入分支保护，作为一种强制合并门槛。 硬编码凭证一旦进入主分支就极难清除，因为它们会永久留在 Git 历史中。在合并时拦截这类 PR 将安全左移，在泄露落地前就阻止，减轻维护者和安全团队的事故响应负担。 该功能通过仓库规则集配置，规则集在 GitHub Team 和 Enterprise 计划以及公共仓库中可用。它基于密钥扫描（secret scanning），该功能可检测所有分支完整 Git 历史中的已知密钥类型，如 API 密钥、令牌和密码。 进入仓库或组织的 Settings → Rules → Rulesets，创建或编辑针对受保护分支的规则集，并启用“当密钥扫描在 PR 中检测到暴露密钥时阻止合并”的选项。
 
-hackernews · nickweb · 9月9日 11:19
+rss · GitHub Changelog · 9月9日 17:14
 
-**背景**: DeepSeek 的 Flash 系列是其成本优化型模型线，此前的 V4 Flash 已能以远低于 Pro 的价格提供接近 Pro 的推理性能。与 OpenAI 和 Anthropic 一样，DeepSeek 采用提示词缓存机制，重复输入的 token 计费远低于正常输入价格，并已转向峰谷计费（非高峰价格为高峰的一半）。自动路由做法反映了行业普遍的模型下线或静默替换模式，这可能破坏绑定特定模型行为的生产工作流。
+**背景**: 仓库规则集允许组织定义可扩展的分支保护策略（如要求状态检查、阻止特定合并），并在组织级别跨多个仓库统一应用。密钥扫描属于 GitHub Advanced Security（Secret Protection）的一部分，用于检测硬编码凭证；推送保护（push protection）已在提交时拦截密钥。新功能将暴露密钥从仅报警升级为可强制执行的合并阻止规则。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.orcarouter.ai/blog/deepseek-v4-1-flash-leak">DeepSeek V 4 . 1 Flash API Beta: What We Know Before Launch</a></li>
-<li><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash">deepseek -ai/ DeepSeek - V 4 - Flash · Hugging Face</a></li>
+<li><a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets">About rulesets - GitHub Docs</a></li>
+<li><a href="https://docs.github.com/code-security/secret-scanning/about-secret-scanning">Secret scanning - GitHub Docs</a></li>
+<li><a href="https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security">About GitHub Advanced Security - GitHub Docs</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 社区评价褒贬不一：用户称赞 Flash 的速度和极低价格（"回答只需几美分，体验极佳"），但最主要的批评指向将 Pro 强制路由到 Flash 的做法，aftbit 认为应将弃用模型保留一段明确期限后再下线。还有用户提供了测试版端点、提醒 DeepSeek API 会用用户数据训练，并反馈网页版 Flash 语言跟随不稳定（英文提问可能随机得到中文思维链或中文回答）。
-
-**标签**: `#AI models`, `#DeepSeek`, `#LLM APIs`, `#model deployment`, `#cost optimization`
+**标签**: `#github`, `#security`, `#devops`, `#secrets-management`, `#ci-cd`
 
 ---
 
 <a id="item-5"></a>
-## [内核融合让 GLM-5.3-Flash Q4 在 M3 Ultra 上达到 40 t/s 解码与 550 t/s 预填充](https://www.reddit.com/r/LocalLLaMA/comments/1wbkpnw/glm_53_flash_q4_60tps_550tps_on_m3_ultra/) ⭐️ 7.0/10
+## [使用 INT4 量化在本地运行 NVIDIA 64B Cosmos3 图像模型](https://www.reddit.com/r/LocalLLaMA/comments/1wbmz1y/sota_imagegen_locally_nvidia_cosmos364b_int4/) ⭐️ 7.0/10
 
-一位开发者修改了 DwarfStar（ds4）推理引擎的 Metal 内核，在 M3 Ultra 上运行 GLM-5.3-Flash Q4，将数十个小内核调度融合为更大的调度，达到约 81% 的实测内存带宽利用率。短上下文解码速度从 29 提升到 40 t/s，62k 上下文从 24 提升到 38 t/s；预填充从 366 提升到 550 t/s，300k 上下文端到端速度从 21.6 提升到 37.4 t/s。 这是一个可复现的开源本地大模型推理性能工程案例，展示了精心的内核融合与调度可以在不改变权重和质量的情况下带来 30-50% 的加速。在 Apple Silicon 上运行本地模型或开发推理引擎的人都可以直接借鉴这些技术和基准测试方法。 长上下文优化用并行扫描先缩小候选集再排序的方式，替代了原有的排序合并流程，每个 token 约节省 1 毫秒且输出完全一致；精度得到保持（相对 FP8 参考的平均 NLL 为 0.300766 对 0.300804，首 token 匹配同为 90/100）。该分支仅限 M3 Ultra，因为优化依赖该芯片的双芯内存行为、缓存以及 Metal 在 80 个 GPU 核心上的调度特性；可选的投机解码 drafter（--dflash）在结构化输出上提升 20-50%，但在普通文本上会自动退出。 克隆仓库并按照 glm53-m3ultra 分支的 README（github.com/IngeniousIdiocy/ds4）在 M3 Ultra 上复现基准测试，包括用 --dflash 构建 drafter 以加速结构化输出任务。
+一位 Reddit 用户在 Hugging Face 上发布了 INT4 量化权重，并提供了 CUDA 和 MLX 代码，使 NVIDIA 64B 参数的 Cosmos3-Super-Text2Image-4Step（以及图生视频）模型可以在本地运行。在配备 128GB 统一内存的 M4 Max 上，生成一张图片大约需要 5 分钟。 NVIDIA 官方模型卡说明完整的 64B 模型需要多 GPU 的 H100/H200 节点（4–8 块 GPU）或单块 B200，因此 INT4 量化让 SOTA 图像生成模型可以在高内存 Mac 等消费级硬件上运行。这使开发者无需云 API 即可在本地进行顶级图像生成实验。 该发布使用的是 4 步蒸馏的文生图检查点，量化为带 BF16 分组缩放（G64）的 INT4 格式，大幅降低内存需求以适配 128GB 统一内存。INT4 量化在复杂任务上可能降低输出质量，因此在采用前值得先查看附带的 Grok 对比结果。 克隆 github.com/gtrg55/cosmos3-quant-mlx-cuda 仓库，并从 Hugging Face 下载 INT4 权重（JuliaML/Cosmos3-Super-Text2Image-4Step-INT4-G64-BF16）在自己的硬件上测试，需确认有足够的显存或统一内存（建议不低于 128GB）。
 
-reddit · r/LocalLLaMA · /u/IngeniousIdiocy · 9月9日 12:51
+reddit · r/LocalLLaMA · /u/Formal-Swordfish-228 · 9月9日 14:21
 
-**背景**: DwarfStar（ds4）是 antirez 开发的一个小型原生 C 推理引擎，专为在高内存 Mac 等 consumer 硬件上运行少数优秀大模型（DeepSeek V4 Flash/PRO、GLM 5.2/5.3 Flash）而优化，支持 Metal、CUDA 和 ROCm 后端。权重流式推理每次前向传播只加载当前活跃的 transformer 层，使大型量化（如 Q4）模型能在统一内存的 Apple Silicon 上运行。GPU 内核融合通过把多个小调度合并为更少的大调度来减少启动开销，当小内核让 GPU 空转并付出延迟代价时这一点尤为关键。
+**背景**: NVIDIA Cosmos3 是面向物理 AI 的开放世界模型系列，其中 64B 的'Super'版本支持文生图、文生视频和图生视频。INT4 量化将模型权重从 16 位压缩到 4 位，内存占用大约减少至四分之一，但会损失部分精度。MLX 是苹果为 Apple Silicon 设计的机器学习数组框架，可充分利用统一内存，而 CUDA 是 NVIDIA 的 GPU 计算平台。4 步版本通过蒸馏技术仅需四次去噪步骤即可生成图像，大幅加速推理。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://github.com/antirez/ds4">GitHub - antirez/ds4: DeepSeek 4 Flash and PRO local inference engine for Metal, CUDA and ROCm · GitHub</a></li>
-<li><a href="https://dwarfstar.sh/">DwarfStar 4 (ds4): Local DeepSeek V4 and GLM 5.3</a></li>
+<li><a href="https://github.com/nvidia/cosmos">GitHub - NVIDIA/cosmos: NVIDIA Cosmos is an open platform of world models, datasets, and tools that enables developers to build Physical AI for robots, autonomous vehicles, smart infrastructure, and more. · GitHub</a></li>
+<li><a href="https://huggingface.co/nvidia/Cosmos3-Super-Text2Image-4Step">nvidia/Cosmos3-Super-Text2Image-4Step · Hugging Face</a></li>
+<li><a href="https://mlx-framework.org/">MLX</a></li>
 
 </ul>
 </details>
 
-**标签**: `#local-llm`, `#apple-silicon`, `#performance-optimization`, `#metal`, `#inference`
+**标签**: `#local-inference`, `#quantization`, `#image-generation`, `#MLX`, `#open-source`
 
 ---
 
 <a id="item-6"></a>
-## [GitHub 支持批量使用智能体自动修复 Code Quality 发现的问题](https://github.blog/changelog/2026-09-09-remediate-code-quality-findings-with-agentic-autofix) ⭐️ 6.0/10
+## [Read the Docs 发布自适应 DDoS 攻击事后分析](https://about.readthedocs.com/blog/2026/09/2026-ddos-attack/) ⭐️ 6.0/10
 
-GitHub 宣布用户现在可以在一个页面上批量选择最多 25 条标准 Code Quality 发现，并将它们分配给智能体自动修复（agentic autofix）进行自动化处理。这大幅加快了清理代码质量积压问题的速度，而无需逐条处理。 拥有大量代码质量积压问题的团队现在可以批量将修复工作交给 Copilot 云端智能体，它会自动创建修复拉取请求。这将代码质量清理从人工分类变成了可监督的、基本自动化的工作流。 智能体自动修复要求仓库中可用 Copilot cloud agent 和 Copilot Autofix；如果云端智能体不可用，分配操作会回退到单条发现的 Copilot Autofix。也可以通过 Update a Code Scanning Alert REST API，将告警的 assignees 设为该机器人的标识符来以编程方式触发分配。 打开你的 Code Quality 仪表板，选择最多 25 条标准发现并分配给智能体自动修复，看看生成的修复拉取请求在你的代码库上效果如何。
+文档托管服务 Read the Docs 发布了一篇事后分析，描述了针对其平台的近期 DDoS 攻击。该攻击具有显著的自适应性，引发了社区关于 Cloudflare Under Attack Mode 等缓解方案选择的讨论。 来自中小型平台的真实事后分析对学习实际事件响应的运维人员很有价值，因为基于 CDN 的缓解措施在防护与用户/API 兼容性之间存在权衡。运营托管服务的读者可以借鉴其中关于何时以及如何部署分层防御的思路。 社区注意到 Cloudflare 的 Under Attack Mode 并未被启用，可能是为了避免破坏 API 访问，但有评论者认为仅对非 API 流量启用质询本可以起到帮助。攻击的自适应行为以及选择打击一个以静态、易于 CDN 缓存内容为主的文档站这一反常目标，令人质疑攻击者的真实动机。 如果你在 Cloudflare 后面运营网站，请阅读 Under Attack Mode 的文档，并预先规划事件发生时哪些路径（API 与浏览器流量）可以安全地启用质询。可在 Read the Docs 博客上阅读完整的事后分析，了解事件时间线和他们的响应决策。
 
-rss · GitHub Changelog · 9月9日 12:21
+hackernews · davidfischer · 9月9日 15:55 · [社区讨论](https://news.ycombinator.com/item?id=49628614)
 
-**背景**: GitHub Code Quality 使用 CodeQL 扫描默认分支和拉取请求，并在仪表板上展示带有建议修复的发现结果。智能体自动修复超越了单行补丁：它可以跨多个文件重写相关联的代码，并创建包含修复的拉取请求。底层的代码扫描功能早已用于分析仓库中的安全漏洞和编码错误，本次公告将智能体修复扩展到 Code Quality 发现的批量处理。
+**背景**: DDoS（分布式拒绝服务）攻击从大量来源向目标发送海量流量以耗尽资源、阻止正常用户访问，无法通过封锁单个 IP 来阻止。Cloudflare 的 Under Attack Mode 是一键式设置，会添加 JavaScript 质询页来过滤可疑的第 7 层（HTTP）流量，拦截机器人并放行通过验证的用户。由于 Read the Docs 同时提供面向人类的文档页面和供程序调用的 API 端点，激进的质询模式可能会破坏无法完成浏览器质询的自动化客户端。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://docs.github.com/en/code-security/concepts/code-quality/code-quality">GitHub Code Quality - GitHub Docs</a></li>
-<li><a href="https://docs.github.com/en/code-security/concepts/code-scanning/autofix-for-code-scanning">About autofix for code scanning - GitHub Docs</a></li>
-<li><a href="https://www.linkedin.com/pulse/github-copilot-introduces-multi-file-agentic-autofix-code-e6oqf">GitHub Copilot Introduces Multi-File Agentic Autofix for Code Scanning</a></li>
+<li><a href="https://developers.cloudflare.com/fundamentals/reference/under-attack-mode/">Under Attack mode · Cloudflare Fundamentals docs</a></li>
+<li><a href="https://en.wikipedia.org/wiki/DDoS_attack">DDoS attack</a></li>
+<li><a href="https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/">What is a DDoS attack? | Learning Center</a></li>
 
 </ul>
 </details>
 
-**标签**: `#github`, `#code-quality`, `#agentic-ai`, `#automation`, `#devtools`
+**社区讨论**: 评论者讨论了为何未启用 Under Attack Mode，有人建议仅对非 API 流量启用质询作为折中，也有人怀疑自适应攻击者无论如何都能绕过它。多人对攻击目标感到困惑——一个以静态、可 CDN 缓存内容为主的站点很难被压垮——由此引出各种动机猜测，包括“免费压力测试”的玩笑以及 AI 实验室配置错误的猜想。
+
+**标签**: `#security`, `#ddos`, `#incident-response`, `#post-mortem`, `#cloudflare`
 
 ---
 
 <a id="item-7"></a>
-## [Suno 推出仅用授权音乐训练的 v6 模型，应对版权诉讼](https://techcrunch.com/2026/09/09/suno-replaces-its-ai-models-with-a-new-one-trained-on-licensed-music-as-copyright-suits-pile-up/) ⭐️ 5.0/10
+## [Wired 记者用去除安全护栏的 AI 智能体入侵自家网络](https://www.wired.com/story/i-used-ai-to-hack-my-home-network/) ⭐️ 6.0/10
 
-Suno 发布了 Suno v6，并声称新模型仅使用获得授权的音乐进行训练，而此前版本的训练数据正是多起版权诉讼的核心争议。这一变化发生在多家唱片公司和音乐出版商持续起诉该公司之际。 这是迄今最明确的信号之一：对于面临版权索赔的生成式 AI 公司，训练数据的授权正在成为实际必要条件。开发者和创作者可以关注这一转变如何影响输出质量，它也可能为其他 AI 音乐和媒体工具树立先例。 该声明仅为官方口径，训练语料和授权范围尚无独立验证，且 Suno 早前的模型仍是正在进行的诉讼对象。v6 的架构、数据集规模或授权合作方等技术细节均未公布。 读者可以试用 Suno v6 并与早期版本的输出质量进行对比，同时关注后续法院判决，看授权转变是否会影响过去模型的法律责任。
+一位 Wired 记者移除了开源 AI 模型的安全护栏，让它自主探测自己的家庭网络，结果该模型在消费级设备中发现了漏洞，并成功入侵了一台 PC。事后该智能体还给出了加固网络的具体建议。 这是一次第一手的真实演示：现成的开源大模型可以对普通家庭环境执行有效的攻击性安全测试，而不只是针对实验室靶机。这同时也是对家庭用户的警示，因为研究显示大量消费级 IoT 设备出厂时就存在脆弱的安全性。 由于模型是开源的，其安全微调可以被移除（与研究中记录的“unRLHF”/消融类方法相关），使其不再拒绝渗透测试类请求。该文章属于大众科普叙事，缺少可复现的方法论、工具细节或具体使用的提示词。 将 IoT 设备隔离到访客网络或 VLAN 中，使被入侵的设备无法访问你的 PC；并且仅在获得明确授权、受控环境下对你自己的环境运行 AI 审计。切勿对不属于自己的系统或网络尝试去除模型护栏进行攻击，这在大多数司法辖区属于违法行为。
 
-rss · TechCrunch · 9月9日 12:05
+rss · Wired AI · 9月9日 18:30
 
-**背景**: Suno 是领先的 AI 音乐生成平台之一，用户可通过文字提示生成完整歌曲。2024 年，环球、华纳等主要唱片公司起诉 Suno（以及竞争对手 Udio），指控其模型未经许可使用受版权保护的录音进行训练。改用授权训练数据是其他 AI 公司（如与新闻机构和图库达成交易的厂商）为降低法律风险而采取的类似策略。
+**背景**: 开放权重的大模型可以被去除拒绝行为，因为任何拿到权重的人都能修改或微调模型，这也是研究者认为开源权重存在固有滥用风险的原因。渗透测试是经授权探测系统漏洞的实践，而面向渗透测试的自主 AI 智能体是活跃的研究与产品方向（例如运行在沙箱 Docker 环境中的自主测试平台）。家庭 IoT 环境的安全性 notoriously 薄弱：HP 的一项研究发现约 70%的家庭 IoT 设备存在漏洞，常见原因是弱密码、固件未打补丁，以及 IoT 设备与可信 PC 处于同一扁平网络中。
 
-**标签**: `#AI`, `#copyright`, `#music-generation`, `#legal`, `#licensing`
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.lesswrong.com/posts/3eqHYxfWb5x4Qfz8C/unrlhf-efficiently-undoing-llm-safeguards">unRLHF - Efficiently undoing LLM safeguards</a></li>
+<li><a href="https://pentagi.com/">Fully autonomous AI Agent for complicated penetration testing tasks</a></li>
+<li><a href="https://community.element14.com/technologies/internet-of-things/b/blog/posts/new-study-shows-70-percent-of-home-iot-devices-vulnerable-to-attack">New study shows 70 percent of home IoT devices vulnerable to attack</a></li>
+
+</ul>
+</details>
+
+**标签**: `#AI agents`, `#cybersecurity`, `#penetration testing`, `#IoT security`, `#home network`
+
+---
+
+<a id="item-8"></a>
+## [苹果推出 Apple Reference Image 功能，识别照片是否被 AI 修改](https://techcrunch.com/2026/09/09/apple-has-a-new-way-prove-your-iphone-photos-arent-ai-slop/) ⭐️ 5.0/10
+
+苹果宣布推出 Apple Reference Image 照片来源验证功能，帮助用户判断 iPhone 照片是否被编辑过，包括被 AI 修改的情况。此前报道称该功能旨在验证图片确实来自 iPhone 相机，预计将随 iOS 27 推出。 随着 AI 生成和修改的图片大量涌现，普通用户和记者都需要可靠的方式来区分真实照片与被篡改的照片。苹果以隐私为核心的设计思路，可能让来源验证功能在数亿 iPhone 用户中普及。 目前该公告仅为标题层面消息，尚无关于验证机制如何运作或结果如何展示的技术细节。报道称苹果在设计上保证即使苹果自己也无法在云端处理过程中访问敏感用户数据，与其一贯的隐私立场一致。 读者可以现在就通过 contentcredentials.org 上的 Adobe 免费验证工具体验 C2PA Content Credentials 的检查流程，并在该功能正式发布后关注苹果 iOS 27 的官方文档了解具体实现细节。
+
+rss · TechCrunch · 9月9日 18:08
+
+**背景**: 媒体来源溯源（provenance）指对数字图片的来源和编辑历史进行可验证的记录。业界标准方案是 C2PA（内容来源与真实性联盟），这是一个开放标准，通过在媒体文件中附加加密签名的元数据，让用户可以核查图片的来源和编辑历史，Adobe、尼康等公司的 Content Credentials 即基于此。与靠猜测图片是否为 AI 生成的检测工具不同，溯源方法是从拍摄之初就用密码学方式认证整个拍摄与编辑链条。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://9to5mac.com/2026/08/10/apple-is-working-on-a-way-to-authenticate-that-a-photo-came-from-an-iphone-camera/">Apple is working on a way to authenticate that a photo came... - 9to5Mac</a></li>
+<li><a href="https://c2pa.org/">C2PA | Verifying Media Content Sources</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Content_Credentials">Content Credentials - Wikipedia</a></li>
+
+</ul>
+</details>
+
+**标签**: `#Apple`, `#content authenticity`, `#AI-generated media`, `#photography`, `#provenance`
+
+---
+
+<a id="item-9"></a>
+## [8 月头部企业人均 AI 支出下滑](https://techcrunch.com/2026/09/09/ai-spend-per-employee-slumped-at-top-firms-in-august-summer-doldrums-or-a-warning-sign/) ⭐️ 5.0/10
+
+TechCrunch 报道称，2026 年 8 月头部企业的人均 AI 支出出现下滑，原因是 token 成本下降以及更便宜的模型不断涌现。文章提出一个悬而未决的问题：这一下滑究竟是季节性因素（夏季淡季），还是对依赖 AI 收入增长的超大规模云厂商的预警信号。 人均 AI 支出指标反映的是 AI 使用的强度而非简单的采用与否，因此下滑意味着企业可能以更少的钱获得更多产出——即使使用量在增长，AI 厂商的收入也会受到挤压。对财务和工程负责人而言，这说明推理价格持续通缩必须纳入 AI 预算和供应商选型模型中考虑。 该报道只是标题层面的宏观信号，未公布方法论或底层数据，因此 8 月的下滑应视为方向性趋势而非确证事实。背景很关键：被称为“AI 深度用户”的头部约 1%企业人均月支出约 7,449 美元，而前 10%中的其余企业仅约 611 美元；同时 2026 年超大规模云厂商资本开支预计超过 6,000 亿美元，其中约 75%与 AI 基础设施直接相关。 对照已公布的分层数据（例如普通头部企业人均每月约 611 美元 vs 精英企业约 7,449 美元），评估你所在组织的人均 AI 支出水平，并在未来一个季度持续关注 Token Price Index，判断推理成本通缩是否也在降低你们的实际支出。
+
+rss · TechCrunch · 9月9日 14:18
+
+**背景**: 随着竞争加剧和高效廉价模型不断推出，前沿及中端 AI 模型的 token 成本快速下降，Token Price Index 等公开指数持续追踪这一趋势。超大规模云厂商（微软、谷歌、亚马逊、Meta 等）正投入前所未有的资本开支建设 AI 数据中心和采购 GPU，其中大部分由云业务收入支撑，押注使用量增长将超过价格下降。人均 AI 支出已成为衡量编码助手、写作工具等生产力工具采用强度的标准财务指标。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.aicerts.ai/news/ai-spending-costs-soar-to-7500-per-employee/">AI Spending Costs Soar to $7,500 per Employee - AI CERTs News</a></li>
+<li><a href="https://tokenpriceindex.com/">AI Token Price Index</a></li>
+<li><a href="https://www.mufgamericas.com/sites/default/files/document/2025-12/AI_Chart_Weekly_12_19_Financing_the_AI_Supercycle.pdf">Hyperscalers’ Capex Above $600 Bn in 2026</a></li>
+
+</ul>
+</details>
+
+**标签**: `#AI economics`, `#enterprise adoption`, `#cloud spending`, `#industry trends`
+
+---
+
+<a id="item-10"></a>
+## [Rustls 迎来十周年，0.23 稳定并展望 1.0](https://lwn.net/Articles/1093391/) ⭐️ 5.0/10
+
+Joe Birr-Pixton 发布文章回顾 Rustls TLS 库的十年历程，从 2016 年 5 月 2 日的首次提交，到 2024 年 2 月发布的稳定 0.23 版本线，并展望 0.24 和最终的 1.0。0.23 版本线在不破坏兼容性的情况下发布了 43 个版本，新增了 FIPS 认证加密、证书压缩、Encrypted ClientHello 和后量子密码学等特性。 Rustls 是用内存安全的 Rust 替代 C/C++ TLS 实现的典范，在某些配置下性能超过 OpenSSL 和 BoringSSL。其发布策略——长期稳定的次版本线加频繁的非破坏性更新——对安全关键库的维护者是可借鉴的模式。 项目早期进展极快：首次提交一个月后即可与大多数网站互操作，0.1.0 于 2016 年 8 月 27 日发布，距首次提交不到四个月。即将发布的 0.24 将先于未来的 1.0，表明 API 正趋于长期稳定。 如果你维护使用 TLS 的 Rust 服务，可以阅读 Rustls 博客和 0.23 更新日志，评估是否采用后量子密码学或 Encrypted ClientHello 等特性，并关注 0.24 计划以应对 API 变化。
+
+rss · LWN.net · 9月9日 18:11
+
+**背景**: TLS（传输层安全）是为互联网通信提供机密性、完整性和身份认证的加密协议。Rustls 用 100% 内存安全的 Rust 实现全部协议处理，借助 Rust 的所有权和生命周期机制，避免 OpenSSL 等 C 语言库长期存在的内存安全漏洞。它也是业界用内存安全软件替代不安全网络软件的大趋势的一部分。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Rustls">Rustls - Wikipedia</a></li>
+<li><a href="https://rustls.dev/">rustls: a modern TLS library written in Rust</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">Transport Layer Security - Wikipedia</a></li>
+
+</ul>
+</details>
+
+**标签**: `#rust`, `#tls`, `#security`, `#open-source`, `#rustls`
+
+---
+
+<a id="item-11"></a>
+## [Typst 0.15 新增可变字体、MathML 和多参考文献支持](https://lwn.net/Articles/1092993/) ⭐️ 5.0/10
+
+据 LWN 报道，Typst 0.15 于六月发布，新增了可变字体、MathML 输出、多参考文献等功能。这个用 Rust 编写、采用 Apache-2.0 许可证的排版系统持续完善其 PDF、SVG 和 PNG 输出能力，HTML 输出仍在开发中。 对于正在评估 LaTeX 替代方案的读者来说，这次更新更清晰地展示了 Typst 日益完善的功能，尤其是对网页原生数学渲染至关重要的 MathML。多参考文献支持也解决了学术作者在章节间管理引文的常见痛点。 LWN 上次报道 Typst 时还是一年前的 0.13 版本，因此 0.15 代表的是一年的渐进式进展而非单一突破。MathML 支持意义重大，因为 MathML 是 HTML5 的一部分，未来 Typst 的 HTML 输出有望直接呈现高质量数学公式，而不是以图片形式嵌入。 阅读 typst.app 上的 0.15 更新日志，并尝试用可变字体和 MathML 输出编译一个小文档，评估 Typst 是否适合你当前的排版工作流。LWN 文章初期仅对订阅者开放，官方博客文章和更新日志是最佳的免费入口。
+
+rss · LWN.net · 9月9日 15:37
+
+**背景**: Typst 是一个用 Rust 编写的基于标记的排版系统，设计目标是像 LaTeX 一样强大但更易上手，内置标记语法、集成的脚本语言、数学排版和参考文献管理。可变字体是 OpenType 字体文件的一种，可在单个文件中存储连续的设计变体（如字重、字宽），从而实现精细的排版控制。MathML 是一种基于 XML 的标记语言，作为 HTML5 的一部分被标准化，用于在网页上原生描述数学公式。Typst 目前支持输出 PDF、SVG 和 PNG，HTML 输出正在积极开发中。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://typst.app/">Typst: The new foundation for documents</a></li>
+<li><a href="https://github.com/typst/typst">GitHub - typst/typst: A markup-based typesetting system that ...</a></li>
+<li><a href="https://en.wikipedia.org/wiki/MathML">MathML</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Variable_font">Variable font</a></li>
+
+</ul>
+</details>
+
+**标签**: `#typst`, `#latex`, `#typesetting`, `#rust`, `#open-source`
 
 ---
