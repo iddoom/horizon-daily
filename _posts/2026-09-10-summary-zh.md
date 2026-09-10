@@ -5,144 +5,57 @@ date: 2026-09-10
 lang: zh
 ---
 
-> 从 35 条内容中筛选出 6 条重要资讯。
+> 从 27 条内容中筛选出 2 条重要资讯。
 
 ---
 
-1. [Calif Research 演示 WeWorm：AI 加速开发的微信零点击蠕虫](#item-1) ⭐️ 8.0/10
-2. [OpenAI 宣称 AI 解决了纳维-斯托克斯千年大奖难题](#item-2) ⭐️ 8.0/10
-3. [Reddit 帖子警告 OpenAI 会用你的对话做训练，力推本地模型保隐私](#item-3) ⭐️ 6.0/10
-4. [四个威胁组织被发现使用同一套 Chrome 和 Windows 漏洞利用工具包](#item-4) ⭐️ 5.0/10
-5. [GitHub Copilot 代理操作的企业托管权限功能](#item-5) ⭐️ 5.0/10
-6. [传闻中的苹果 A20 Pro：7 核 GPU、32 核神经网络引擎、约 115 GB/s 带宽](#item-6) ⭐️ 5.0/10
+1. [DeepSeek 发布 V4.1 Flash（552B 参数）并附详细技术报告](#item-1) ⭐️ 8.0/10
+2. [Reddit 分析：DeepSeek V4.1 Flash 实际参数量为 748B](#item-2) ⭐️ 6.0/10
 
 ---
 
 <a id="item-1"></a>
-## [Calif Research 演示 WeWorm：AI 加速开发的微信零点击蠕虫](https://simonwillison.net/2026/Sep/10/calif-research/) ⭐️ 8.0/10
+## [DeepSeek 发布 V4.1 Flash（552B 参数）并附详细技术报告](https://twitter.com/deepseek_ai/status/2097930608790167907) ⭐️ 8.0/10
 
-Calif Research 发布了 WeWorm 演示，号称首个通过微信通话在 iOS 和 Android 间传播的零点击蠕虫，完全不需要用户交互。借助 AI，团队约两天内找到漏洞并写出首个远程代码执行（RCE）漏洞利用，再用一周构建出蠕虫本体。 这表明 AI 已能将原本需要大型团队数月完成的漏洞利用开发压缩到几天，从根本上改变了攻击性安全的成本结构。防御方和厂商需要重新评估针对大规模通讯应用的高级攻击出现速度的假设。 受害者无需接听电话或与手机有任何交互；即使接听也听不到任何声音，漏洞利用依然成功。团队指出 AI 承担了大部分技术工作，人类主要负责选择目标和安全测试的判断。 阅读 Calif Research 原文和 Simon Willison 的帖子以了解其方法论，然后审视你的组织在移动应用安全计划中是否已考虑 AI 加速漏洞利用开发的时间线。
+DeepSeek 在 HuggingFace 上发布了视觉-语言 MoE 模型 DeepSeek-V4.1-Flash，总参数约 552B（HN 讨论所述；vLLM recipes 列为 522B，每个输入 token 激活 8B），并附带一份细节异常丰富的技术报告。其规模约为上一代 V4 Flash（284B）的两倍，基准测试成绩显著提升，其中 Cyberbench 表现尤为突出。 作为附带透明工程报告的开放权重发布，它为研究者和从业者提供了可复用的架构思路，而不仅是营销宣传。但规模近乎翻倍，使其在许多消费级硬件上难以本地部署，这是关键的实用考量。 该模型采用两层稀疏注意力机制，包含 40 层 transformer（隐藏维度 5120）、一个 32 层 ViT 加对齐模块以实现原生视觉理解，每个输出 token 激活约 16B 参数，推理速度很快（测试构建据报可达约 400 tokens/秒）。评论者指出，权重超过约 470B 意味着在 Strix Halo 等 2x128GB 统一内存机器上需要低于 4-bit 的量化才能装下。 从 HuggingFace 页面（huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash）下载权重和技术报告，并通过 vLLM 在你的实际任务上做评测；注意超过约 470B 的权重意味着需要规划多 GPU 部署或激进量化。
 
-rss · Simon Willison · 9月10日 00:56
+hackernews · Liwink · 9月10日 06:11 · [社区讨论](https://news.ycombinator.com/item?id=49639090)
 
-**背景**: 零点击漏洞利用无需用户任何操作即可入侵设备，由于不依赖钓鱼式交互，属于最危险、价值最高的攻击类型。远程代码执行（RCE）允许攻击者通过网络在目标设备上运行任意代码。蠕虫与病毒不同，它能自我复制并在设备间自动传播，可能迅速感染大量设备——这正是具备蠕虫传播能力的零点击 RCE 一旦在野外武器化会异常严重的原因。
+**背景**: DeepSeek 是一家以开放权重发布著称的中国 AI 实验室，其技术报告会披露西方实验室通常保密的训练与架构细节。"开放权重"指训练好的模型参数可公开下载，可在本地运行或微调。前几代中 "Flash" 代表旗舰模型中更小、更易部署的版本；MoE（混合专家）架构则通过每个 token 只激活一小部分参数，在总规模很大的同时降低计算成本。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://grokipedia.com/page/Zero-click_exploit">Zero-click exploit</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Computer_worm">Computer worm - Wikipedia</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Arbitrary_code_execution">Arbitrary code execution - Wikipedia</a></li>
+<li><a href="https://recipes.vllm.ai/deepseek-ai/DeepSeek-V4.1-Flash">deepseek-ai/DeepSeek-V4.1-Flash | vLLM Recipes - recipes.vllm.ai</a></li>
+<li><a href="https://www.deepseek.com/en/news/deepseek-v4-1-flash/">Introducing DeepSeek-V4.1-Flash: smarter, faster, more efficient.</a></li>
+<li><a href="https://www.ai21.com/glossary/foundational-llm/open-weights-model/">What is an Open-Weights Model? | AI21</a></li>
 
 </ul>
 </details>
 
-**标签**: `#ai-security`, `#zero-click-exploit`, `#offensive-security`, `#weechat`, `#ai-acceleration`
+**社区讨论**: 评论者称赞 DeepSeek 技术报告细节丰富、敢于在前沿规模上尝试新想法，并与西方实验室以安全为主的系统卡形成鲜明对比。担忧主要集中在 552B 的翻倍规模使本地部署更困难（超过 2x128GB 机器约 470B 的现实上限，需要低于 4-bit 量化），以及基准提升是否代表真实性能，不过大家也认可 DeepSeek 一贯的可信度。
+
+**标签**: `#AI models`, `#DeepSeek`, `#open-weights`, `#LLM release`, `#HuggingFace`
 
 ---
 
 <a id="item-2"></a>
-## [OpenAI 宣称 AI 解决了纳维-斯托克斯千年大奖难题](https://www.theverge.com/ai-artificial-intelligence/992953/openai-math-millennium-prize-navier-stokes) ⭐️ 8.0/10
+## [Reddit 分析：DeepSeek V4.1 Flash 实际参数量为 748B](https://www.reddit.com/r/LocalLLaMA/comments/1wcd4rx/deepseek_v41_flash_is_748b_not_552b/) ⭐️ 6.0/10
 
-2026 年 9 月 8 日，OpenAI 宣布利用约一万个运行内部前沿模型的 AI 智能体集群，得出了三维欧几里得空间中纳维-斯托克斯解破裂的反例，并用 Lean 证明助手进行了形式化。OpenAI 表示不会领取克雷研究所的百万美元千年大奖，且该结果尚未得到外部数学家或克雷数学研究所的验证。 如果 AI 智能体真的攻克千年大奖难题，将是 AI 辅助研究的里程碑，表明前沿模型能够自动化纯数学领域的深度专家工作。这也引发了关于验证、署名权和优先权的紧迫问题，尤其是当 AI 系统建立在人类数学家尚未发表或密切相关的研究成果之上时。 该反例建立在 Diego Córdoba 和 Luis Martínez-Zoroa 于 2023 年提出的一种在相关流体方程中寻找爆破现象的方法之上；公告还引发了与 Anthropic 员工 Levent Alpöge 及 Tristan Buckmaster 的优先权争议，两人曾推导出工作中用到的密切相关的欧拉方程结果。Lean 形式化有助于验证，但仍需数学界和克雷研究所的独立审查。 关注验证进展：在将该结论视为定论之前，留意独立数学家对 Lean 形式化证明的评审以及克雷数学研究所的官方声明。
+一位 Reddit 用户检查了 HuggingFace 上的 safetensors 文件，发现 DeepSeek V4.1 Flash 总参数量约为 748B：主模型 551.5B（其中 FFN 专家 543.6B，注意力/共享专家等约 8B），外加约 197B 的 engram、约 14B 的 MTP 和约 0.5B 的视觉编码器。HuggingFace 标注的 485B 偏小，因为它把 FP4 打包权重按字节数而非参数个数统计（每字节包含 2 个 FP4 参数）。 任何想在本地运行该模型的人都需要准确的参数量来估算显存/内存需求，约 748B 的总规模意味着 128GB 甚至 256GB 的 RAM/VRAM 都不够用。这也提醒大家：对于 FP4 量化的模型，不能直接采信 HuggingFace 页面上标注的参数规模。 主模型共 40 层，参数绝大部分来自 FFN 专家（551.57B 中的 543.58B），而视觉编码器出乎意料地小（约 0.485B）。engram、MTP（多 token 预测）和视觉组件在技术上属于检查点中的可选部分。 如果你想在本地运行该模型，请按约 748B 的真实参数量（再加 KV 缓存）来规划内存；对于 FP4 模型，先自行检查 safetensors 中的张量形状，不要轻信页面上标注的参数量。
 
-rss · The Verge · 9月9日 21:16
+reddit · r/LocalLLaMA · /u/DistanceSolar1449 · 9月10日 08:27
 
-**背景**: 纳维-斯托克斯方程是描述流体运动的偏微分方程组；其三维解是否总是光滑是克雷数学研究所 2000 年设立的七个千年大奖难题之一，每个问题悬赏一百万美元。该问题之所以重要，是因为其解常涉及湍流——物理学的重大未解难题之一，尽管这些方程在工程实践中应用极广。有效的解答既可以是光滑性的证明，也可以是表明解会破裂的反例。
+**背景**: safetensors 是一种安全且快速的张量存储格式，常用于保存模型检查点，通过查看其中张量的形状即可精确计算参数量。FP4 量化会把两个 4-bit 数值打包进一个字节，因此基于文件字节数的统计得到的参数量只有实际数量的一半。MTP（多 token 预测）由 DeepSeek-V3 引入，通过辅助预测头一次预测多个未来 token，并可通过投机解码加速推理。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Navier-Stokes_existence_and_smoothness_problem">Navier-Stokes existence and smoothness problem</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Millennium_Prize_Problems">Millennium Prize Problems - Wikipedia</a></li>
+<li><a href="https://huggingface.co/docs/safetensors/en/index">Safetensors · Hugging Face</a></li>
+<li><a href="https://huggingface.co/deepseek-ai/DeepSeek-V3">deepseek -ai/ DeepSeek -V3 · Hugging Face</a></li>
+<li><a href="https://tensara.org/problems/nvfp4-quantize">NVFP 4 Quantization | Tensara</a></li>
 
 </ul>
 </details>
 
-**标签**: `#AI`, `#mathematics`, `#research`, `#OpenAI`, `#Millennium Prize`
-
----
-
-<a id="item-3"></a>
-## [Reddit 帖子警告 OpenAI 会用你的对话做训练，力推本地模型保隐私](https://www.reddit.com/r/LocalLLaMA/comments/1wby2cm/surveillance_plagiarism_by_openai/) ⭐️ 6.0/10
-
-r/LocalLLaMA 上的一篇帖子认为，OpenAI 默认用用户会话和上传数据做训练（除非主动退出），这可能让其内部模型利用研究者的提示工作，从而虚增模型表面的自主性。帖子引用了 Tristan Buckmaster 关于 OpenAI 和 Sebastian Bubeck 在 Navier-Stokes 证明争议中不当行为的声明。 对于竞争力依赖提示策略或未公开研究思路的人来说，这凸显了托管 AI 服务具体的数据泄露风险，并在保密性重要时增强了使用本地开源权重模型的理由。这也让人质疑内部模型“几乎无需人类指导就解决难题”的说法。 '监视式剽窃'的说法是基于二手描述的推测性观点，并非模型利用用户提示的确凿证据。值得注意的是，OpenAI 默认确实会用对话做训练，但用户可在 设置 → 数据控制 中退出，或使用临时聊天模式；退出训练不会追溯删除已被使用的数据。 检查 ChatGPT 的 设置 → 数据控制，关闭用你的数据做训练的选项；敏感讨论可开启临时聊天，或改用本地部署的开源权重模型处理真正保密的提示工作。
-
-reddit · r/LocalLLaMA · /u/Shoddy-Childhood-511 · 9月9日 20:55
-
-**背景**: 纽约大学数学家 Tristan Buckmaster 公开指控 OpenAI 的 Sébastien Bubeck 在与 OpenAI 声称的 Navier-Stokes 证明相关的论文上向他施压，包括要求删去竞争实验室合作者的署名；Bubeck 否认了这些指控。另外，OpenAI 的 ChatGPT FAQ 确认除非用户主动退出，对话可能被用于训练。开源权重模型（如 Qwen 等）可完全在本地运行，提示词和数据不会离开用户设备。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://techcrunch.com/2026/09/08/openai-fought-dirty-on-career-making-math-problem-says-nyu-mathematician/">OpenAI fought dirty on career-making math problem, says NYU mathematician | TechCrunch</a></li>
-<li><a href="https://blog.stackaware.com/p/opt-out-of-chatgpt-data-sharing">Opt - out of ChatGPT training - by Walter Haydock</a></li>
-
-</ul>
-</details>
-
-**标签**: `#AI privacy`, `#data training policy`, `#local LLMs`, `#OpenAI`, `#AI ethics`
-
----
-
-<a id="item-4"></a>
-## [四个威胁组织被发现使用同一套 Chrome 和 Windows 漏洞利用工具包](https://arstechnica.com/information-technology/2026/09/4-groups-caught-using-the-same-chrome-and-windows-exploit-kit/) ⭐️ 5.0/10
-
-Ars Technica 报道称，四个不同的威胁行为者组织被发现使用同一套针对 Chrome 和 Windows 漏洞的漏洞利用工具包。报道将这种趋同现象归因于补丁空窗期以及 AI 驱动的漏洞发现速度不断加快。 当多个威胁组织复用同一套漏洞利用工具包时，防御者只需修补底层漏洞并检测该工具包的共同行为特征，即可同时拦截多个攻击者。这也表明漏洞利用工具正在商品化，降低了低水平攻击者的准入门槛。 目前该文章仅有标题信息，尚未公布危害指标（IOC）、CVE 编号或技术分析细节。文中提到的两个促成因素是补丁空窗期（补丁发布与实际部署之间的延迟）以及 AI 辅助漏洞发现，有研究显示后者已使平均漏洞利用时间缩短至 20 小时以内。 读者应优先快速部署 Chrome 和 Windows 的安全更新（尽可能启用自动更新），并关注 Ars Technica 完整文章，待技术细节和危害指标发布后及时跟进。
-
-rss · Ars Technica · 9月9日 20:55
-
-**背景**: 漏洞利用工具包（exploit kit）是一种犯罪软件工具包，可自动探测受害者浏览器或操作系统中的已知漏洞并投放恶意软件，操作者无需高级技术能力；这类工具包常在黑市上出售或出租。补丁空窗期指厂商发布修复补丁与组织实际部署补丁之间的时间窗口，在此期间未打补丁的系统持续暴露于风险中。AI 驱动的漏洞发现利用在大规模漏洞数据集上训练的模型，比人类研究者更快、更低成本地找到零日漏洞，而防御方仍以人类速度运行补丁周期，由此形成了危险的不对称局面。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Exploit_kit">Exploit kit</a></li>
-<li><a href="https://www.helpnetsecurity.com/2026/04/15/anthropic-claude-mythos-ai-vulnerability-discovery/">The exploit gap is closing, and your patch cycle wasn't built for this - Help Net Security</a></li>
-<li><a href="https://seraphicsecurity.com/resources/blog/the-patch-gap-is-here-to-stay/">The Patch Gap is Here to Stay - Seraphic Security</a></li>
-
-</ul>
-</details>
-
-**标签**: `#security`, `#exploits`, `#chrome`, `#windows`, `#threat-intelligence`
-
----
-
-<a id="item-5"></a>
-## [GitHub Copilot 代理操作的企业托管权限功能](https://github.blog/changelog/2026-09-09-enterprise-managed-permissions-for-github-copilot-agent-operations) ⭐️ 5.0/10
-
-GitHub 宣布 Copilot Business 和 Copilot Enterprise 的管理员现在可以集中管控 Copilot 代理操作：哪些被阻止、哪些需要人工审批、哪些无需提示即可执行。托管权限涵盖 shell 命令、文件读取和编辑等操作类别。 这让企业管理员能够通过策略层面的控制，在 AI 代理自主操作代码仓库时平衡开发效率与安全合规。组织可以对所有 Copilot 用户强制执行统一的防护措施，而不再依赖每个用户的权限提示。 权限对每类操作分为三个级别：阻止、需要审批、免提示执行。该功能仅适用于 Copilot Business 和 Enterprise 版本，不适用于个人版或免费版。 如果你是 Copilot Business 或 Enterprise 的管理员，请查看该变更公告并检查组织的 Copilot 策略设置，将代理操作（如 shell 命令、文件编辑）分类为阻止、需审批或免提示执行。
-
-rss · GitHub Changelog · 9月9日 20:08
-
-**背景**: Copilot 代理模式允许 AI 代理自主执行编辑文件、运行 shell 命令等任务，从 issue 一路处理到合并。由于代理可能执行具有影响的操作，企业需要审计日志和策略控制；Copilot Enterprise 提供了 SSO、SCIM 和数据驻留等合规功能。此前权限决策主要通过用户级提示进行，难以实现统一的治理。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://github.blog/changelog/2026-09-09-enterprise-managed-permissions-for-github-copilot-agent-operations/">Enterprise managed permissions for GitHub Copilot agent operations</a></li>
-<li><a href="https://docs.github.com/en/copilot/get-started/plans">Plans for GitHub Copilot - GitHub Docs</a></li>
-
-</ul>
-</details>
-
-**标签**: `#GitHub Copilot`, `#AI agents`, `#enterprise`, `#permissions`, `#changelog`
-
----
-
-<a id="item-6"></a>
-## [传闻中的苹果 A20 Pro：7 核 GPU、32 核神经网络引擎、约 115 GB/s 带宽](https://www.reddit.com/r/LocalLLaMA/comments/1wc0ekw/apple_a20_pro_debuts_with_7core_gpu_32core_neural/) ⭐️ 5.0/10
-
-泄露的规格显示，苹果 A20 Pro 将从 64 位 LPDDR5X 内存总线升级到 96 位，带宽约达 115 GB/s（比 A19 Pro 提升约 50%）。传闻该芯片还将把神经网络引擎从 16 核翻倍至 32 核，并采用台积电 2nm 工艺制造。 内存带宽是端侧大模型推理的主要瓶颈，因为 token 生成速度在很大程度上取决于从内存读取模型权重的速度。带宽提升 50%将显著改善未来 iPhone 上本地大模型的运行速度，直接利好端侧 AI 工作负载。 这些规格均为未经证实的传闻，而且即便达到约 115 GB/s，iPhone 仍远低于 192 位 GDDR6 独立显卡等桌面级方案的带宽水平。2nm 工艺成本高昂——每片晶圆估计约 2.8 万至 3 万美元——这可能限制苹果扩大总线宽度的力度。 由于这些均为未经证实的泄露信息，暂无采取具体行动的必要；在做出任何与端侧 AI 能力相关的升级或开发决策之前，应等待苹果官方发布。
-
-reddit · r/LocalLLaMA · /u/Balance- · 9月9日 22:23
-
-**背景**: 苹果的神经网络引擎是自 2017 年 A11 Bionic 以来每代 A 系列 SoC 都内置的专用 AI 加速器，但开发者过去几乎无法直接控制它。在本地大模型推理中，苹果芯片依赖三大支柱：Metal GPU、统一内存和神经网络引擎。LPDDR5X 带宽随总线宽度线性扩展——例如 9600 MT/s 的 LPDDR5X 在 512 位总线上可达约 600 GB/s——因此从 64 位扩展到 96 位是在功耗受限的移动芯片上提升带宽的直接手段。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://wccftech.com/apple-a20-pro-leaked-specs-4-9ghz-cpu-7-core-gpu-m3-bandwidth/">Apple’s A20 Pro Rumored Specifications Arrive Before Official...</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Neural_Engine">Neural Engine - Wikipedia</a></li>
-<li><a href="https://siliconanalysts.com/guide/semiconductor-costs">Semiconductor Manufacturing Costs Explained: $2,500 to $20,000 Per Wafer by Node (2026)</a></li>
-
-</ul>
-</details>
-
-**标签**: `#apple-silicon`, `#hardware`, `#on-device-ai`, `#local-llm`, `#memory-bandwidth`
+**标签**: `#deepseek`, `#llm`, `#model-architecture`, `#local-inference`, `#parameter-count`
 
 ---
