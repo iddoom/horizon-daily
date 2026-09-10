@@ -5,189 +5,230 @@ date: 2026-09-10
 lang: zh
 ---
 
-> 从 45 条内容中筛选出 8 条重要资讯。
+> 从 57 条内容中筛选出 10 条重要资讯。
 
 ---
 
-1. [Shopify 从 React Native 回归原生移动开发](#item-1) ⭐️ 8.0/10
-2. [Sber 发布 MIT 许可的 GigaChat-3.5 Reasoning，432B-A28B MoE 模型](#item-2) ⭐️ 8.0/10
-3. [微软正式将 Rust 定为 Tier-1 编程语言](#item-3) ⭐️ 6.0/10
-4. [用户报告 OpenAI 反复重新开启“允许训练”设置](#item-4) ⭐️ 6.0/10
-5. [MIT 科技评论：AI 电力需求暴露电网架构风险](#item-5) ⭐️ 6.0/10
-6. [维基页面整理索尼在数字游戏所有权诉讼中的相关声明](#item-6) ⭐️ 5.0/10
-7. [美国储能市场高速增长，仍依赖中国电池](#item-7) ⭐️ 5.0/10
-8. [Clearview AI 测试 InquiryIQ 工具，可将人脸关联到完整网络生活](#item-8) ⭐️ 5.0/10
+1. [Shopify 从 React Native 回归原生开发](#item-1) ⭐️ 9.0/10
+2. [Forgejo <=16.0.3 严重远程代码执行漏洞已在 16.0.4 修复](#item-2) ⭐️ 8.0/10
+3. [Forgejo 16.0.4 与 15.0.8 修复通过 .git 目录注入实现的关键 RCE 漏洞](#item-3) ⭐️ 7.0/10
+4. [CyberTiel 35B-A3B 4-bit 量化模型在 SWE-bench-Live 上超越更大编程模型](#item-4) ⭐️ 7.0/10
+5. [openai-python v3.13.0 新增原生 Agents API 端点](#item-5) ⭐️ 6.0/10
+6. [openai-python v3.12.0 新增 Live API 支持并修复异步问题](#item-6) ⭐️ 6.0/10
+7. [研究者用 Codex 和 ChatGPT 挖掘基因组寻找新型抗菌分子](#item-7) ⭐️ 6.0/10
+8. [OpenAI 在 ChatGPT Work 中推出 Data agent](#item-8) ⭐️ 6.0/10
+9. [PostgreSQL 19 因多个不稳定补丁面临发布质量担忧](#item-9) ⭐️ 6.0/10
+10. [GitHub Actions 推出 cache-mode 设置，实现缓存最小权限访问](#item-10) ⭐️ 5.0/10
 
 ---
 
 <a id="item-1"></a>
-## [Shopify 从 React Native 回归原生移动开发](https://shopify.engineering/back-to-native) ⭐️ 8.0/10
+## [Shopify 从 React Native 回归原生开发](https://shopify.engineering/back-to-native) ⭐️ 9.0/10
 
-Shopify 宣布将其移动应用从 React Native 迁回 iOS 和 Android 原生开发。一个关键驱动因素是 LLM 编码工具改变了两套原生代码库的维护成本，动摇了其 2020 年选择 React Native 时的核心假设。 这是近二十年跨平台与原生之争中的一个重要数据点，而 Shopify 曾是 React Native 最著名的采用者之一。它表明 AI 辅助编程可以通过降低并行原生开发的成本来改变技术栈决策，对任何正在选择移动架构的团队都有参考价值。 Shopify 强调此举并非 React Native 的失败，而是当核心假设发生变化后基于第一性原理的重新评估——尤其是 AI 工具降低了编写和维护各平台代码的成本。评论者指出，实践中跨平台框架往往仍需要大量平台专属工程师，人力成本的节省比承诺的要小。 如果你正在做移动技术栈决策，建议阅读 Shopify 的工程博客文章，并把 AI 编码工具纳入成本分析重新测算——各平台开发成本基线相比上次评估很可能已经下降。
+Shopify 解释了为何将其移动应用从 React Native 迁回完全原生开发，引发了社区关于跨平台框架何时适用以及 AI 代码生成如何改变这一权衡的热烈讨论。
 
 hackernews · fnthawar2 · 9月10日 14:09 · [社区讨论](https://news.ycombinator.com/item?id=49643982)
 
-**背景**: React Native 允许团队用 JavaScript/TypeScript 编写 iOS 和 Android 应用，同时渲染真正的原生视图，承诺一套代码覆盖两个平台。Shopify 在 2020 年前后大力投入 React Native 并对生态贡献良多。跨平台与原生之争自 Apache Cordova 等工具以来已持续约二十年，反复出现的模式是：跨平台框架以牺牲平台体验和能力为代价换取开发成本的降低。
-
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://idealogic.io/blog/cross-platform-app-development">Cross - Platform App Development: Frameworks & Tradeoffs</a></li>
-<li><a href="https://dev.to/apptagellc/hybrid-vs-native-mobile-apps-what-actually-matters-for-ux-in-2026-47ed">Hybrid vs Native Mobile Apps: What Actually... - DEV Community</a></li>
-
-</ul>
-</details>
-
-**社区讨论**: 评论者普遍认为这是取决于具体情境的工程权衡，而非对 React Native 本身的否定。一位开发者报告用 Codex 在一夜之间把一个 15-20 个屏幕的 React Native 应用重写为原生 Android 和 iOS 版本，印证了重写经济学已经改变。一位资深观察者指出了反复出现的模式：采用跨平台方案并未真正减少人力，因为平台专属专业知识仍然不可或缺；一位 Shopify 工程师确认，当 LLM 改变了核心假设后，他们从第一性原理出发重新做了评估。
-
-**标签**: `#mobile-development`, `#react-native`, `#shopify`, `#cross-platform`, `#engineering-decisions`
+**标签**: `#mobile-development`, `#react-native`, `#shopify`, `#engineering-decisions`, `#ai-code-generation`
 
 ---
 
 <a id="item-2"></a>
-## [Sber 发布 MIT 许可的 GigaChat-3.5 Reasoning，432B-A28B MoE 模型](https://www.reddit.com/r/LocalLLaMA/comments/1wchl1x/gigachat35reasoning/) ⭐️ 8.0/10
+## [Forgejo <=16.0.3 严重远程代码执行漏洞已在 16.0.4 修复](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/release-notes-published/16.0.4.md) ⭐️ 8.0/10
 
-Sber 旗下的 AI-Sage 团队发布了 GigaChat-3.5 Reasoning，这是一个总参数 432B、激活参数 28B 的混合专家（MoE）模型，采用 Gated DeltaNet 架构以提升长上下文效率。团队先用 CISPO 强化学习训练了代码、数学、通用等多个领域专家模型，再通过在线策略蒸馏（on-policy distillation）合并为单一模型，声称性能接近 DeepSeek V4 Flash Preview，且推理 token 用量减少 37%。 这是一个采用宽松 MIT 许可的完全开放权重发布，任何运行本地 LLM 的用户都可以下载、微调并无限制地商业部署。其领域专家蒸馏的训练方法对构建高效推理模型的团队也具有可复用价值。 432B-A28B 的 MoE 配置意味着每个 token 仅激活约 28B 参数，相对总模型规模大幅降低了推理成本。性能声明来自开发者自测，公告中未提供独立基准测试结果；而且即使有 MoE 稀疏性，在本地运行 432B 模型仍需要相当可观的硬件资源。 可以从 Hugging Face 上的 ai-sage/gigachat-35-reasoning 集合以 MIT 许可下载权重，或者先在 giga.chat 网站选择最右侧的 reasoning 标签页直接试用，再决定是否投入硬件进行本地部署。
+Forgejo 16.0.4 修复了影响 16.0.3 及更早版本的严重远程代码执行（RCE）漏洞，该漏洞源于模板仓库的变量展开过程干扰了 git 仓库初始化。恶意模板仓库可以读取 Forgejo 主机上的任意数据并执行任意进程。 Forgejo 被广泛用于自托管场景，主机级 RCE 可能导致源代码、密钥和配置泄露，或被用来攻击其他服务。允许不受信任用户创建模板仓库的自托管用户首当其冲，应立即升级。 从模板生成仓库时，Forgejo 会克隆模板、删除 .git 目录、对 .forgejo/template 中列出的文件进行变量展开，然后初始化新的 git 仓库；漏洞正是发生在模板展开干扰初始化步骤时。据 Gitea 项目领导层确认，与 Forgejo 同源的 Gitea 不受此问题影响。 立即将 Forgejo 实例升级到 16.0.4 或更高版本，并审查由不受信任用户创建的模板仓库中是否含有恶意的 .forgejo/template 条目。如无法立即升级，应限制创建或使用模板仓库的权限。
 
-reddit · r/LocalLLaMA · /u/netikas · 9月10日 12:19
+hackernews · weierstass · 9月10日 15:57 · [社区讨论](https://news.ycombinator.com/item?id=49645907)
 
-**背景**: Gated DeltaNet 是 NVIDIA 提出的线性注意力架构（ICLR 2025），通过门控增量规则（gated delta rule）改进 Mamba2，在语言建模、长上下文理解等基准上优于 Mamba2 和 DeltaNet，训练吞吐量更高。CISPO 是 MiniMax-M1 论文提出的强化学习算法，属于 PPO 风格的策略优化，它将重要性采样权重裁剪为 stop-gradient 系数，保证每个有效 token 都有梯度流过，比 GRPO 更稳定、样本效率更高。在线策略蒸馏（on-policy distillation）让学生模型采样自己的轨迹，由教师模型提供稠密的 token 级监督，从而避免了传统离线蒸馏中训练与推理分布不匹配的问题。
+**背景**: Forgejo 是从 Gitea 分叉的开源自托管 Git 服务，Codeberg 等平台即在使用。模板仓库功能允许用户生成预填充文件的新仓库，并通过类似 Go 语言 os.Expand 的语法对文件内容进行变量替换。远程代码执行（RCE）漏洞使攻击者能以应用进程的权限在服务器上执行任意命令。修复已发布于 16.0.4 版本（对应 Codeberg 上的 issue #14300 和 PR #14301）。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://arxiv.org/abs/2412.06464">[2412.06464] Gated Delta Networks: Improving Mamba2 with ... Architecture | NVlabs/GatedDeltaNet | DeepWiki GitHub - NVlabs/GatedDeltaNet: [ICLR 2025] Official PyTorch ... Paper page - Gated Delta Networks: Improving Mamba2 with ... Gated DeltaNet | Sebastian Raschka, PhD NVlabs/GatedDeltaNet | DeepWiki Gated Delta Networks: Improving Mamba2 with Delta Rule | Research</a></li>
-<li><a href="https://swift.readthedocs.io/en/latest/Instruction/GRPO/AdvancedResearch/CISPO.html">Clipped Importance Sampling Policy Optimization (CISPO)</a></li>
-<li><a href="https://thinkingmachines.ai/blog/on-policy-distillation/">On-Policy Distillation - Thinking Machines Lab</a></li>
+<li><a href="https://news.ycombinator.com/item?id=49645907">Forgejo <=16.0.3 Critical RCE | Hacker News</a></li>
+<li><a href="https://codeberg.org/forgejo/forgejo/issues/14300">#14300 - 2026-09-10 security patches - forgejo/forgejo ...</a></li>
+<li><a href="https://www.sentinelone.com/vulnerability-database/cve-2025-68937/">CVE-2025-68937: Forgejo RCE Vulnerability - SentinelOne</a></li>
 
 </ul>
 </details>
 
-**标签**: `#llm`, `#open-source`, `#reasoning-models`, `#moe`, `#model-release`
+**社区讨论**: 评论者澄清了漏洞机制（从模板初始化 git 仓库时的变量展开），并确认 Gitea 不受影响。有用户批评 Codeberg 安全团队的响应态度，并猜测在 Forgejo 禁止 AI 贡献后攻击者会用 LLM 找漏洞；一位 Gitea 领导者则提醒不要因安全事件指责项目，以免减少漏洞报告。
+
+**标签**: `#security`, `#cve`, `#forgejo`, `#rce`, `#devops`
 
 ---
 
 <a id="item-3"></a>
-## [微软正式将 Rust 定为 Tier-1 编程语言](https://rustfoundation.org/media/guest-post-rust-is-tier-1-language-at-microsoft/) ⭐️ 6.0/10
+## [Forgejo 16.0.4 与 15.0.8 修复通过 .git 目录注入实现的关键 RCE 漏洞](https://lwn.net/Articles/1093671/) ⭐️ 7.0/10
 
-微软正式将 Rust 定为系统编程的 Tier-1 语言，使其与 C 和 C++在公司内部语言战略中并列。继谷歌（Android）和苹果之后，微软成为最新一家在系统级开发中超越 C/C++的操作系统厂商。 这表明 Rust 技能正成为有价值的职业投资，微软将越来越多地在 Windows 和 Azure 的新系统代码中使用它。对于开发 Windows 原生软件的团队，这也引出了工具链成熟度的问题，例如 Visual Studio 支持和 WinRT 库绑定。 这一公告是战略层面的，而非工具发布：Rust 目前尚未在 Visual Studio 中获得完整支持，评论者也指出缺少用于构建 WinRT 3.0 原生应用的 Rust 库。微软此前在 Rust 方面的投入，包括 Rust-for-Windows 绑定和 MSVC 工具链集成，为这次定级奠定了基础。 阅读 Rust 基金会发布的公告客座文章；如果你的项目面向 Windows，可以尝试使用 rust-for-windows 这个 crate 从 Rust 调用 Windows API，以评估工具链在你自己项目中的成熟度。
+Forgejo 发布了 16.0.4 和 15.0.8 两个版本，修复了两个安全漏洞，其中包括一个可导致远程代码执行（RCE）的关键缺陷。该漏洞允许恶意模板仓库滥用变量展开机制重建 .git 目录，从而被 git 在初始化新仓库时采用。 任何运行自托管 Forgejo 且允许用户从模板创建仓库的实例，都可能遭受服务器上的任意文件读取和任意代码执行。这一攻击向量也很有技术参考价值：在处理流程的中间步骤之间信任文件系统内容，可能会破坏看似安全的工作流。 有缺陷的流程是：克隆模板仓库、删除 .git 目录、对 .forgejo/template 中列出的文件做变量展开，然后执行 git 初始化——但变量展开可以写出新的 .git 目录并被 git 采用。修复方式是在变量展开完成后、git 初始化之前，先删除任何已存在的 .git 目录。 立即将所有 Forgejo 实例升级到 16.0.4 或 15.0.8，并对托管不可信用户的实例进行审计，检查是否存在可疑仓库或通过模板展开产生的异常进程。
 
-hackernews · mmastrac · 9月10日 13:39 · [社区讨论](https://news.ycombinator.com/item?id=49643546)
+rss · LWN.net · 9月10日 20:05
 
-**背景**: C/C++代码中的内存安全漏洞是安全漏洞的主要来源之一，这也是政府和厂商推动在系统代码中采用内存安全语言的原因。Rust 通过所有权和借用机制在编译期防止整类内存错误，且无需垃圾回收器，因此适合操作系统内核和驱动开发。微软已经用 Rust 重写了部分 Windows 内核，评论中也指出所有在 C/C++工具链中扮演重要角色的主流操作系统厂商现在都支持了额外的系统编程语言。
+**背景**: Forgejo 是一个轻量级的自托管软件锻造平台（源自 Gitea 分支），提供 Git 托管、问题跟踪、代码评审和持续集成等功能。与 Gitea 一样，它支持模板仓库：可以从模板生成新仓库，并在指定文件中展开预定义变量，通常通过 .gitea/template 或 .forgejo/template 之类的文件配置。由于 .git 目录包含仓库配置（包括钩子），在 git 初始化之前向目录注入伪造的 .git 文件夹，攻击者就能定义在特定操作时执行恶意命令的钩子。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Memory_safety">Memory safety - Wikipedia</a></li>
-<li><a href="https://www.memorysafety.org/docs/memory-safety/">What is memory safety and why does it matter? - Prossimo</a></li>
+<li><a href="https://forgejo.org/">Forgejo – Beyond coding. We forge.</a></li>
+<li><a href="https://docs.gitea.com/usage/repository/template-repositories/">Template Repository | Gitea Documentation Template Repositories | Gitea Documentation Variables for template repositories · community · Discussion ... Forge-Specific Repository Folders | Andrew Nesbitt templates - Set up a default directory structure on git init ... Richard Clayton - Templatizing Github "Template Repos"</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Forgejo">Forgejo - Wikipedia</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 评论整体积极，许多人认为这是一个里程碑，确认了所有主流操作系统厂商都已实现系统编程语言的多元化。但也有实际担忧，包括 Visual Studio 缺少 Rust 支持、缺少 Rust 原生的 WinRT 库，还有人调侃希望此举能修复 Windows 天气应用占用超过 1GB 内存的问题。
-
-**标签**: `#rust`, `#microsoft`, `#systems-programming`, `#language-adoption`, `#memory-safety`
+**标签**: `#security`, `#forgejo`, `#git`, `#vulnerability`, `#self-hosting`
 
 ---
 
 <a id="item-4"></a>
-## [用户报告 OpenAI 反复重新开启“允许训练”设置](https://news.ycombinator.com/item?id=49643556) ⭐️ 6.0/10
+## [CyberTiel 35B-A3B 4-bit 量化模型在 SWE-bench-Live 上超越更大编程模型](https://www.reddit.com/r/LocalLLaMA/comments/1wcpppm/cybertiel_35ba3bs_uncensored_4bit_quant_beats/) ⭐️ 7.0/10
 
-多名 Hacker News 用户报告，OpenAI 账号中的“允许使用我的内容进行训练”设置在被关闭后又被悄悄重新开启，至少一位用户仔细记录了关闭时间并确认了这一现象。目前 OpenAI 尚未确认原因或提供修复。 任何依赖应用内开关来防止 ChatGPT 对话被用于训练的用户，可能在不知情的情况下被重新纳入训练。这也说明仅靠复选框可能不够——还需要通过隐私门户单独提交退出请求。 有评论者指出，仅关闭复选框并不够：用户还需在 privacy.openai.com 提交“不要训练我的内容”的请求。一位欧盟用户报告其开关已保持关闭数月，暗示可能存在地区差异；另有用户质疑该开关是否真的有效。 立即检查你的 OpenAI 账号训练设置，确认它没有被重新开启，并在 privacy.openai.com 额外提交“不要训练我的内容”请求作为保障。
+一位匿名研究者发布了 CyberTiel，一个经过 abliteration 去审查的 35B-A3B 编程模型，其 4-bit GGUF 量化版本据称在真实代码库问题上超越 Claude Opus 4.6 medium，且解题时间仅为 Qwen3.8-27b medium 的 27%。关键技术是使用由网络安全和智能体软件工程语料烘焙的 imatrix 进行量化，从而以更高精度保留与相关任务所需的权重。 这为本地大模型用户提供了实用方法：使用领域定制的 imatrix 时，Q4 量化下 abliteration 造成的损伤可以忽略不计，意味着去审查不必牺牲编程能力。这也是一次少见的基于 SWE-bench-Live 的实测对比，测试的是在真实代码库中解决真实问题，而非合成题目。 作者指出它仍是 35B-A3B 模型，以牺牲世界知识换取编程能力，定位介于 Opus 4.6 medium 与 Qwen3.8-27b medium 之间——凭借速度优势足够应对大多数日常工作。GGUF 和 MLX 权重（含与不含 MTP）已上传至 Hugging Face；相关结论来自单一作者，尚无独立验证。 从 Hugging Face 下载 CyberTiel 的 GGUF 或 MLX 权重，在你自己的代码库上用现有本地编程智能体测试一个真实 issue，并与当前使用的模型对比质量和速度。
 
-hackernews · jacquesm · 9月10日 13:39
+reddit · r/LocalLLaMA · /u/peculiar-ragdoll · 9月10日 17:26
 
-**背景**: ChatGPT 的账号设置中包含一个控制项，决定你的对话和内容是否被用于改进 OpenAI 的模型。取消勾选该复选框是日常的退出方式，但 OpenAI 还运营着一个单独的隐私门户（privacy.openai.com），用户可在其中提交正式的数据控制请求，包括明确的“不要训练我的内容”退出请求。在同一账号上使用 Codex CLI 等工具的用户，可能还不确定该开关是否覆盖这类使用场景。
+**背景**: Abliteration 是一种通过识别并削弱激活空间中的“拒绝方向”来移除大模型拒答行为的技术，但已知可能损害模型质量。量化（如 4-bit）可降低模型精度以节省内存；imatrix（重要性矩阵）由校准语料计算得出，在量化过程中决定哪些权重值得保留更高精度。使用领域定制的 imatrix 语料意味着与编程/安全相关的权重能得到更好保留。SWE-bench-Live 是一个持续更新的基准，用近期真实 GitHub issue 评估大模型，以解决传统基准过时的问题。
 
-**社区讨论**: 评论者证实多个账号都出现了设置被重新开启的现象，一位用户不确定该开关是否覆盖 Codex CLI 的使用，随后删除了自己的 ChatGPT 历史。整体情绪偏向怀疑——有人怀疑复选框根本无效——而一位欧盟用户报告其设置一直保持关闭，另有评论者指出通过隐私门户提交退出请求才是更可靠的做法。
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://huggingface.co/blog/mlabonne/abliteration">Uncensor any LLM with abliteration</a></li>
+<li><a href="https://ai-tldr.dev/learn/local-open-models/quantization-and-formats/imatrix-quantization/">What Is an imatrix? Smarter GGUF Quantization | AI/TLDR</a></li>
+<li><a href="https://swe-bench-live.github.io/">SWE - bench - Live Leaderboard</a></li>
 
-**标签**: `#privacy`, `#openai`, `#data-training`, `#account-settings`, `#hackernews`
+</ul>
+</details>
+
+**标签**: `#local-llm`, `#quantization`, `#coding-models`, `#swe-bench`, `#open-source-ai`
 
 ---
 
 <a id="item-5"></a>
-## [MIT 科技评论：AI 电力需求暴露电网架构风险](https://www.technologyreview.com/2026/09/10/1141649/powering-ai-is-an-architecture-problem/) ⭐️ 6.0/10
+## [openai-python v3.13.0 新增原生 Agents API 端点](https://github.com/openai/openai-python/releases/tag/v3.13.0) ⭐️ 6.0/10
 
-MIT Technology Review 发表分析指出，AI 的巨大电力需求正使数据中心集群成为电网架构上的薄弱环节。2026 年 7 月 22 日，弗吉尼亚州 Ashburn 一处输电线路故障导致 PJM 电网在数秒内损失超过 3 吉瓦负荷，这与 2024 年一次单个避雷器失效导致约 60 个设施、1500 兆瓦负荷同时脱网的 incidents 相呼应。 这篇文章提供了具体事故数据，表明 AI 级数据中心园区既易受大电网扰动影响，也会反过来动摇电网稳定，这对规划 AI 算力、选址数据中心或评估基础设施风险的人都很重要。理解这些约束能帮助读者认识到，电力供应而非芯片，可能成为 AI 扩展的真正瓶颈。 2026 年 7 月的事件在数秒内使 PJM 电网损失超过 3 吉瓦需求，罕见地揭示了超大规模园区面对大电网扰动时的真实反应。文章的核心论点是，这本质上是架构问题——将吉瓦级 AI 负荷集中于单一集群——而非单纯的容量不足。 阅读 MIT Technology Review 原文全文；如果你负责规划或运营 AI 算力，应评估多区域分散部署以及本地发电/储能，以对冲单一集群的电网依赖风险。
+OpenAI 于 2026 年 9 月 10 日发布了官方 openai-python SDK 的 v3.13.0 版本，唯一的新特性是新增了 Agents API 端点。这使 Python 开发者无需单独使用 Agents SDK，即可通过原生 SDK 访问 OpenAI 的服务端智能体基础设施。 构建智能体工作流的开发者现在可以直接通过主 API 客户端定义并运行智能体，简化了依赖管理，使智能体功能成为标准 REST SDK 的一等公民。对于已在生产环境使用 openai-python 的团队来说，这降低了采用智能体编排的门槛。 本次发布说明仅包含一个提交（新增 Agents API），变更日志中没有详细的文档或示例。根据 OpenAI 官方文档，Agents API 在服务端运行 Codex harness，支持自动上下文压缩、多智能体编排、程序化工具调用以及 MCP 服务器支持；该 SDK 支持 Python 3.10+，并提供同步和异步客户端。 运行 `pip install --upgrade openai` 升级，并阅读 Agents API 指南（developers.openai.com/api/docs/guides/agents），尝试通过新端点定义一个包含指令、模型和工具的简单智能体。
 
-rss · MIT Technology Review · 9月10日 11:00
+github · openai-sdks[bot] · 9月10日 19:37
 
-**背景**: 弗吉尼亚州 Ashburn 的“数据中心巷”是全球最密集的数据中心聚集地，估计每天有 70%的全球互联网流量经过此地。PJM 是服务该地区的区域电网运营商。避雷器（surge arrester）是将雷击和开关过电压引入大地的保护装置，一旦失效可能引发输电故障。当电压或频率崩溃时，电力公司会采取“切负荷”（load shedding）手段，主动断开部分负荷以避免全网大面积停电，这就是整个数据中心园区会在数秒内脱网的原因。
+**背景**: 此前 OpenAI 提供了两条智能体开发路径：用于带工具的基础模型调用的 Responses API，以及用于编排的独立 openai-agents Python SDK。Agents API 将大部分智能体循环移到了服务端——由 OpenAI 管理上下文、工具调用和 harness 执行——开发者只需专注于定义指令、模型和工具。openai-python 库为 OpenAI REST API 提供带类型定义的请求/响应模型，以及基于 HTTPX2 的同步/异步客户端。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://datacenters.economictimes.indiatimes.com/news/operations-resilience/data-centre-alley-fault-triggers-3-gw-load-drop-on-pjm-grid/132595232">Data Centre Alley Fault Triggers 3 GW Load Drop on PJM Grid, ETDatacenters</a></li>
-<li><a href="https://lightyear.ai/blogs/ashburn-colocation-data-center-alley">Data Center Alley : Ashburn , VA 's Data Center Hub (2026 Guide)</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Lightning_arrester">Lightning arrester - Wikipedia</a></li>
+<li><a href="https://developers.openai.com/api/docs/guides/agents">Agents | OpenAI API</a></li>
+<li><a href="https://github.com/openai/openai-python">GitHub - openai/openai-python: The official Python library ...</a></li>
+<li><a href="https://openai.com/api/">API Platform | OpenAI</a></li>
 
 </ul>
 </details>
 
-**标签**: `#data centers`, `#power infrastructure`, `#AI energy`, `#grid reliability`, `#AI infrastructure`
+**标签**: `#openai`, `#python-sdk`, `#agents`, `#api-release`, `#ai-automation`
 
 ---
 
 <a id="item-6"></a>
-## [维基页面整理索尼在数字游戏所有权诉讼中的相关声明](https://consumerrights.wiki/w/Sony_PlayStation_digital_game_ownership_lawsuit) ⭐️ 5.0/10
+## [openai-python v3.12.0 新增 Live API 支持并修复异步问题](https://github.com/openai/openai-python/releases/tag/v3.12.0) ⭐️ 6.0/10
 
-一个消费者权利维基页面整理了索尼 PlayStation 关于玩家“拥有”数字游戏的相关声明，作为一起进行中的集体诉讼的证据。该诉讼主张 PlayStation 商店的“立即购买”和“确认购买”等措辞误导消费者以为自己在购买游戏的所有权，而实际上获得的只是可被撤销的许可。 此案凸显了数字商店的购买宣传与许可的法律现实之间的落差，这关系到每一位数字内容消费者。案件结果可能推动整个数字销售行业采用更清晰的披露方式，也为企业如何措辞自己的数字购买条款提供参考。 索尼的辩护称，如果购买者真正拥有游戏，那么一人购买后其他人就无法再购买同一款游戏——评论者用实体书的类比驳斥了这一说法：每个买家拥有的是各自的副本，而不是同一副本。索尼还援引 PlayStation 服务条款第 14 条的强制仲裁条款和集体诉讼豁免，要求用户在接受协议后 30 天内书面通知才能退出。 如果你是关注仲裁条款的 PlayStation 用户，请查阅服务条款第 14 条，并在接受协议后 30 天内提交书面退出通知；销售数字商品的企业应审查自己购买流程中的措辞是否存在所有权误导风险。
+OpenAI 于 2026 年 9 月 10 日发布了 openai-python v3.12.0，为官方 Python SDK 新增了面向实时语音/音频会话的 Live API 支持。该版本还修复了三个问题：为 AsyncStream 添加标准的异步清理方法 aclose()、处理不带类型参数的裸 dict/list 类型注解，以及在补全返回空响应时保留已生成的输出。 构建实时低延迟语音或音频应用的 Python 开发者现在可以通过官方 SDK 直接使用 Live API，而不必借助变通方案。这些修复解决了实际开发中的边界问题——例如缺失 aclose() 曾导致 Langfuse 等包装/埋点库在对流对象执行标准异步清理时报 AttributeError。 aclose() 修复（issue #2854）使 AsyncStream 与 httpx.Response、asyncio.StreamWriter 的约定保持一致；同步的 Stream 类不受影响，因为其调用方使用的是 close()。空响应修复（issue #3345）确保在服务器返回空补全结果时，已经流式输出的内容不会丢失。 运行 `pip install --upgrade openai` 升级到 v3.12.0，然后查阅 OpenAI 文档中的 Realtime/Live API 指南，开始在 Python 中体验实时音频会话。
 
-hackernews · haunter · 9月10日 12:18 · [社区讨论](https://news.ycombinator.com/item?id=49642531)
+github · openai-sdks[bot] · 9月10日 17:28
 
-**背景**: 当用户“购买”数字游戏时，通常购买的只是访问内容的许可而非内容本身，平台可以随时撤销该访问权。服务条款中常见的强制仲裁条款会让消费者放弃在法庭起诉或参与集体诉讼的权利，批评者指出仲裁机构可能偏向作为常客的企业客户。Steam 现在也显示类似免责声明，提醒买家购买的是许可而非所有权。据报道 PlayStation 将从 2028 年起转向纯数字发行，这一所有权问题将变得更加重要。
+**背景**: Live API（与 OpenAI 2024 年 10 月推出的 Realtime API 相关）通过单次 API 调用即可实现自然的全双工语音对话，适合需要低延迟的实时音频，而非基于文件或有边界的音频请求。在 Python 异步生态中，管理流的对象按惯例应提供 aclose() 用于协作式清理——此前 AsyncStream 只有 close()，导致期望标准接口的包装库出错。此外，不带类型参数的裸 dict/list 注解（如 dict 而非 dict[str, int]）也曾引发 SDK 的类型处理问题。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://consumerrights.wiki/w/Sony_PlayStation_digital_game_ownership_lawsuit">Sony PlayStation digital game ownership lawsuit</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Consumer_arbitration">Consumer arbitration - Wikipedia</a></li>
-<li><a href="https://www.thegamer.com/steam-digital-game-ownership-licence-disclaimer/?utm=syndication">Steam Update Addresses Digital Game Ownership</a></li>
+<li><a href="https://developers.openai.com/api/docs/guides/realtime">Realtime and audio | OpenAI API</a></li>
+<li><a href="https://github.com/openai/openai-python/issues/2853">AsyncStream missing aclose () causes AttributeError in ...</a></li>
+<li><a href="https://openai.com/index/introducing-the-realtime-api/">Introducing the Realtime API - OpenAI</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 评论者普遍批评索尼的辩护，有人指出实体书副本的类比直接驳斥了索尼关于“逐份所有权不可行”的说法，还有人认为这一论点可能弄巧成拙，打开索尼不愿面对的法律缺口。许多评论者认为针对个人的强制仲裁应当被认定为非法，也有人呼吁版权改革，实现真正的数字所有权，包括资产托管以及商店关闭后仍可继续访问。
-
-**标签**: `#digital-ownership`, `#consumer-rights`, `#legal`, `#licensing`, `#sony`
+**标签**: `#openai`, `#python-sdk`, `#api`, `#release-notes`, `#live-api`
 
 ---
 
 <a id="item-7"></a>
-## [美国储能市场高速增长，仍依赖中国电池](https://www.technologyreview.com/2026/09/10/1143791/us-china-batteries/) ⭐️ 5.0/10
+## [研究者用 Codex 和 ChatGPT 挖掘基因组寻找新型抗菌分子](https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials) ⭐️ 6.0/10
 
-《麻省理工科技评论》于 2026 年 9 月发布分析文章，探讨美国电网级储能市场在创纪录增长的同时，为何在中美供应链紧张的背景下仍然依赖廉价的中国电池，并评估美国电池市场能否真正与中国脱钩。 电网级储能是消纳风电、光伏等间歇性可再生能源、提升电网可靠性和减排的关键，因此电池的来源与成本直接影响美国能源转型的速度。理解中国电池供应链主导地位的深度，有助于开发者、政策制定者和投资者判断脱钩时间表的现实性。 文章指出，美国储能部署屡创新纪录，很大程度上是因为中国产磷酸铁锂（LFP）电池廉价且供应充足，这使得供应链独立的政策目标与短期经济效益之间存在矛盾。对 LFP 和 NMC 供应链的研究表明，中国在锂、镍、锰、钴等关键材料环节均占据主导地位。 阅读《麻省理工科技评论》原文，了解中美电池依赖的具体数据；如果你从事能源采购工作，应评估关税变化或国产化含量规定可能对储能项目成本和时间表产生的影响。
+OpenAI 发布了一篇案例研究，介绍宾夕法尼亚大学 César de la Fuente 实验室如何使用 Codex 和 ChatGPT 在现存和已灭绝生物的基因组中搜寻抗菌肽候选分子，以应对耐药菌感染。 它展示了在大语言模型编程智能体用于科学发现的一个具体应用模式：将原本需要大量人工编写代码的生物信息学数据处理和挖掘流程自动化。任何数据密集型领域的研究者都可以借鉴这种把探索性分析交给 AI 智能体的做法。 这是一篇带有宣传性质、技术细节和可复现方法有限的厂商博客文章；de la Fuente 此前经过同行评审的工作（例如挖掘 87,920 个细菌和古菌基因组、发现数十万候选抗菌肽）才是实质性的方法来源。报道中的工作流主要依赖提示词驱动的代码生成，而非已发表的流程。 可以先阅读 OpenAI 的文章了解工作流程，再研读 de la Fuente 经同行评审的论文（如 2024 年 Cell 上关于机器学习发现抗菌肽的论文）理解底层方法；也可以在自己的数据集上尝试搭建类似的 AI 智能体辅助数据处理流程。
 
-rss · MIT Technology Review · 9月10日 10:00
+rss · OpenAI Blog · 9月10日 16:00
 
-**背景**: 电网储能系统将多余电力储存以备后用，随着风电、光伏等波动性可再生能源占比提高，储能可帮助平衡供需。磷酸铁锂因成本低、安全性好、寿命长，已成为固定式储能的主流电池化学体系。中国用二十多年时间建成了从原材料加工到电芯制造的完整 LFP 供应链，形成了美国难以快速复制的成本优势。美国的关税和产业政策旨在刺激本土制造，但短期内部署仍严重依赖进口。
+**背景**: 抗菌素耐药性（AMR）是指细菌进化出在现有抗生素下存活的能力，使感染更难治疗、治疗成本更高。抗菌肽（AMP）是许多生物体内存在的短氨基酸序列，能够杀灭细菌，基因组是寻找候选分子的重要来源。de la Fuente 实验室一直致力于用机器学习方法在序列空间和全球微生物组中挖掘新的抗菌肽。Codex 是 OpenAI 的 AI 编程智能体，可以编写和运行代码，此处被用于加速基因组挖掘流程。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.sciencedirect.com/science/article/pii/S2666248525000071">China's hold on the lithium-ion battery supply chain ...</a></li>
-<li><a href="https://bydtoday.com/china-lfp-battery-history-supply-chain/">How China Built the LFP Battery Supply Chain in 23 Years</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Grid_energy_storage">Grid energy storage - Wikipedia</a></li>
+<li><a href="https://www.cell.com/cell/fulltext/S0092-8674(24)00522-1">Discovery of antimicrobial peptides in the global microbiome with machine learning: Cell</a></li>
+<li><a href="https://pubs.acs.org/doi/10.1021/acs.accounts.0c00594">AI-Driven Antimicrobial Peptide Discovery: Mining and Generation | Accounts of Chemical Research</a></li>
+<li><a href="https://github.com/openai/codex">GitHub - openai/codex: Lightweight coding agent that runs in your terminal · GitHub</a></li>
 
 </ul>
 </details>
 
-**标签**: `#energy-storage`, `#supply-chain`, `#us-china`, `#batteries`, `#policy`
+**标签**: `#AI`, `#LLM applications`, `#scientific research`, `#bioinformatics`, `#case study`
 
 ---
 
 <a id="item-8"></a>
-## [Clearview AI 测试 InquiryIQ 工具，可将人脸关联到完整网络生活](https://www.wired.com/story/clearview-ai-is-testing-an-ai-tool-that-lets-cops-instantly-unearth-your-online-activity/) ⭐️ 5.0/10
+## [OpenAI 在 ChatGPT Work 中推出 Data agent](https://openai.com/index/put-data-to-work) ⭐️ 6.0/10
 
-Wired 揭露，Clearview AI 悄悄测试了一个此前未被报道的原型工具 InquiryIQ，它使用 xAI（Grok 的开发商）的模型，在通过人脸识别确定身份后，汇总一个人的关联人物、社交账号和网络活动。这使 Clearview 从人脸匹配扩展到 AI 生成的个人档案。 这表明人脸识别正在与大语言模型结合，实现对普通人的自动化大规模画像，引发严重的隐私和公民自由担忧。由于 Clearview 的数据库是在未经同意的情况下抓取数十亿张图片建立的，任何有网络足迹的人都可能受到影响。 该工具依赖 xAI 的模型而非 Clearview 自有的人脸匹配引擎；由于这只是针对原型产品的调查报道，其准确性、防护措施、部署状态以及参与测试的机构等细节仍然有限。Clearview 长期陷于隐私争议，包括因非法抓取数据在欧洲和伊利诺伊州被处罚。 由于这是不面向公众的监控产品，没有可执行的技术操作；关注隐私的读者可以跟踪 Wired 的后续报道，审视自己在社交媒体上的曝光程度，并关注所在地区的隐私立法（如类似伊利诺伊州 BIPA 的法律）进展。
+OpenAI 在 ChatGPT Work 中推出了新的 Data agent，它可以直接连接公司数据源，让用户用自然语言提问、获得基于实时数据的答案，并构建交互式仪表盘。该功能旨在用实时、对话式的数据访问取代基于过期数据构建的报告流程。 这项功能将商业智能的能力从专业分析师扩展到普通员工，无需 SQL 或 BI 工具专业知识即可查询和可视化公司数据。正在评估 AI 工具的团队可以将其视为传统 BI 平台的替代或补充方案。 该公告只是一份简短的产品宣传，未提供支持的数据连接器、权限控制或定价层级等技术细节。类似能力在其他产品中也存在（如 Amazon Quick 的自然语言仪表盘生成），采购前应对比准确性和数据治理能力。 如果你的团队使用 ChatGPT Work，可以先将 Data agent 连接到一个低风险的沙盒数据集，测试其答案和仪表盘是否与现有 BI 工具的结果一致，再接入生产数据。
 
-rss · Wired AI · 9月10日 10:00
+rss · OpenAI Blog · 9月10日 15:00
 
-**背景**: Clearview AI 通过抓取社交媒体和公开网络上的照片建立了包含数十亿张图片的人脸识别数据库，向执法部门销售，用于通过一张照片识别身份。xAI 是马斯克旗下的 AI 公司，开发了 Grok 系列大语言模型并可通过 API 使用。据报道，InquiryIQ 将两者结合：人脸匹配确定身份后，由大语言模型将此人的数字足迹汇总成调查报告。
+**背景**: AI agent 是由大语言模型驱动的系统，能够执行操作（查询数据库、运行代码、生成图表），而不仅仅是生成文本。传统 BI 工作流需要分析师手工构建仪表盘和报告，往往滞后于实时业务数据。自然语言 BI 允许用户直接输入诸如"展示过去 30 天的每日收入"这样的问题，由系统自动生成查询和可视化，OpenAI、AWS 等厂商目前都在提供这一模式。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://www.clearview.ai/">Clearview AI | Facial Recognition</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Grok_(chatbot)">Grok (chatbot) - Wikipedia</a></li>
+<li><a href="https://openai.com/index/put-data-to-work/">Now everyone can put data to work | OpenAI</a></li>
+<li><a href="https://aws.amazon.com/blogs/machine-learning/generate-dashboards-from-natural-language-prompts-in-amazon-quick/">Generate dashboards from natural language prompts in Amazon Quick | Artificial Intelligence</a></li>
 
 </ul>
 </details>
 
-**标签**: `#surveillance`, `#privacy`, `#clearview-ai`, `#facial-recognition`, `#law-enforcement`
+**标签**: `#OpenAI`, `#AI agents`, `#data analysis`, `#business intelligence`, `#product announcement`
+
+---
+
+<a id="item-9"></a>
+## [PostgreSQL 19 因多个不稳定补丁面临发布质量担忧](https://lwn.net/Articles/1092003/) ⭐️ 6.0/10
+
+8 月 25 日，PostgreSQL 贡献者 Robert Haas 发出主题为“scary patch contest”的邮件，指出 PostgreSQL 19 中多个补丁在发布前需要异常大量的错误修复。其中一个补丁已被回退，其余仍在密集修订中，项目还额外增加了一个 beta 版本以留出更多测试时间。 PostgreSQL 19 是一个包含重大特性的版本（如 SQL/PGQ 图查询、查询计划提示、在线表重组和并行 autovacuum），发布末期的不稳定性对早期采用者意味着较高风险。数据库运维人员在规划升级时间时应考虑这一点，尤其是生产环境中依赖受影响特性的场景。 争议焦点在于若干补丁在发布后期需要异常多的错误修复，Haas 以此判断这些补丁尚未达到稳定发布标准；一个补丁已被完全回退，其余仍在继续修订。项目组为此在原定 9 月发布之前增加了一个额外的 beta 测试周期。 如果你在生产环境运行 PostgreSQL，建议等待最终稳定版（最好还包括首个小版本修复）再升级；若打算尽早采用 PostgreSQL 19 的新特性，可先在新增的 beta 周期中用自己的工作负载进行测试。
+
+rss · LWN.net · 9月10日 17:29
+
+**背景**: PostgreSQL 遵循每年一个主版本的发布节奏，补丁通过正式的“commitfest”流程开发和评审，在功能冻结后进入多个 beta 版本测试。社区 beta 测试是关键的质量关卡——任何人都可以下载 beta 版本，用自己的工作负载做回归测试并报告 bug。PostgreSQL 19 的主要特性包括 SQL/PGQ 属性图查询、时态数据操作、查询计划提示、在线表重组以及逻辑复制改进。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://neon.com/postgresql/postgresql-19-new-features">PostgreSQL 19 New Features: What's New and Why It Matters</a></li>
+<li><a href="https://wiki.postgresql.org/wiki/HowToBetaTest">HowToBetaTest - PostgreSQL wiki</a></li>
+<li><a href="https://www.postgresql.org/docs/release/19.0/">Release Notes - PostgreSQL</a></li>
+
+</ul>
+</details>
+
+**标签**: `#PostgreSQL`, `#database`, `#release management`, `#open source`, `#software quality`
+
+---
+
+<a id="item-10"></a>
+## [GitHub Actions 推出 cache-mode 设置，实现缓存最小权限访问](https://github.blog/changelog/2026-09-10-control-github-actions-cache-access-with-cache-mode) ⭐️ 5.0/10
+
+GitHub Actions 现在支持 cache-mode 设置，可以在工作流（workflow）或任务（job）级别对 Actions 缓存应用最小权限访问。每个工作流或任务只被授予其实际所需的缓存访问权限，这是继 2026 年 6 月针对不受信任触发器发放只读缓存令牌之后的进一步改进。 缓存投毒（cache poisoning）是 CI 中已知的提权路径：如果不受信任的工作流运行（例如来自 fork 的拉取请求）能写入共享缓存，后续受信任的运行就可能恢复恶意内容。该设置让维护者在保留缓存加速优势的同时加固流水线安全。 根据 GitHub 社区讨论中对这一功能的预告，其目标是在降低缓存投毒风险的同时保留现有行为（共享缓存访问）作为默认值，因此现有工作流不会中断。该功能建立在 2026 年 6 月的变更之上，即对无需写权限即可触发的事件，默认分支工作流只发放只读缓存令牌。 检查仓库中那些永远不应写缓存的工作流任务（例如处理 fork 拉取请求的任务），然后应用新的 cache-mode 设置，将这些任务限制为只读或隔离的缓存访问。
+
+rss · GitHub Changelog · 9月10日 17:26
+
+**背景**: GitHub Actions 缓存（通过 actions/cache 使用）是按仓库而非按工作流划分作用域的，因此任何具有写权限的运行都可以覆盖其他运行使用的缓存条目。攻击者可以通过提交拉取请求写入被投毒的缓存条目，随后被特权工作流恢复并执行——这就是典型的缓存投毒提权。此前应用于 Actions 其他部分的最小权限原则（如 permissions 块和 OIDC 短期凭证）现在扩展到了缓存本身。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://github.com/orgs/community/discussions/194493">Help Us Improve GitHub Actions Cache Isolation · community...</a></li>
+<li><a href="https://github.blog/changelog/2026-06-26-read-only-actions-cache-for-untrusted-triggers/">Read-only Actions cache for untrusted triggers - GitHub Changelog</a></li>
+
+</ul>
+</details>
+
+**社区讨论**: 该功能曾在 GitHub 社区讨论“Help Us Improve GitHub Actions Cache Isolation”中预告，团队强调将当前的共享缓存行为保留为默认，以避免破坏现有工作流，同时降低投毒风险。
+
+**标签**: `#github-actions`, `#ci-cd`, `#devops`, `#security`
 
 ---
