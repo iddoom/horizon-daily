@@ -5,80 +5,130 @@ date: 2026-09-12
 lang: zh
 ---
 
-> 从 10 条内容中筛选出 3 条重要资讯。
+> 从 15 条内容中筛选出 6 条重要资讯。
 
 ---
 
-1. [克雷数学研究所就纳维-斯托克斯问题解决方案发表谨慎声明](#item-1) ⭐️ 7.0/10
-2. [Perplexity 使用 GPT-6 Astra 实现端到端生产系统自主运行](#item-2) ⭐️ 7.0/10
-3. [Reddit 指南：用富含人格设定的系统提示词让任意 LLM 表现得像真人，无需微调](#item-3) ⭐️ 5.0/10
+1. [Ars Technica 花 4000 美元购买中国宇树机器狗的亲身体验](#item-1) ⭐️ 7.0/10
+2. [腾讯开源 AuK-Flash：1.5B 语音生成与编辑模型](#item-2) ⭐️ 7.0/10
+3. [文章呼吁创作者在 AI 时代幻灭感中坚持创造](#item-3) ⭐️ 6.0/10
+4. [Perplexity 使用 GPT-6 Astra 进行端到端自主运营](#item-4) ⭐️ 6.0/10
+5. [OpenAI 宣称解决千禧年大奖难题，数学界反应不一](#item-5) ⭐️ 5.0/10
+6. [用户实测称 Qwen 3.8-27B 大幅超越 3.5/3.6-35B 系列](#item-6) ⭐️ 5.0/10
 
 ---
 
 <a id="item-1"></a>
-## [克雷数学研究所就纳维-斯托克斯问题解决方案发表谨慎声明](https://www.claymath.org/news/navier-stokes-announcement/) ⭐️ 7.0/10
+## [Ars Technica 花 4000 美元购买中国宇树机器狗的亲身体验](https://arstechnica.com/gadgets/2026/09/i-spent-4000-on-a-robot-dog-from-china/) ⭐️ 7.0/10
 
-克雷数学研究所（CMI）就 OpenAI 宣布的纳维-斯托克斯解破裂证明发布了刻意中立的声明，指出其千禧年大奖规则要求成果先在同行评审期刊上正式发表，再经过两年的社区评审期，才可能考虑颁奖。由于 OpenAI 是将证明发布在自己的网站上而非合格期刊，两年的计时尚未开始。 这澄清了数学界最重大突破之一所涉及的机构验证流程，也凸显了 AI 生成证明的宣布与数学界正式认可之间的差距。这为人们理解重大科学奖项如何处理未经核实的高调声明提供了可借鉴的范例。 克雷研究所的规则要求在合格的同行评审期刊上发表；自行发布或 arXiv 预印本不算数，因此 OpenAI 在很长时间内不具备获奖资格——而且 OpenAI 自己也表示不会申领 100 万美元奖金。该证明（由约一万个 AI 代理生成并经 Lean 形式化的反例）尚未得到外部数学家验证，且与 Levent Alpöge 和 Tristan Buckmaster 就相关欧拉方程成果的优先权争议仍在进行中。 阅读克雷研究所官网的千禧年大奖规则（claymath.org/millennium-problems/rules/），准确了解什么样的成果才算合格提交；并持续关注 OpenAI 证明在同行评审和 Lean 形式化验证方面的进展，而不是将其视为已定论。
+Ars Technica 发布了一篇花费 4000 美元直接从中国购买宇树（Unitree）机器狗的第一手体验报告，涵盖真实成本、硬件质量和可用性。作者认为宇树可能是世界上最重要的机器人公司。 这篇报告为评估低成本机器人平台（用于研究、教育或自动化实验）的读者提供了真实世界的数据，说明这个价位的消费级四足机器人到底能做什么。它还展示了中国的硬件供应链如何大幅降低高性能机器人的成本。 这篇评测聚焦宇树的消费级四足产品线，如 Go2，其搭载自研 4D 激光雷达 L2，具备 360°x96°半球形感知、最小 0.05 米的检测距离，可实现全地形识别。直接从中国进口的买家需要注意，供货、售后和使用条款因国家和地区而异。 如果你在评估四足机器人平台，可先在宇树官方商店核对 Go2 的规格与到手总成本（运费、关税、本地售后），并阅读 Ars Technica 的完整评测了解实际使用中的注意事项。
 
-hackernews · rvz · 9月12日 04:09 · [社区讨论](https://news.ycombinator.com/item?id=49668706)
+rss · Ars Technica · 9月12日 11:00
 
-**背景**: 纳维-斯托克斯存在性与光滑性问题问的是：描述流体运动的基本偏微分方程——纳维-斯托克斯方程——的解在三维空间中是否总是保持光滑；该问题在 2000 年被克雷数学研究所列为七大千禧年大奖问题之一，每题奖金 100 万美元。2026 年 9 月 8 日，OpenAI 宣布证明这类解可能出现破裂，其方法建立在 Córdoba 和 Martínez-Zoroa 于 2023 年提出的爆破方法之上。克雷研究所 2018 年修订的规则刻意放缓流程：解必须在期刊发表后至少经受两年的审查才能获奖，这是从庞加莱猜想（迄今唯一被解决的千禧年问题）的风波中吸取的教训。
+**背景**: 宇树科技（Unitree Robotics）由王兴兴于 2016 年 8 月在杭州创立，最初专注于消费级四足机器人。它是全球第一家公开零售高性能四足机器人的公司，并长期保持该品类全球销量领先，曾亮相 2022 年冬奥会开幕式和 2023 年超级碗。2024 年公司扩展到约 1.6 万美元的人形机器人，新产品起价约 4900 美元。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Navier-Stokes_existence_and_smoothness_problem">Navier-Stokes existence and smoothness problem</a></li>
-<li><a href="https://www.claymath.org/millennium-problems/rules/">Rules for the Millennium Prize Problems - Clay Mathematics ...</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Millennium_Prize_Problems">Millennium Prize Problems - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Unitree_Robotics">Unitree Robotics - Wikipedia</a></li>
+<li><a href="https://www.unitree.com/go2/">Robot Dog Go2_Quadruped_Robot Dog Company | Unitree Robotics</a></li>
+<li><a href="https://shop.unitree.com/">Unitree Robotics</a></li>
 
 </ul>
 </details>
 
-**社区讨论**: 评论者普遍认为克雷研究所的声明刻意保持中立——全文没有提及 OpenAI 的名字，且“似乎已被解决”中的“似乎”一词被指出分量很重。多位评论者指出，发表后两年的等待规则意味着 OpenAI 距离获奖资格还很遥远，因为其证明是自行发布的；而 swyx 则将声明解读为在概念上启动了评审计时，同时克雷研究所避免在优先权争议和菲尔兹奖得主公开信问题上表态。
-
-**标签**: `#mathematics`, `#AI research`, `#Navier-Stokes`, `#Millennium Prize`, `#OpenAI`
+**标签**: `#robotics`, `#hardware`, `#unitree`, `#hands-on-review`, `#automation`
 
 ---
 
 <a id="item-2"></a>
-## [Perplexity 使用 GPT-6 Astra 实现端到端生产系统自主运行](https://openai.com/index/perplexity-improving-accuracy-with-astra) ⭐️ 7.0/10
+## [腾讯开源 AuK-Flash：1.5B 语音生成与编辑模型](https://www.reddit.com/r/LocalLLaMA/comments/1wecf25/tencentaukflash_hugging_face/) ⭐️ 7.0/10
 
-Perplexity 报告称正在使用 OpenAI 的 GPT-6 Astra 自主撰写对外沟通内容、修改软件并监控生产系统。值得注意的是，与早期模型相比，Perplexity 需要人工介入检查的频率大大降低。 这是一个 AI 智能体在生产环境中端到端管理高风险工作流(代码修改、生产监控)且人工监督减少的真实案例，反映了自主性信任门槛正在快速提升。正在评估 AI 智能体的团队可以将其作为参考，了解前沿模型在生产中被信任执行无监督任务的程度。 该公告属于厂商案例研究,带有宣传性质,缺少诸如防护机制、失败率或回滚机制等实现细节。OpenAI 将 Astra 描述为其首个达到“关键(Critical)”网络安全阈值的模型,并在高能力工作流周围部署了额外防护措施,这是将其信任用于生产环境访问的重要背景。 阅读 OpenAI 官网上的完整案例研究,了解 Perplexity 具体委派了哪些任务以及采用了怎样的监督频率,然后将这些与你自己部署智能体时的检查点和升级策略进行对照。
+腾讯发布了蒸馏版 AuK-Flash，这是一个 1.5B 参数的语音基础模型，支持快速 4 步推理，权重已在 Hugging Face 和 ModelScope 上开放。它支持零样本 TTS、指令式 TTS、内容/声学/副语言编辑、语音增强和声源分离，全部通过统一的自然语言指令接口完成。 一个可在本地运行的紧凑模型就统一了语音生成、编辑、增强和分离，对构建音频处理流水线、播客工具或配音工作流的开发者非常实用，无需依赖云端 API。基于指令的接口意味着一个模型可以替代多个专用工具。 AuK 有两个版本：用于高质量生成的基础模型，以及针对快速 4 步推理优化的蒸馏版 AuK-Flash。亮点能力包括保留旋律和人声的歌词编辑、去口音、耳语转换、根据说话内容识别目标说话人的目标说话人提取，以及音乐分离；Cookbook 提供了指令模板及 CLI 和 Python 示例。 从 Hugging Face 下载权重，按照 AuK GitHub 上的 Cookbook，使用提供的 CLI 或 Python 脚本在本地运行零样本 TTS 或语音分离示例。
 
-rss · OpenAI Blog · 9月14日 00:00
+reddit · r/LocalLLaMA · /u/pmttyji · 9月12日 13:17
 
-**背景**: GPT-6 Astra 是 OpenAI 的前沿智能体模型,其设计目标不仅是回答问题,更是执行任务:它将目标分解为多个步骤,像人一样使用工具和浏览器,自我检查工作成果并从错误中恢复。将这类智能体部署到生产环境会引发经典的“监督悖论”:过多的人工检查会抵消效率收益,而过少则可能导致静默失败或破坏性的自动化操作。关于信任校准和动态干预框架(例如随任务展开调整人工参与度的架构)的研究,正是为解决企业部署中的这一矛盾而兴起的活跃领域。
+**背景**: 传统语音工具都是单一任务的：TTS、去噪、说话人分离各需独立模型。AuK 则将所有任务统一为指令跟随：模型在数百万小时多样化音频上训练，通过自然语言指令描述要完成的任务，类似于多模态大模型统一视觉任务的方式。蒸馏减少了推理步数（此处为 4 步），以略微降低质量换取大幅提升的生成速度，这对实时和本地使用非常重要。
 
-<details><summary>参考链接</summary>
-<ul>
-<li><a href="https://happycapy.ai/models/gpt-6-astra">GPT - 6 Astra on Happycapy | OpenAI frontier agentic model</a></li>
-<li><a href="https://www.cometapi.com/gpt-6-astra-vs-claude-fable-5-1/">GPT - 6 Astra vs Claude Fable 5.1: Which Frontier Model Is... - CometAPI</a></li>
-<li><a href="https://link.springer.com/article/10.1007/s44163-026-01373-2">Balancing autonomy and oversight in reliable agentic ...</a></li>
-
-</ul>
-</details>
-
-**标签**: `#AI agents`, `#automation`, `#case study`, `#OpenAI`, `#production systems`
+**标签**: `#open-source-models`, `#speech-synthesis`, `#TTS`, `#audio-editing`, `#local-LLM`
 
 ---
 
 <a id="item-3"></a>
-## [Reddit 指南：用富含人格设定的系统提示词让任意 LLM 表现得像真人，无需微调](https://www.reddit.com/r/LocalLLaMA/comments/1we2rp2/concerning_humanlike_models_and_chatbot_rp_in/) ⭐️ 5.0/10
+## [文章呼吁创作者在 AI 时代幻灭感中坚持创造](https://www.joelotter.com/posts/2026/09/make-it-anyway/) ⭐️ 6.0/10
 
-r/LocalLLaMA 上的一篇帖子给出了一个具体方法，仅用系统提示词就能把大多数现成 LLM 变成有说服力的“拟人”聊天对象，并指出像“humanlike Qwen”这类流行的微调模型并非必需。该方法结合了人物传记、少样本问答示例、明确界定的对话模式、性格特质描述以及技术性约束。 它向本地运行模型爱好者展示了如何通过提示词工程免费获得丰富的角色扮演和人格化聊天行为，无需下载专门的微调模型或自己训练。诸如在示例对话中填充模型会当作事实采纳的一致信息等技巧，可直接复用于 SillyTavern 类工具或自定义聊天机器人项目。 值得注意的细节包括：示例中的角色标签对某些模型有帮助、对另一些则无所谓；在抑制冗长的助手式回答时，必须清楚陈述正向目标而不要生动描述你想避免的行为，否则可能用不想要的想法“污染”模型注意力。帖子还建议将表情符号列表标注为“最喜欢的表情”，因为积极措辞能让模型更牢固地采纳，并可将传记事实注入性格指令中加以放大。 选一个你正在运行的本地模型，按照帖子给出的结构构建人格系统提示词：简短生平、5-10 组包含一致事实的问答示例、精确定义的“短消息闲聊”模式，以及带小标题的性格段落——然后不断迭代直到人格声音稳定为止。
+Joel Otter 发表了一篇反思性文章《Make it anyway》，主张无论 AI 对手艺和职业造成什么影响，创作者都应继续动手做东西。该文在 Hacker News 上引发了约 190 条评论的激烈讨论，议题涵盖手工艺、身份认同、自我意识以及手工编码技能是否仍然重要。 这篇文章及其讨论捕捉到了开发者群体中普遍存在的焦虑：随着 LLM 自动化编码工作，他们担心失去价值感和目标感。读者可以从多元而具体的视角中受益，思考如何在坚守个人手艺与使用 AI 辅助工作流之间取得平衡。 这篇文章是观点性随笔，没有具体技术细节；其价值主要在于社区讨论。评论者提出了不少具体观点，例如借助 LLM 开发者能交付远超以往的产品（如为小企业做出类似 iMessage 的完整私信体验），以及把理解代码库完全交给机器的风险——有人因此产出了冗余且不优雅的代码。 阅读原文并浏览 HN 讨论串，了解其他人如何在 AI 辅助与保持对代码库理解之间取得平衡；然后养成一个具体习惯，例如亲自审查和重构 LLM 生成的代码，而不是照单全收。
 
-reddit · r/LocalLLaMA · /u/BestGirlAhagonUmiko · 9月12日 04:36
+hackernews · JayOtter · 9月12日 11:42 · [社区讨论](https://news.ycombinator.com/item?id=49671329)
 
-**背景**: 系统提示词是置于用户输入之前的常设指令，为整个对话设定 LLM 的运行上下文、语气和行为，被普遍认为是提升本地 LLM 输出效果成本最低的手段。角色提示（即告诉模型“你是 X”）是一种成熟的提示词工程技术，但研究表明在需要专业领域知识的任务上，它并不总能匹敌微调模型。这篇帖子的起因是 Qwen 模型的社区“拟人”微调版本在专注本地运行 LLM 的 r/LocalLLaMA 版块走红。
+**背景**: LLM 编程助手（如 GitHub Copilot、Claude、ChatGPT）能够高速生成可用代码，使部分开发者的角色从编写代码转向审查和指挥代码。这一转变引发了关于深度手工编码技能是否仍有价值、以及创作者如何从手艺中获得身份认同和满足感的讨论。"无论如何都要动手做"的情绪呼应了早期创客文化的主张：创造的内在乐趣独立于经济或技术成果而存在。
+
+**社区讨论**: 评论意见严重分化。DidntUseIt 等人表示 LLM 让他们做出了以前绝不敢尝试的完整 SaaS 功能；MachineMan 认为创作者必须诚实地自省：爱的到底是手艺本身，还是手艺带来的身份、名声和赞美。x3haloed 直言这篇文章 80%是自尊心作祟、20%是对变化的恐惧，坚持认为善用 LLM 的人会超越拒绝者，且就业市场价值终将大幅下降；而 Tade0 虽在工作中使用 LLM，但在目睹冗余、不优雅的 AI 代码漏过审查后，拒绝把对代码库的理解完全交给机器。
+
+**标签**: `#AI`, `#software-engineering`, `#career`, `#craftsmanship`, `#opinion`
+
+---
+
+<a id="item-4"></a>
+## [Perplexity 使用 GPT-6 Astra 进行端到端自主运营](https://openai.com/index/perplexity-improving-accuracy-with-astra) ⭐️ 6.0/10
+
+OpenAI 发布案例研究称 Perplexity 使用 GPT-6 Astra（2026 年 9 月 3 日发布）自主撰写沟通内容、修改软件并监控生产系统。Perplexity 表示，与早期模型相比，所需的人工检查频率大幅降低。 这是一家真实公司将前沿模型用于端到端生产运营的知名早期案例，表明代理式部署中减少人工监督可能已具备可行性。正在评估用 AI 代理做生产监控和软件变更的团队可以将其作为厂商宣称能力的参考点。 该公告为新闻稿风格，未提供实现细节、基准测试、错误率或安全防护措施的描述，因此所宣称的检查频率降低无法被独立验证。GPT-6 Astra 被 OpenAI 定位为其最强模型，在计算机使用和编程能力方面处于领先水平。 阅读 OpenAI 网站上的完整案例研究，然后设计一个小规模内部试点：让代理在定义好的检查间隔下处理低风险生产任务，从而在自己的环境中实际测量新模型是否真的降低了监督需求。
+
+rss · OpenAI Blog · 9月14日 00:00
+
+**背景**: LLM 代理是指模型自主执行多步骤任务的系统，例如撰写文本、修改代码或操作软件，而不仅是回答单个提示。将这类代理部署到生产环境颇具挑战，因为错误会在长任务链中累积，所以目前大多数方案仍需频繁的人工审查。Perplexity 是一家 AI 搜索公司（成立于 2022 年，2025 年 9 月估值约 200 亿美元），以提供带来源引用的答案引擎而闻名。
 
 <details><summary>参考链接</summary>
 <ul>
-<li><a href="https://promptengineering.org/system-prompts-in-large-language-models/">System Prompts for LLMs: Definition and Examples</a></li>
-<li><a href="https://learnprompting.org/docs/advanced/zero_shot/role_prompting">Role Prompting: Guide LLMs with Persona-Based Tasks</a></li>
-<li><a href="https://llmconfigurator.com/en/guides/system-prompts-local-llm">System Prompts 101: Get Better Answers From Your Local LLM | Local AI Guide | LLM Configurator</a></li>
+<li><a href="https://en.wikipedia.org/wiki/GPT-6_Astra">GPT-6 Astra - Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Perplexity_(company)">Perplexity (company)</a></li>
 
 </ul>
 </details>
 
-**标签**: `#LLM`, `#prompt-engineering`, `#chatbots`, `#roleplay`, `#LocalLLaMA`
+**标签**: `#AI agents`, `#LLM deployment`, `#automation`, `#production systems`, `#case study`
+
+---
+
+<a id="item-5"></a>
+## [OpenAI 宣称解决千禧年大奖难题，数学界反应不一](https://www.theverge.com/ai-artificial-intelligence/994255/openai-millennium-prize-problem-tristan-buckmaster-competition) ⭐️ 5.0/10
+
+据 The Verge 报道，OpenAI 宣称解决了一个著名的千禧年大奖难题，据信是纳维-斯托克斯方程的存在性与光滑性问题。OpenAI 于 9 月 8 日发布了 166 页的论文手稿以及 Lean 形式化验证代码，但尚未经过独立的同行评审。 如果得到验证，这将是历史上第二个被解决的千禧年大奖难题，也是 AI 辅助数学研究的里程碑。数学界的质疑态度也凸显了 AI 快速宣称成果与数学界严格缓慢的同行评审规范之间日益加剧的张力。 该成果附带了 Lean 形式化验证，即机器可检查的证明格式，可逐步验证逻辑推理，这比普通预印本更具可信度。但克雷数学研究所的 100 万美元奖金要求成果经过漫长的评审并被数学界接受，因此该宣称目前尚未得到正式确认。 读者可以亲自查阅 OpenAI 公开发布的 166 页论文手稿和 Lean 形式化代码，并随着专家评审的展开，持续关注数学家和 Quanta Magazine 等媒体的评论。
+
+rss · The Verge · 9月12日 11:00
+
+**背景**: 千禧年大奖难题是克雷数学研究所于 2000 年选定的七个著名未解数学问题，每题奖金 100 万美元，目前只有庞加莱猜想被解决（由格里戈里·佩雷尔曼完成）。Lean 是一种形式化证明助手，能够机械地检查证明中每一步逻辑是否成立，已成为让 AI 生成的数学成果可信的关键工具。据报道，OpenAI 动用了大规模算力，宣称使用了数千个 AI 智能体连续工作 88 小时来完成证明。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://www.datacamp.com/blog/openai-navier-stokes-math-problem">Did AI Solve Navier-Stokes? OpenAI 's Claim, Explained | DataCamp</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Millennium_Prize_Problems">Millennium Prize Problems - Wikipedia</a></li>
+<li><a href="https://shattered.io/openai-navier-stokes-millennium-prize-proof-2026/">OpenAI Navier-Stokes Proof : 10,000 AI Agents, 88 Hours [2026]</a></li>
+
+</ul>
+</details>
+
+**标签**: `#OpenAI`, `#AI research`, `#mathematics`, `#AI news`
+
+---
+
+<a id="item-6"></a>
+## [用户实测称 Qwen 3.8-27B 大幅超越 3.5/3.6-35B 系列](https://www.reddit.com/r/LocalLLaMA/comments/1we8tl1/3827b_has_ruined_353635bs_for_me_its_just/) ⭐️ 5.0/10
+
+一位 Reddit 用户完整复现了五个应用科学项目（工作流设计、数据管道、结果分析、报告撰写与数据发布），发现 Qwen 3.8-27B 的输出质量远超 3.5/3.6-35B-A3B 系列，包括 Kat、Ornith、Nex-2 等微调变体。虽然总耗时是后者的 3-4 倍，但该模型少用了 22-33% 的 token，且内存占用更低。 这对于在稠密模型与 MoE 本地模型之间做选择的用户是有价值的实测参考：27B 稠密模型即使速度明显更慢，也可能在质量和 token 效率上胜过激活参数更少的 MoE 模型。这说明在长篇知识工作中，token 效率和输出质量可能比推理速度更重要。 Qwen 3.8-27B 是一个稠密混合注意力模型（64 层中有 48 层使用线性注意力），带有视觉编码器、内置 MTP 投影头和 262K 原生上下文，采用 Apache 2.0 许可。该用户还对比了 Z.ai 的 GLM-5.3 和 5.3-flash API，发现 3.8-27B 与 GLM-5.3 的差距很小，而与 35B-A3B 系列差距很大；但需注意这是轶事性报告，没有基准测试或代码。 如果你在本地运行模型处理长篇分析工作，可以下载 Hugging Face 上 Apache 2.0 许可的 Qwen3.8-27B，在自己的工作流中对比其 token 消耗和输出质量与某个 35B-A3B 变体的差异，再决定日常主力模型。
+
+reddit · r/LocalLLaMA · /u/JLeonsarmiento · 9月12日 10:16
+
+**背景**: Qwen 3.5/3.6-35B-A3B 是稀疏混合专家（MoE）模型，总参数 35B 但推理时仅激活约 3B，因此在笔记本电脑和边缘设备上速度快、内存友好。社区微调版本（Kat、Ornith、Nex-2）试图在原模型基础上改进。像 3.8-27B 这样的稠密模型每个 token 都激活全部参数，通常速度更慢但质量更高；GLM-5.3 是 Z.ai 的旗舰闭源 API 模型，在此作为高端参照。
+
+<details><summary>参考链接</summary>
+<ul>
+<li><a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen/Qwen3.8-27B · Hugging Face</a></li>
+<li><a href="https://www.jetson-ai-lab.com/models/qwen3-5-35b-a3b/">Qwen3.5 35B-A3B (MoE) | Jetson AI Lab</a></li>
+<li><a href="https://recipes.vllm.ai/Qwen/Qwen3.6-35B-A3B">Qwen/Qwen3.6-35B-A3B — 35B / 3B active · MOE · 256K ctx</a></li>
+
+</ul>
+</details>
+
+**标签**: `#LLM`, `#Qwen`, `#local-models`, `#benchmark-anecdote`, `#workflow`
 
 ---
